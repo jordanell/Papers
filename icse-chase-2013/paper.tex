@@ -26,11 +26,87 @@ Victoria, British Columbia \\ danielad@cs.uvic.ca}}
 
 % Paper abstract
 \begin{abstract}
-Write some abstract here.
+Awareness has been a largely studied field of awareness research within
+software engineering. Many tools and techniques been been proposed and built
+in order to provide software developers and stakeholders with a greater
+sense of workspace and task awareness within their software projects. These
+techniques and tools have been largely focused on detecting \textit{direct} 
+conflicts which arise over a project's life time or have created 
+an exploratory ground for stakeholders to use as a means of resolving self
+discovered direct or \textit{indirect} conflicts. However, detecting 
+and providing pertinent information regarding indirect conflicts has been
+a largely ignored field of research partially due to its inherently largely
+complexity than direct conflicts. Indirect conflicts arise from changes
+in one software artefact affecting another. In this paper, we present
+Impact, a new task awareness tool directly aimed at both detecting
+and presenting indirect conflicts which arise inside of a software project.
+We introduce previous indirect conflict awareness attempts, our design 
+and implementation as well as describe Impact's potential through
+two evaluation studies. 
 \end{abstract}
 
 
 \section{Introduction}
+
+Awareness is characterized as "an understanding of the activities of others
+which provides a context for one's own activities"~\cite{Dourish:1992:ACS}.
+The study of awareness and its tools has become an important topic of
+research in software engineering especially with the new importance of
+distributed work and collaboration. Awareness is generally associated with
+both technical and social dependencies that are created and evolve over
+a software project's life time. The study of these dependencies has become
+the primary focus of most awareness related research. Task awareness has
+become the most prevalent field of research to understand how developers and
+project managers cope with these technical and social dependencies.\\
+
+Tools have been created to attempt to solve task awareness related issues
+with moderate success~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, 
+Khurana:2009:PFC}. However, these tools have been designed 
+to solve task awareness related issues at the direct conflict level. 
+Examples of direct task awareness include knowing when two or more 
+developers are  editing same artefact, finding expert knowledge of a
+particular file, and knowing which developers are working in which files.
+Meanwhile, task awareness related issues at the indirect conflict level
+continue to be an issue which is largely unsolved by most coordination
+mechanisms~\cite{Khurana:2009:PFC}.\\
+
+Previous interviews and surveys conducted with software developers show a 
+consensus that developers of a software project view indirect task awareness 
+as a high priority issue in their developement~\cite{Damian:2007:GSE, 
+Halverson:2006:DTV, Begel:2010:CDE}. Examples of indirect task awareness
+conflicts include have one's own code effect by another's source
+code change and finding out who might be indirectly effect by one's
+own code change. Indirect conflicts arising in source code are inherantly
+difficult to resolve as most of the time, source code analysis must
+be preformed in order to find the relationships harmed by these conflicts.
+While some awareness tools have been created with these indirect conflicts
+primarily in mind~\cite{Begel:2010:CDE, Trainer:2005:BGT}, most have only 
+created an exploratory environment which is used by developers to
+solve conflicts which may arise. These tools lack the ability to detect
+indirect conflicts that arise and alert developers to their presence 
+inside of the software system. Some tools have started to work directly
+with solving indirect conflicts~\cite{Sarma:2007:TSA}, but continue
+to be limited by their usefulness.\\ 
+
+Despite software developer's need for indirect conflict awareness tools
+and existing exploratory indirect conflict awareness tools, detecting
+and alerting developers to arising indirect conflicts is still a major
+problem in the field of task awareness. Impact, a web based awareness
+tool, aims to solve this issue. In this paper, we describe Impact's
+design and implementation in order to both detect newly created
+indirect conflicts among software developers as well as alerting developers
+to these conflicts. By leveraging technical relationships inherent of 
+software projects with method call graphs as well as detecting changes
+to these technical relationship through software configuration management
+(SCM) systems, Impact is able to detect indirect conflicts as well as
+alert developers involved in such conflicts in task awareness.\\
+
+The rest of this paper is organized as follows. First, we begin by discussing
+similar task awareness related tools which have partially solved the
+issues presented by this paper and how their workings can be applied to 
+Impact. In the following section we describe the design and implementation
+of Impact as an awareness tool. We then discuss a preliminary evaluation of
+Impact followed by a discussion of future work and conclusions.\\
 
 
 
@@ -38,11 +114,11 @@ Write some abstract here.
 
 
 
-\section{Approach and Design}
-
-
-
 \section{Impact}
+
+\subsection{Design}
+
+\subsection{Implementation}
 
 
 
@@ -54,19 +130,7 @@ Write some abstract here.
 
 
 
-\section{Discussion and Future Work}
-
-
-
-\section{Threats to Validity}
-
-
-
-\section{Conclusion}
-
-
-
-\section{Acknowledgements}
+\section{Conclusion and Future Work}
 
 
 
