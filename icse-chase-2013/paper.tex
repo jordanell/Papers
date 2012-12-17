@@ -37,7 +37,7 @@ discovered direct or \textit{indirect} conflicts. However, detecting
 and providing pertinent information regarding indirect conflicts has been
 a largely ignored field of research partially due to its inherently largely
 complexity than direct conflicts. Indirect conflicts arise from changes
-in one software artefact affecting another. In this paper, we present
+in one software artifact affecting another. In this paper, we present
 Impact, a new task awareness tool directly aimed at both detecting
 and presenting indirect conflicts which arise inside of a software project.
 We introduce previous indirect conflict awareness attempts, our design 
@@ -63,7 +63,7 @@ with moderate success~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV,
 Khurana:2009:PFC}. However, these tools have been designed 
 to solve task awareness related issues at the direct conflict level. 
 Examples of direct task awareness include knowing when two or more 
-developers are  editing same artefact, finding expert knowledge of a
+developers are  editing same artifact, finding expert knowledge of a
 particular file, and knowing which developers are working in which files.
 Meanwhile, task awareness related issues at the indirect conflict level
 continue to be an issue which is largely unsolved by most coordination
@@ -71,11 +71,11 @@ mechanisms~\cite{Khurana:2009:PFC}.\\
 
 Previous interviews and surveys conducted with software developers show a 
 consensus that developers of a software project view indirect task awareness 
-as a high priority issue in their developement~\cite{Damian:2007:GSE, 
+as a high priority issue in their development~\cite{Damian:2007:GSE, 
 Halverson:2006:DTV, Begel:2010:CDE}. Examples of indirect task awareness
 conflicts include have one's own code effect by another's source
 code change and finding out who might be indirectly effect by one's
-own code change. Indirect conflicts arising in source code are inherantly
+own code change. Indirect conflicts arising in source code are inherently
 difficult to resolve as most of the time, source code analysis must
 be preformed in order to find the relationships harmed by these conflicts.
 While some awareness tools have been created with these indirect conflicts
@@ -211,15 +211,95 @@ implementation of Impact in the following section will follow these
 three design guidelines.
 
 \subsection{Implementation}
+For Impact's implementation, we decided to focus on methods as our
+selected technical objects to infer a directed graph from. The "uses" 
+relationship described above form methods is method invocation.
+Thus, in our constructed directed graph, methods represent nodes
+and method invocations represent our directed edges. In order to 
+construct this directed graph, abstract syntax trees (ASTs) are 
+constructed from source files in the project. The ASTs allow us
+to construct method call graphs~\cite{} from which the directed 
+graphs can be constructed.\\
 
+Once the directed graph is constructed, we must now assign
+ownership to our technical objects (methods) as per our design.
+To do this, we simply query the source code repository. In our case
+we used Git as the source code repository, so the command "git blame"
+is used for querying ownership information (most source code 
+repositories have similar commands and functionality). This command 
+gives authors of source code per line which can be used to assign
+ownership to methods. If a method has 10 lines and developer A
+has written 3 while developer B has written 7, then ownership is
+assigned 30\% and 70\% respectively.\\
+
+To detect changes to our technical objects (methods), we simply 
+use a commit's \textit{diff} which is a representation of all changes
+made inside a commit. We can use the lines changed in the diff to 
+find methods that have been changed. This gives cause of potential
+indirect conflicts. We now find all methods in our directed graphs
+which invoke these changed methods. These are the final indirect
+conflicts.\\
+
+Now that the indirect conflicts have been found, we use the
+ownership information of our technical objects to send alerts to
+those developers involved in the indirect conflict. All owners
+of methods which invoke those that have been changed are alerted
+to the newly changed method. This can been seen in
+Figure~\ref{}, the user interface of Impact. Here, in an RSS type
+feed, the changing developer, time of change, changed method,
+invoking methods, and commit message are all displayed. This 
+list is auto updating as new commits are push to the central
+git repository. Developers are now free to use this information
+to be aware of and solve indirect conflicts which arise at the
+method level.\\
 
 
 \section{Evaluation}
+To fully evaluate both the generic design of detecting and resolving
+indirect conflicts as well as Impact, extensive testing and evaluation
+must be preformed. However, we feel that a simple evaluation is
+first needed to assess the foundation of our design and claims:
+does Impact improve developer awareness with indirect conflicts
+and help the resolving of such issues?.\\
 
+We preformed two user case studies to address our question where
+we gave Impact to two small development teams. Each team was
+free to use Impact at their leisure during their development process,
+after which interviews were conducted with leads developers from 
+each development team. The interviews were conducted after each
+team had used Impact for three weeks.\\
 
+We asked lead developers to address two main concerns: do indirect
+conflicts pose a threat at the method level, and did Impact help raise
+awareness and promote quicker conflict resolution for indirect
+conflicts. Our two interviews largely supported our initial claims of
+indirect conflicts posing a serious threat to developers, especially
+in medium to large teams or projects. Our interviews also pointed
+out that method use can be a particularly large area for indirect
+conflicts to arise. However, both interviewees also pointed out that
+any technical object which is used as an interface to some data
+construct or methodology, database access for instance, can be 
+a large potential issue for indirect conflicts.  Interview response to
+Impact was also largely positive, both interviewees said that Impact
+helped raise awareness among their teams with what other developers
+are doing as well as the influence it has on their own work. However,
+both interviews showed Impact to have information overload. Both
+interviews showed that while all method changes were being detected,
+not all are alert worthy. One lead developer suggested to only alert
+developers to indirect conflicts if the internal structure of a method
+changes due to modification to input parameters or output parameters.
+In other words, the boundaries of the technical objects (changing
+how a parameter is used inside the method, modifying the return
+result inside the method) seem to be more of interest than other 
+internal workings.\\
 
-\section{Results}
-
+These two studies have show that our design and approach to
+detecting and alerting developers to indirect conflicts appear
+to be on the correct path. Impact as a tool has laid the foundations
+for future work in detecting indirect conflicts as well as alerting
+developers although more thought must be given as to 
+what constitutes a meaningful change inside our selected 
+technical objects.\\
 
 
 \section{Conclusion and Future Work}
