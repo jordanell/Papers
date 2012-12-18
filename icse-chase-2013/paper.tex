@@ -171,7 +171,7 @@ indirect conflict tools is to relate technical objects to one another
 with a "uses" mentality. To say that object 1 uses object 2 is to infer
 a technical relationship between the two objects which can be used
 in part to detect indirect conflict that arise from modifying object
-2. This kind of relationship is modeled after a directed graph. Each
+2. This kind of relationship is modelled after a directed graph. Each
 technical object and represented by node while each "uses"
 relationship is represented by a directed edge. This representation
 is used to indicate all indirect relationships within a software project.\\
@@ -186,6 +186,11 @@ object 2 owned by developer B may be notified by a change to
 object 2's internal workings. Most, if not all, ownership information
 of technical objects can be extracted from a project's source code
 repository (CVS, Git, SVN, etc.).\\
+
+\begin{figure}[t!]
+\includegraphics{images/CallGraph}
+\caption{Technical object directed graph with ownership\label{fig:graph}}
+\end{figure}
 
 Finally, the indirect conflict tool must be able to detect changes to
 to the technical objects defined above. Two approaches have been 
@@ -245,13 +250,18 @@ ownership information of our technical objects to send alerts to
 those developers involved in the indirect conflict. All owners
 of methods which invoke those that have been changed are alerted
 to the newly changed method. This can been seen in
-Figure~\ref{}, the user interface of Impact. Here, in an RSS type
+Figure~\ref{fig:impact}, the user interface of Impact. Here, in an RSS type
 feed, the changing developer, time of change, changed method,
 invoking methods, and commit message are all displayed. This 
 list is auto updating as new commits are push to the central
 git repository. Developers are now free to use this information
 to be aware of and solve indirect conflicts which arise at the
 method level.\\
+
+\begin{figure}[t!]
+\includegraphics{images/ImpactDemo}
+\caption{Impact's RSS type information feed.\label{fig:impact}}
+\end{figure}
 
 
 \section{Evaluation}
