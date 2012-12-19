@@ -26,7 +26,7 @@ Victoria, British Columbia \\ danielad@cs.uvic.ca}}
 
 % Paper abstract
 \begin{abstract}
-Awareness has been a largely studied field of awareness research within
+Awareness has been largely studied in the field of awareness research within
 software engineering. Many tools and techniques been been proposed and built
 in order to provide software developers and stakeholders with a greater
 sense of workspace and task awareness within their software projects. These
@@ -35,13 +35,13 @@ conflicts which arise over a project's life time or have created
 an exploratory ground for stakeholders to use as a means of resolving self
 discovered direct or \textit{indirect} conflicts. However, detecting 
 and providing pertinent information regarding indirect conflicts has been
-a largely ignored field of research partially due to its inherently largely
-complexity than direct conflicts. Indirect conflicts arise from changes
+largely ignored partially due to its inherently larger
+complexity than direct conflicts. Indirect conflicts arise when changes
 in one software artifact affecting another. In this paper, we present
 Impact, a new task awareness tool directly aimed at both detecting
 and presenting indirect conflicts which arise inside of a software project.
 We introduce previous indirect conflict awareness attempts, our design 
-and implementation as well as describe Impact's potential through
+and implementation, as well as describe Impact's potential through
 two evaluation studies. 
 \end{abstract}
 
@@ -55,29 +55,30 @@ distributed work and collaboration. Awareness is generally associated with
 both technical and social dependencies that are created and evolve over
 a software project's life time. The study of these dependencies has become
 the primary focus of most awareness related research. Task awareness has
-become the most prevalent field of research to understand how developers and
-project managers cope with these technical and social dependencies.\\
+become the most prevalent field of awareness research to understand 
+how developers cope with these technical and social dependencies.\\
 
 Tools have been created to attempt to solve task awareness related issues
 with moderate success~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, 
 Khurana:2009:PFC}. However, these tools have been designed 
 to solve task awareness related issues at the direct conflict level. 
-Examples of direct task awareness include knowing when two or more 
+Examples of direct conflict awareness include knowing when two or more 
 developers are  editing same artifact, finding expert knowledge of a
 particular file, and knowing which developers are working in which files.
 Meanwhile, task awareness related issues at the indirect conflict level
 continue to be an issue which is largely unsolved by most coordination
 mechanisms~\cite{Khurana:2009:PFC}.\\
 
-Previous interviews and surveys conducted with software developers show a 
-consensus that developers of a software project view indirect task awareness 
-as a high priority issue in their development~\cite{Damian:2007:GSE, 
-Halverson:2006:DTV, Begel:2010:CDE}. Examples of indirect task awareness
-conflicts include have one's own code effect by another's source
-code change and finding out who might be indirectly effect by one's
+Previous interviews and surveys conducted with software developers have 
+show a pattern that developers of a software project view indirect conflict 
+awareness  as a high priority issue in their development~\cite{Damian:2007:GSE, 
+Halverson:2006:DTV, Begel:2010:CDE, Schroter:2012:TTF}. Examples 
+of indirect conflict awareness
+include having one's own code effect by another developer's source
+code change or finding out who might be indirectly effected by one's
 own code change. Indirect conflicts arising in source code are inherently
 difficult to resolve as most of the time, source code analysis must
-be preformed in order to find the relationships harmed by these conflicts.
+be preformed in order to find relationships which are harmed by changes.
 While some awareness tools have been created with these indirect conflicts
 primarily in mind~\cite{Begel:2010:CDE, Trainer:2005:BGT}, most have only 
 created an exploratory environment which is used by developers to
@@ -85,27 +86,30 @@ solve conflicts which may arise. These tools lack the ability to detect
 indirect conflicts that arise and alert developers to their presence 
 inside of the software system. Some tools have started to work directly
 with solving indirect conflicts~\cite{Sarma:2007:TSA}, but continue
-to be limited by their usefulness.\\ 
+to be limited by their defined technical relationships.\\ 
 
 Despite software developer's need for indirect conflict awareness tools
-and existing exploratory indirect conflict awareness tools, detecting
-and alerting developers to arising indirect conflicts is still a major
-problem in the field of task awareness. Impact, a web based awareness
-tool, aims to solve this issue. In this paper, we describe Impact's
+detecting and alerting developers to arising indirect conflicts is still a major
+problem. Impact, a web based awareness
+tool, aims to solve this issue. In this paper, we describe Impact's generic
 design and implementation in order to both detect newly created
 indirect conflicts among software developers as well as alerting developers
 to these conflicts. By leveraging technical relationships inherent of 
-software projects with method call graphs as well as detecting changes
+software projects with method call graphs~\cite{Lakhotia:1993:CCM}
+ as well as detecting changes
 to these technical relationship through software configuration management
 (SCM) systems, Impact is able to detect indirect conflicts as well as
-alert developers involved in such conflicts in task awareness.\\
+alert developers involved in such conflicts in task awareness. This process
+fulfills the technical and social dependency congruence found by 
+Grinter  et al.~\cite{Grinter:2003:RCW} which suggests to offer a smoother
+work flow.\\
 
 The rest of this paper is organized as follows. First, we begin by discussing
-similar task awareness related tools which have partially solved the
+similar indirect conflict awareness tools which have partially solved the
 issues presented by this paper and how their workings can be applied to 
-Impact. In the following section we describe the design and implementation
+Impact. In the following section we describe a generic design and implementation
 of Impact as an awareness tool. We then discuss a preliminary evaluation of
-Impact followed by a discussion of future work and conclusions.\\
+Impact followed by conclusions and future work.\\
 
 
 \section{Related Work}
@@ -124,14 +128,15 @@ lookup table to solve their issue. Codebook is a type of social developer
 network that is relating developers to source code, issue repositories and
 other social media while Ariadne only looks at source code for developer
 to source code association. In this, developers become
-owners of source code artifacts by querying the source code repository
-for ownership information. Both projects also use directed graphs
-in order to relate technical artifacts to each other. This creates technical
-dependencies within the source code which are used for indirect
-conflicts. These projects make use of method call graphs in order to 
-determine which methods invoke others. This is the basis for their 
-linkage of source code artifacts. While these projects can be great tools 
-for solving indirect conflicts which may arise, they lack the ability to
+owners of source code artifacts. Both projects also use program 
+dependency graphs~\cite{Horwitz:1992:UPD}
+in order to relate technical artifacts to each other. These projects make 
+use of method call graphs in order to 
+determine which methods invoke others which forms the basis for 
+linking source code artifacts; creating a directed graph. While these 
+projects can be great tools 
+for solving indirect conflicts which may arise, by querying such directed
+graphs to view impacts of conflict creating code, they lack the ability to
 detect conflicts on their own.\\
 
 A serious attempt at both detecting and informing developers of
@@ -139,28 +144,29 @@ indirect conflicts is the tool Palantir~\cite{Sarma:2007:TSA}. Palantir
 monitors developers activities in files with regards to class signatures.
 Once a developer changes the signature of a class by modifying changes
 in name, parameters, return values of public methods etc., any workspace
-of other developers which is using that file will be notified. Palantir utilizes
+of other developers which are using that class will be notified. Palantir utilizes
 a push-based event model~\cite{Fitzpatrick:2002:SPA} which seems to be
 a favored collection system among Awareness tools. Sarma et al. also
 develops a generic design for future indirect conflict awareness tools. 
-However, where Palantir falls short is in its collection and distribution
+However, where Palantir falls short are in its collection and distribution
 mechanisms. Palantir only considers "outside" appearance of technical
 objects, being their return types, parameters, etc., and only delivers
 detected conflicts to developers who are presently viewing or editing
-the indirect object.\\
+the indirect object while other developers who have used the modified 
+class previously are not notified.\\
 
 Impact is designed to handle the holes in the aforementioned projects.
 Impact will focus on the detection of indirect conflicts at an internal level
 of technical objects as opposed from object signatures and the distribution
 of these conflicts to all appropriate developers regardless of their current
 workspace activities. Impact is also designed around the successes these
-projects have had in the past with directed technical artifact graphs as 
+projects have had in the past with directed graphs as 
 well as elements of collection, ownership and distribution functionality.\\
 
 
 \section{Impact}
 This section will proceed to give an outlined detail of Impact in both its
-design and implementation. The design of Impact was created to be both
+design and implementation. The design of Impact was created to be
 a generic construct which can be applied to other indirect conflict 
 awareness tools while the implementation is specific to the technical
 goals of Impact.
@@ -168,11 +174,11 @@ goals of Impact.
 \subsection{Design}
 Compared to tool design for direct conflicts, the major concern of 
 indirect conflict tools is to relate technical objects to one another
-with a "uses" mentality. To say that object 1 uses object 2 is to infer
+with a "uses" relationship. To say that object 1 uses object 2 is to infer
 a technical relationship between the two objects which can be used
 in part to detect indirect conflict that arise from modifying object
-2. This kind of relationship is modelled after a directed graph. Each
-technical object and represented by node while each "uses"
+2. This kind of relationship is modeled after a directed graph ~\cite{Horwitz:1992:UPD}. 
+Each technical object and represented by node while each "uses"
 relationship is represented by a directed edge. This representation
 is used to indicate all indirect relationships within a software project.\\
 
@@ -181,8 +187,8 @@ social communication is the ultimate goal of resolving such conflicts.
 This being the case, developer ownership must be placed on the 
 identified technical objects. With this ownership, we can now infer
 relationships among developers based on their technical objects
-"uses" relationship. Developer A who owns object 1 which uses 
-object 2 owned by developer B may be notified by a change to
+"uses" relationship. Developer A, who owns object 1 which uses 
+object 2 owned by developer B, may be notified by a change to
 object 2's internal workings. Most, if not all, ownership information
 of technical objects can be extracted from a project's source code
 repository (CVS, Git, SVN, etc.).\\
@@ -193,24 +199,29 @@ repository (CVS, Git, SVN, etc.).\\
 \end{figure}
 
 Finally, the indirect conflict tool must be able to detect changes to
-to the technical objects defined above. Two approaches have been 
-proposed for change gathering techniques: real time and commit time.
-Real time indicates that all changes made to source code will be
-reported even without being committed to a project's central 
-repository where as push time indicates only committed changes
-will be subject to conflict analysis. We propose the use of push time
-information gathering. Commit time avoids the issue of developers 
+to the technical objects defined above and distribute information 
+to the appropriate owners. Two approaches have been 
+proposed for change gathering techniques: real time and commit 
+time~\cite{Fitzpatrick:2002:SPA}.
+We propose the use of commit time
+information gathering as it avoids the issue of developers 
 overwriting previous work or deleting modifications which would 
 produce information for changes that no longer exist. However, the
 trade off is that indirect conflicts must be committed before detected
 which results in conflicts being apart of the system before being able
 to be dealt with as opposed to catching conflicts before they happen.
-Commit time also avoids the need for a client side application to 
-monitor the development activity of project developers.\\
+At commit time, the tool must parse changed source code in relation
+to technical artifacts in the created directed graph detailed above.
+Once technical objects are found to be changed, appropriate owners
+of objects which use the changed object should be notified.
+In Figure~\ref{fig:graph}, X changes method (technical object) 1
+and thus effects methods 2 and 3 resulting in the alerting of
+developers Y and Z.
 
 With this three step design of: (i) creating directed graphs of technical
 objects, (ii) assigning ownership to those technical objects, and (iii)
-detecting changes within commit time, we believe a wide variety of
+detecting changes within commit time and the distribution of information
+to appropriate owners, we believe a wide variety of
 indirect conflict awareness tools can be created or extended. The
 implementation of Impact in the following section will follow these
 three design guidelines.
@@ -218,21 +229,21 @@ three design guidelines.
 \subsection{Implementation}
 For Impact's implementation, we decided to focus on methods as our
 selected technical objects to infer a directed graph from. The "uses" 
-relationship described above form methods is method invocation.
+relationship described above for methods is method invocation.
 Thus, in our constructed directed graph, methods represent nodes
 and method invocations represent our directed edges. In order to 
 construct this directed graph, abstract syntax trees (ASTs) are 
 constructed from source files in the project. The ASTs allow us
-to construct method call graphs~\cite{} from which the directed 
+to construct method call graphs from which the directed 
 graphs can be constructed.\\
 
 Once the directed graph is constructed, we must now assign
 ownership to our technical objects (methods) as per our design.
 To do this, we simply query the source code repository. In our case
-we used Git as the source code repository, so the command "git blame"
+we used Git as the source code repository, so the command \textit{git blame}
 is used for querying ownership information (most source code 
 repositories have similar commands and functionality). This command 
-gives authors of source code per line which can be used to assign
+gives authors of source code per line which can is used to assign
 ownership to methods. If a method has 10 lines and developer A
 has written 3 while developer B has written 7, then ownership is
 assigned 30\% and 70\% respectively.\\
@@ -253,10 +264,14 @@ to the newly changed method. This can been seen in
 Figure~\ref{fig:impact}, the user interface of Impact. Here, in an RSS type
 feed, the changing developer, time of change, changed method,
 invoking methods, and commit message are all displayed. This 
-list is auto updating as new commits are push to the central
-git repository. Developers are now free to use this information
-to be aware of and solve indirect conflicts which arise at the
-method level.\\
+list is auto updating as new commits are pushed to the central
+git repository. The information provided also comes with a simple
+weight of percent changed of changed method multiplied by 
+ownership of the invoking method. This allows developers to filter
+through high and low changes effecting their own source code.
+Developers are now fable to be alerted of detected indirect
+conflicts and solve them by communicating the the developer
+who authored the change.\\
 
 \begin{figure}[t!]
 \includegraphics{images/ImpactDemo}
