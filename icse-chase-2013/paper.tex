@@ -182,6 +182,11 @@ Each technical object and represented by node while each "uses"
 relationship is represented by a directed edge. This representation
 is used to indicate all indirect relationships within a software project.\\
 
+\begin{figure}[t!]
+\includegraphics{images/CallGraph}
+\caption{Technical object directed graph with ownership\label{fig:graph}}
+\end{figure}
+
 While technical object relationships form the basis of indirect conflicts,
 social communication is the ultimate goal of resolving such conflicts.
 This being the case, developer ownership must be placed on the 
@@ -192,11 +197,6 @@ object 2 owned by developer B, may be notified by a change to
 object 2's internal workings. Most, if not all, ownership information
 of technical objects can be extracted from a project's source code
 repository (CVS, Git, SVN, etc.).\\
-
-\begin{figure}[t!]
-\includegraphics{images/CallGraph}
-\caption{Technical object directed graph with ownership\label{fig:graph}}
-\end{figure}
 
 Finally, the indirect conflict tool must be able to detect changes to
 to the technical objects defined above and distribute information 
