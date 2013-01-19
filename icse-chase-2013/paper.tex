@@ -40,8 +40,11 @@ complexity than direct conflicts. Indirect conflicts arise when changes
 in one software artifact affect another. In this paper, we present
 \textit{Impact}, a new task awareness tool directly aimed at both detecting
 and presenting indirect conflicts which arise inside of a software project.
-We introduce previous indirect conflict awareness attempts, our design 
-and implementation, as well as describe \textit{Impact's} potential through
+\textit{Impact} represents a first step towards the design and implementation
+of awareness tools that specifically address indirect conflicts in software
+projects. To describe \textit{Impact}, we introduce previous indirect 
+conflict awareness attempts, our design 
+and implementation, as well as \textit{Impact's} potential through
 two evaluation studies. 
 \end{abstract}
 
@@ -101,10 +104,9 @@ to these technical relationship through software configuration management
 (SCM) systems, \textit{Impact} is able to detect indirect conflicts as well as
 alert developers involved in such conflicts in task awareness. While this paper
 outlines \textit{Impact's} specific implementation, the design used can be put
-towards many other similar indirect conflict awareness tools. This design
-fulfills the technical and social dependency congruence found by 
-Grinter  et al.~\cite{Grinter:2003:RCW} which suggests to offer a better 
-communication patterns inside the project.
+towards many other similar indirect conflict awareness tools. 
+\textit{Impact} represents a first step towards the design and implementation
+of awareness tools which address indirect conflicts in software development.
 
 The rest of this paper is organized as follows. First, we begin by discussing
 similar indirect conflict awareness tools which have partially solved the
@@ -308,29 +310,31 @@ awareness and promote quicker conflict resolution for indirect
 conflicts. Our two interviews largely supported our initial claims of
 indirect conflicts posing a serious threat to developers, especially
 in medium to large teams or projects as opposed to the small
-teams which they were apart of. Our interviews also pointed
+teams which they were apart of. It was also pointed
 out that method use can be a particularly large area for indirect
-conflicts to arise. However, both interviewees also pointed out that
+conflicts to arise. However, it was noted that
 any technical object which is used as an interface to some data
 construct or methodology, database access for instance, can be 
 a large potential issue for indirect conflicts.  Interview response to
-\textit{Impact} was also largely positive, as both interviewees said that \textit{Impact}
+\textit{Impact} was also largely positive, as interviewees stated that \textit{Impact}
 helped raise awareness among their teams with what other developers
 are doing as well as the influence it has on their own work. However,
-both interviews showed \textit{Impact} to have information overload. Both
-interviews showed that while all method changes were being detected,
-not all are alert worthy. One lead developer suggested to only alert
+\textit{Impact} was shown to have information overload. It was suggested
+that while all method changes were being detected,
+not all are notification worthy. One developer suggested to only notify
 developers to indirect conflicts if the internal structure of a method
 changes due to modification to input parameters or output parameters.
 In other words, the boundaries of the technical objects (changing
 how a parameter is used inside the method, modifying the return
 result inside the method) seem to be more of interest than other 
-internal workings.
+internal workings. More complex inner workings of methods were also noted 
+to be of interest to developers
+such as cyclomatic complexity, or time and space requirements.
 
 These two studies have shown that our design and approach to
 detecting and alerting developers to indirect conflicts appear
 to be on the correct path. \textit{Impact} as a tool has laid the foundations
-for future work in detecting indirect conflicts as well as alerting
+for future work in detecting indirect conflicts as well as notifying
 developers, although more thought must be given as to 
 what constitutes a meaningful change inside our selected 
 technical objects.
@@ -343,15 +347,31 @@ design for the future development of awareness tools in regards to
 handling indirect conflicts. We have presented a prototype 
 awareness tool, \textit{Impact}, which was designed around our generic 
 awareness approach. \textit{Impact} was evaluated on a small scale, showing
-its future potential as well as highlighting its current weaknesses.
+its future potential as well as highlighting its current weaknesses. This paper
+has demonstrated our first step towards understanding awareness tools
+that specifically address indirect conflicts and what questions are 
+still to be answered.
 
-In future work we are planning to conduct interviews and surveys
-with software developers to confirm that indirect conflicts pose a
-threat to their projects as well as discovering what constitutes a 
-valid change inside of a given technical object. With these two
-improvements, we plan to justify our generic design of indirect
-conflict tools further as well as improve the ideas of detecting 
-valid and significant changes to technical objects.
+\section{Future Work For Indirect Conflicts}
+While \textit{Impact} has laid the foundations for awareness tool construction
+aimed at resolving indirect conflicts, it has also raised questions 
+in regards to levels of granularity in notification of indirect conflicts and the
+implied trade off between notifications and information overload. To address
+these problems, we hope to find industry expert opinion through interviews
+and surveys with experienced developers. From these interactions, we hope to
+answer some of the questions presented in this paper such as which technical
+objects concern developers with indirect conflicts, and what types of changes
+to these objects are cause for notification. We also hope, through these
+expert opinions, to further the 
+push for indirect conflict awareness tools by establishing that indirect
+conflicts are real world problems with harmful consequences. 
+Further more, we hope to bring these opinions back to the realm of 
+\textit{Impact}, in combination with other academic works on balancing
+between notifications and information overload~\cite{Wang:2007}, to
+continue our development
+on this tool to further its life both as a research tool and a possible
+industry application. 
+
 
 \bibliographystyle{IEEEtran}
 \bibliography{paper}
