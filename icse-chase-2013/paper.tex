@@ -38,10 +38,10 @@ and providing pertinent information regarding indirect conflicts has been
 largely ignored partially due to its inherently larger
 complexity than direct conflicts. Indirect conflicts arise when changes
 in one software artifact affect another. In this paper, we present
-Impact, a new task awareness tool directly aimed at both detecting
+\textit{Impact}, a new task awareness tool directly aimed at both detecting
 and presenting indirect conflicts which arise inside of a software project.
 We introduce previous indirect conflict awareness attempts, our design 
-and implementation, as well as describe Impact's potential through
+and implementation, as well as describe \textit{Impact's} potential through
 two evaluation studies. 
 \end{abstract}
 
@@ -56,7 +56,7 @@ both technical and social dependencies that are created and evolve over
 a software project's life time. The study of these dependencies has become
 the primary focus of most awareness related research. Task awareness has
 become the most prevalent field of awareness research to understand 
-how developers cope with these technical and social dependencies.\\
+how developers cope with these technical and social dependencies.
 
 Tools have been created to attempt to solve task awareness related issues
 with moderate success~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC}. However, these tools have been designed 
@@ -66,49 +66,52 @@ developers are  editing same artifact, finding expert knowledge of a
 particular file, and knowing which developers are working in which files.
 Meanwhile, task awareness related issues at the indirect conflict level
 continue to be an issue which is largely unsolved by most coordination
-mechanisms~\cite{Khurana:2009:PFC}.\\
+mechanisms. Examples of indirect conflict awareness
+include having one's own code effected by another developer's source
+code change or finding out who might be indirectly effected by one's
+own code change. 
 
 Previous interviews and surveys conducted with software developers have 
 show a pattern that developers of a software project view indirect conflict 
 awareness  as a high priority issue in their development~\cite{Damian:2007:GSE, 
-Halverson:2006:DTV, Begel:2010:CDE, Schroter:2012:TTF}. Examples 
-of indirect conflict awareness
-include having one's own code effected by another developer's source
-code change or finding out who might be indirectly effected by one's
-own code change. Indirect conflicts arising in source code are inherently
+Halverson:2006:DTV, Begel:2010:CDE, Schroter:2012:TTF}.
+Indirect conflicts arising in source code are inherently
 difficult to resolve as most of the time, source code analysis must
-be preformed in order to find relationships which are harmed by changes.
+be performed in order to find relationships between technical objects
+which are harmed by changes.
 While some awareness tools have been created with these indirect conflicts
 primarily in mind~\cite{Begel:2010:CDE, Trainer:2005:BGT}, most have only 
 created an exploratory environment which is used by developers to
 solve conflicts which may arise. These tools lack the ability to detect
 indirect conflicts that arise and alert developers to their presence 
-inside of the software system. Some tools have started to work directly
+inside the software system. Some tools have started to work directly
 with solving indirect conflicts~\cite{Sarma:2007:TSA} but continue
-to be limited by their defined technical relationships.\\ 
+to be limited by their defined technical relationships. 
 
 Despite software developer's need for indirect conflict awareness tools
 detecting and alerting developers to arising indirect conflicts is still a major
-problem. Impact, a web based awareness
-tool, aims to solve this issue. In this paper, we describe Impact's generic
+problem. \textit{Impact}, a web based awareness
+tool, aims to solve this issue. In this paper, we describe \textit{Impact's}
 design and implementation in order to both detect newly created
 indirect conflicts among software developers as well as alerting developers
 to these conflicts. By leveraging technical relationships inherent of 
 software projects with method call graphs~\cite{Lakhotia:1993:CCM}
 as well as detecting changes
 to these technical relationship through software configuration management
-(SCM) systems, Impact is able to detect indirect conflicts as well as
-alert developers involved in such conflicts in task awareness. This process
+(SCM) systems, \textit{Impact} is able to detect indirect conflicts as well as
+alert developers involved in such conflicts in task awareness. While this paper
+outlines \textit{Impact's} specific implementation, the design used can be put
+towards many other similar indirect conflict awareness tools. This design
 fulfills the technical and social dependency congruence found by 
-Grinter  et al.~\cite{Grinter:2003:RCW} which suggests to offer a smoother
-work flow.\\
+Grinter  et al.~\cite{Grinter:2003:RCW} which suggests to offer a better 
+communication patterns inside the project.
 
 The rest of this paper is organized as follows. First, we begin by discussing
 similar indirect conflict awareness tools which have partially solved the
 issues presented by this paper and how their workings can be applied to 
-Impact. In the following section we describe a generic design and implementation
-of Impact as an awareness tool. We then discuss a preliminary evaluation of
-Impact followed by conclusions and future work.\\
+\textit{Impact}. In the following section we describe a generic design and implementation
+of \textit{Impact} as an awareness tool. We then discuss a preliminary evaluation of
+\textit{Impact} followed by conclusions and future work.
 
 
 \section{Related Work}
@@ -116,7 +119,7 @@ Although there is an abundance of Awareness tools developed in research
 today, only a handful have made an attempt to examine indirect conflicts.
 Here, we will outline three of the forefront projects in indirect conflicts
 and how these projects have influenced the decision making process in
-the design and implementation of Impact.\\
+the design and implementation of \textit{Impact}.
 
 We first start with both Codebook~\cite{Begel:2010:CDE} and 
 Ariadne~\cite{Trainer:2005:BGT}. These projects produce an exploratory
@@ -126,7 +129,7 @@ once a developer discovers a conflict, they can use the tool as a type of
 lookup table to solve their issue. Codebook is a type of social developer
 network that relates developers to source code, issue repositories and
 other social media while Ariadne only looks at source code for developer
-to source code association. In this, developers become
+to source code association. through Codebook, developers become
 owners of source code artifacts. Both projects also use program 
 dependency graphs~\cite{Horwitz:1992:UPD}
 in order to relate technical artifacts to each other. These projects make 
@@ -136,13 +139,13 @@ linking source code artifacts creating a directed graph. While these
 projects can be great tools 
 for solving indirect conflicts which may arise, by querying such directed
 graphs to view impacts of conflict creating code, they lack the ability to
-detect conflicts on their own.\\
+detect conflicts on their own.
 
 A serious attempt at both detecting and informing developers of
 indirect conflicts is the tool Palantir~\cite{Sarma:2007:TSA}. Palantir
 monitors developers activities in files with regards to class signatures.
-Once a developer changes the signature of a class by modifying changes
-in name, parameters, return values of public methods etc., any workspace
+Once a developer changes the signature of a class, such as by modifying changes
+in name, parameters, or return values of public methods, any workspace
 of other developers which are using that class will be notified. Palantir utilizes
 a push-based event model~\cite{Fitzpatrick:2002:SPA} which seems to be
 a favored collection system among Awareness tools. Sarma et al.
@@ -154,23 +157,23 @@ objects, being their return types, parameters, etc.. Secondly, Palantir
 only delivers
 detected conflicts to developers who are presently viewing or editing
 the indirect object while other developers who have used the modified 
-class previously are not notified.\\
+class previously are not notified.
 
-Impact is designed to handle the holes in the aforementioned projects.
-Impact will focus on the detection of indirect conflicts at an internal level
-of technical objects as opposed from object signatures and the distribution
-of these conflicts to all appropriate developers regardless of their current
-workspace activities. Impact is also designed around the successes these
+\textit{Impact} is designed to address the limitations in the aforementioned projects.
+\textit{Impact} will focus on (1) the detection of indirect conflicts at an internal level
+of technical objects as opposed from object signatures and (2) the dissemination of
+awareness information to all appropriate developers regardless of their current
+workspace activities. \textit{Impact} is also designed around the successes these
 projects have had in the past with directed graphs as 
-well as elements of collection, ownership, and distribution functionality.\\
+well as elements of collection, ownership, and distribution functionality.
 
 
 \section{Impact}
-This section will proceed to give an outlined detail of Impact in both its
-design and implementation. The design of Impact was created to be
+This section will proceed to give an outlined detail of \textit{Impact} in both its
+design and implementation. The design of \textit{Impact} was created to be
 a generic construct which can be applied to other indirect conflict 
 awareness tools while the implementation is specific to the technical
-goals of Impact.
+goals of \textit{Impact}.
 
 \subsection{Design}
 Compared to tool design for direct conflicts, the major concern of 
@@ -181,7 +184,7 @@ in part to detect indirect conflict that arise from modifying object
 2. This kind of relationship is modeled after a directed graph ~\cite{Horwitz:1992:UPD}. 
 Each technical object is represented by node while each ``uses''
 relationship is represented by a directed edge. This representation
-is used to indicate all indirect relationships within a software project.\\
+is used to indicate all indirect relationships within a software project.
 
 \begin{figure}[t!]
 \includegraphics[width=\columnwidth]{images/CallGraph}
@@ -189,7 +192,7 @@ is used to indicate all indirect relationships within a software project.\\
 \end{figure}
 
 While technical object relationships form the basis of indirect conflicts,
-social communication is the ultimate goal of resolving such conflicts.
+communication between developers is the ultimate goal of resolving such conflicts.
 This being the case, developer ownership must be placed on the 
 identified technical objects. With this ownership, we now infer
 relationships among developers based on their technical objects
@@ -197,11 +200,12 @@ relationships among developers based on their technical objects
 object 2 owned by developer B, may be notified by a change to
 object 2's internal workings. Most, if not all, ownership information
 of technical objects can be extracted from a project's source code
-repository (CVS, Git, SVN, etc.).\\
+repository (CVS, Git, SVN, etc.).
 
-Finally, the indirect conflict tool must be able to detect changes to
-to the technical objects defined above and distribute information 
-to the appropriate owners. Two approaches have been 
+Finally, the indirect conflict tool must be able to detect changes
+to the technical objects defined above and notify the appropriate owners
+to the conflict. 
+Two approaches have been 
 proposed for change gathering techniques: real time and commit 
 time~\cite{Fitzpatrick:2002:SPA}.
 We propose the use of commit time
@@ -213,6 +217,9 @@ which results in conflicts being apart of the system before being able
 to be dealt with as opposed to catching conflicts before they happen.
 At commit time, the tool must parse changed source code in relation
 to technical artifacts in the created directed graph detailed above.
+Where \textit{Impact's} design differs from that of Palantir's is that
+the object's entire body (method definition and internal body) is 
+parsed at commit time to detect changes anywhere in the technical object.
 Once technical objects are found to be changed, appropriate owners
 of objects which use the changed object should be notified.
 In Figure~\ref{fig:graph}, X changes method (technical object) 1,
@@ -221,14 +228,14 @@ developers Y and Z.
 
 With this three step design of: (i) creating directed graphs of technical
 objects, (ii) assigning ownership to those technical objects, and (iii)
-detecting changes within commit time and the distribution of information
+detecting changes within commit time and the notification of conflict information
 to appropriate owners, we believe a wide variety of
 indirect conflict awareness tools can be created or extended. The
-implementation of Impact in the following section will follow these
+implementation of \textit{Impact} in the following section follows these
 three design guidelines.
 
 \subsection{Implementation}
-For Impact's implementation, we decided to focus on methods as our
+For \textit{Impact's} implementation, we decided to focus on methods as our
 selected technical objects to infer a directed graph from. The ``uses'' 
 relationship described above for methods is method invocation.
 Thus, in our constructed directed graph, methods represent nodes
@@ -236,7 +243,7 @@ and method invocations represent our directed edges. In order to
 construct this directed graph, abstract syntax trees (ASTs) are 
 constructed from source files in the project. The ASTs allow us
 to construct method call graphs from which the directed 
-graphs can be constructed.\\
+graphs can be constructed.
 
 Once the directed graph is constructed, we must now assign
 ownership to our technical objects (methods) as per our design.
@@ -247,7 +254,7 @@ repositories have similar commands and functionality.) This command
 gives authors of source code per line which can is used to assign
 ownership to methods. If a method has 10 lines and developer A
 has written 3 while developer B has written 7, then ownership is
-assigned 30\% and 70\% respectively.\\
+assigned 30\% and 70\% respectively.
 
 To detect changes to our technical objects (methods), we simply 
 use a commit's \textit{diff} which is a representation of all changes
@@ -255,14 +262,14 @@ made inside a commit. We can use the lines changed in the \textit{diff} to
 find methods that have been changed. This gives cause of potential
 indirect conflicts. We now find all methods in our directed graphs
 which invoke these changed methods. These are the final indirect
-conflicts.\\
+conflicts.
 
 Now that the indirect conflicts have been found, we use the
-ownership information of our technical objects to send alerts to
+ownership information of our technical objects to send notifications to
 those developers involved in the indirect conflict. All owners
 of methods which invoke those that have been changed are alerted
 to the newly changed method. This can been seen in
-Figure~\ref{fig:impact}, the user interface of Impact. Here, in an RSS type
+Figure~\ref{fig:impact}, the user interface of \textit{Impact}. Here, in an RSS type
 feed, the changing developer, time of change, changed method,
 invoking methods, and commit message are all displayed. This 
 list is auto updating as new commits are pushed to the central
@@ -271,32 +278,32 @@ weight of the percent changed of changed method multiplied by
 ownership of the invoking method. This allows developers to filter
 through high and low changes affecting their own source code.
 Developers are now able to be alerted of detected indirect
-conflicts and solve them by communicating the the developer
-who authored the change.\\
+conflicts and solve them by communicating the developer
+who authored the change.
 
 \begin{figure}[t!]
 \includegraphics[width=\columnwidth]{images/ImpactDemo}
-\caption{Impact's RSS type information feed.\label{fig:impact}}
+\caption{\textit{Impact's} RSS type information feed.\label{fig:impact}}
 \end{figure}
 
 
 \section{Evaluation}
 To fully evaluate both the generic design of detecting and resolving
-indirect conflicts as well as Impact, extensive testing and evaluation
+indirect conflicts as well as \textit{Impact}, extensive testing and evaluation
 must be performed. However, we feel that a simple evaluation is
 first needed to assess the foundation of our design and claims:
-does Impact improve developer awareness with indirect conflicts
-and help the resolving of such issues?\\
+does \textit{Impact} improve developer awareness with indirect conflicts
+and help the resolving of such issues?
 
 We performed two user case studies to address our question where
-we gave Impact to two small development teams. Each team was
-free to use Impact at their leisure during their development process,
+we gave \textit{Impact} to two small development teams. Each team was
+free to use \textit{Impact} at their leisure during their development process,
 after which interviews were conducted with lead developers from 
 each development team. The interviews were conducted after each
-team had used Impact for three weeks.\\
+team had used \textit{Impact} for three weeks.
 
 We asked lead developers to address two main concerns: do indirect
-conflicts pose a threat at the method level, and did Impact help raise
+conflicts pose a threat at the method level, and did \textit{Impact} help raise
 awareness and promote quicker conflict resolution for indirect
 conflicts. Our two interviews largely supported our initial claims of
 indirect conflicts posing a serious threat to developers, especially
@@ -307,10 +314,10 @@ conflicts to arise. However, both interviewees also pointed out that
 any technical object which is used as an interface to some data
 construct or methodology, database access for instance, can be 
 a large potential issue for indirect conflicts.  Interview response to
-Impact was also largely positive, as both interviewees said that Impact
+\textit{Impact} was also largely positive, as both interviewees said that \textit{Impact}
 helped raise awareness among their teams with what other developers
 are doing as well as the influence it has on their own work. However,
-both interviews showed Impact to have information overload. Both
+both interviews showed \textit{Impact} to have information overload. Both
 interviews showed that while all method changes were being detected,
 not all are alert worthy. One lead developer suggested to only alert
 developers to indirect conflicts if the internal structure of a method
@@ -318,15 +325,15 @@ changes due to modification to input parameters or output parameters.
 In other words, the boundaries of the technical objects (changing
 how a parameter is used inside the method, modifying the return
 result inside the method) seem to be more of interest than other 
-internal workings.\\
+internal workings.
 
-These two studies have show that our design and approach to
+These two studies have shown that our design and approach to
 detecting and alerting developers to indirect conflicts appear
-to be on the correct path. Impact as a tool has laid the foundations
+to be on the correct path. \textit{Impact} as a tool has laid the foundations
 for future work in detecting indirect conflicts as well as alerting
 developers, although more thought must be given as to 
 what constitutes a meaningful change inside our selected 
-technical objects.\\
+technical objects.
 
 
 \section{Conclusion and Future Work}
@@ -334,9 +341,9 @@ In this paper, we have presented the issues that arise from indirect
 conflicts in present awareness tools. We have proposed a generic 
 design for the future development of awareness tools in regards to
 handling indirect conflicts. We have presented a prototype 
-awareness tool, Impact, which was designed around our generic 
-awareness approach. Impact was evaluated on a small scale, showing
-its future potential as well as highlighting its current weaknesses.\\
+awareness tool, \textit{Impact}, which was designed around our generic 
+awareness approach. \textit{Impact} was evaluated on a small scale, showing
+its future potential as well as highlighting its current weaknesses.
 
 In future work we are planning to conduct interviews and surveys
 with software developers to confirm that indirect conflicts pose a
@@ -344,7 +351,7 @@ threat to their projects as well as discovering what constitutes a
 valid change inside of a given technical object. With these two
 improvements, we plan to justify our generic design of indirect
 conflict tools further as well as improve the ideas of detecting 
-valid and significant changes to technical objects.\\
+valid and significant changes to technical objects.
 
 \bibliographystyle{IEEEtran}
 \bibliography{paper}
