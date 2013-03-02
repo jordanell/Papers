@@ -55,7 +55,7 @@ effect across the rest of the project~\cite{Acharya:2011:PCI}. The larger these 
 the more likely they are to cause a software failure inside the system during the project's
 life span~\cite{Zimmermann:2008:PDU}. These observations of technical dependencies open
 the door to types of analysis on the developer networks they infer and preventing software
-failures.
+failures by improving coordination amongst dependant developers.
 
 % Explain technical network research that already exists
 Technical dependencies in a project can be used to predict success or failure in
@@ -79,7 +79,8 @@ statistically relate to bugs?}"
 This paper explains the approach used to locate these pairs of developers in developer networks.
 The process utilizes code changes and the call hierarchies effected  to find patterns of developer 
 relationships in successful and failed code changes.  These developer relationships can be used
-to also promote the idea of leveraging socio-technical congruence to provide coordination recommendations.
+to also promote the idea of leveraging socio-technical congruence, a measure of coordination compared
+to technical dependencies amoungst stakeholders, to provide coordination recommendations.
 
 % Technical network figure
 \begin{figure*}[tb!]
@@ -104,8 +105,9 @@ repository although it can be used with any software repository.
 
 % Owners
 To determine which developers own which methods at a given code change,
-the Git repository is queried. Git stores developers of a file per line, which was is to extrapolate
-a percentage of ownership given a method inside a file.
+the Git repository is queried. Git stores developers of a file per line, which was used to extrapolate
+a percentage of ownership given a method inside a file. If developer A has written 6/10 lines of 
+method foo, then developer A owns 60\% of said method.
 
 % Call Graph
 A method call graph is then constructed to extract method call hierarchies in a project at a given code change. 
@@ -119,7 +121,9 @@ to be unable to compile. Using source files also allowed an update to the call g
 with changed files as opposed to completely rebuilding at 
 every code change. This creates a rolling call graph which 
 is used to show method hierarchy at each code change inside a project opposed to
-a static project view.
+a static project view. As some method invocations may only be determined at run time, all
+possible method invocations are considered for these types of method calls while constructing
+the call graph.
 
 % Changeset effects
 The code change effect, if any, to the call hierarchy is now found. The Git
@@ -161,7 +165,7 @@ Developer pairs with the highest FI value are said to be failure inducing struct
 inside a project. These edges are stored in Table~\ref{tab:ratio}. A Fisher Exact Value test 
 is also preformed on edge appearance in successful and failed
 code changes, and non-appearance in successful and failed code changes to only
-consider statistically significant edges. 
+consider statistically significant edges (Table ~\ref{tab:ratio}'s p-value). 
 
 
 \section{Results}
@@ -177,7 +181,8 @@ is needed for determining code change success or failure~\cite{Sliwerski:2005:CI
 
 In Hibernate-ORM, 27 statistically significant failure inducing developer pairs (A FI value of 0.5 or higher) 
 were found out of a total of 46 statistically significant pairs that existed over the project's lifetime.
-The pairings are ranked by their respective FI values (Table~\ref{tab:ratio}).
+The pairings are ranked by their respective FI values (Table~\ref{tab:ratio}). These pairs can be used
+to create coordination reccomendations between the developers to catch potential software malfunctions.
 
 \begin{table}[h]
 \begin{center}
@@ -205,12 +210,6 @@ of future bugs as well as provide coordination recommendations for developers wi
 In future work, the adding of communication networks on a per code change basis is planned. In this,
 the investigation of social and technical congruence on these networks and its effects on
 software quality will be studied.
-
-\section{Acknowledgements}
-I would like to thank Adrian Schr{\"o}ter and Daniela Damian for feedback and guidance on this paper, as well as
-Braden Simpson and Triet Huynh for collaborating on technical work.
-
-
 
 \bibliographystyle{IEEEtran}
 \bibliography{paper}
