@@ -72,15 +72,15 @@ other than test focus.
 % Research question
 With the power of technical dependencies in predicting software failures, the question I
 investigated in this project is : 
-"\textit{Is it possible to identify pairs of developers whose technical dependencies in code changes
-statistically relate to bugs?}"
+``\textit{Is it possible to identify pairs of developers whose technical dependencies in code changes
+statistically relate to bugs?}''
 
 % Explain our brief intended approach
 This paper explains the approach used to locate these pairs of developers in developer networks.
 The process utilizes code changes and the call hierarchies effected  to find patterns of developer 
-relationships in successful and failed code changes.  These developer relationships can be used
-to also promote the idea of leveraging socio-technical congruence, a measure of coordination compared
-to technical dependencies amoungst stakeholders, to provide coordination recommendations.
+relationships in successful and failed code changes.  These developer relationships can also be used
+to promote the idea of leveraging socio-technical congruence, a measure of coordination compared
+to technical dependencies amongst stakeholders, to provide coordination recommendations.
 
 % Technical network figure
 \begin{figure*}[tb!]
@@ -95,7 +95,7 @@ called by Bret's method foo() as well as Daniel and Anne's method bar().\label{f
 \subsection{Extracting Technical Networks}
 % End goal
 The basis of this approach is to create a technical network of developers based on method ownership
-and those method's call hierarchies effected by code changes. These networks will provide
+and those methods' call hierarchies effected by code changes. These networks will provide
 dependency edges between contributors caused by code changes which may be 
 identified as possible failure inducing pairings (Figure~\ref{fig:network}). To achieve this goal,
 developer owners of methods, method call hierarchies (technical
@@ -135,8 +135,8 @@ gives the code change technical dependencies.
 %Resulting network
 These procedures result in a technical network based on contributor method ownership 
 inside a call hierarchy effected by a code change (Figure~\ref{fig:network} left hand side).
-The network is then simplified by only using edges between developers, since the results
-are only interested in discovering the failure inducing edges between developers and not the 
+The network is then simplified by only using edges between developers, since I
+am only interested in discovering the failure inducing edges between developers and not the 
 methods themselves (Figure~\ref{fig:network} right hand side). This is the final technical 
 network.
 
@@ -169,7 +169,7 @@ consider statistically significant edges (Table ~\ref{tab:ratio}'s p-value).
 
 
 \section{Results}
-To Illustrate the use of the approach, I conducted a case study of
+To illustrate the use of the approach, I conducted a case study of
 the Hibernate-ORM project, an open source Java 
 application hosted on GitHub\footnote{https://github.com/} with issue tracking 
 performed by Jira\footnote{http://www.atlassian.com/software/jira/overview}.
@@ -179,10 +179,9 @@ for all internal structures and control flow
 and uses Git for version control. Hibernate-ORM also uses issue tracking software which 
 is needed for determining code change success or failure~\cite{Sliwerski:2005:CIF}.
 
-In Hibernate-ORM, 27 statistically significant failure inducing developer pairs (A FI value of 0.5 or higher) 
+In Hibernate-ORM, 27 statistically significant failure inducing developer pairs (FI value of 0.5 or higher) 
 were found out of a total of 46 statistically significant pairs that existed over the project's lifetime.
-The pairings are ranked by their respective FI values (Table~\ref{tab:ratio}). These pairs can be used
-to create coordination reccomendations between the developers to catch potential software malfunctions.
+The pairings are ranked by their respective FI values (Table~\ref{tab:ratio}).
 
 \begin{table}[h]
 \begin{center}
