@@ -7,6 +7,10 @@
 
 \usepackage{balance}
 \usepackage{float}
+
+\usepackage{enumitem}
+
+\setlist[description]{leftmargin=*}
 \floatstyle{plaintop}
 \restylefloat{table}
 
@@ -164,6 +168,93 @@ preliminary analysis is a list of common and unique hypotheses to each of the 9 
 \section{Results and Discussion}
 \label{sec:rnd}
 
+We now present our results of both the interviews and surveys conducted in regards to our research questions
+outlined in Section~\ref{sec:intro}. We first present and discuss the general nature of indirect conflicts in
+terms of when, what types, and how often indirect conflicts occur. We next show the findings for the process
+related research questions in regards to how developers react to, processes to prevent, and reactionary steps
+to indirect conflicts. Lastly, we present and discuss findings for what potential tools are wanted by developers
+and what researchers are currently developing.
+
+\subsection{The Nature of Indirect Conflicts}
+
+Although a detailed manual inspection of a project's lifetime and the indirect conflicts it experiences throughout
+its development is beyond the scope of this paper, we first wanted to explore the general nature of indirect 
+conflicts. This being the case we explored, through our interviews and surveys, what software developers believed
+to be the case when it came to how indirect conflicts occur, when and how often they occur, and the types of 
+software object's that incur indirect conflicts.
+
+\begin{description}[topsep=6pt]
+	\item[RQ1] \textit{How do indirect conflicts occur?}
+\end{description}
+
+From the interviewed participants, 63\% of developers believe that a large contributing factor to the cause
+of indirect conflicts comes from the changing of a software object's contract. One developer stated that ``design
+by contract was invented to solve this problem and it does it quite well'', while another noted that software 
+object contracts do solve the problem in theory, but that doesn't mean that problems don't occur in practice.
+In light of object contracts, 73\% of interviewed developers gave examples of indirect conflicts they had experienced
+which stemmed from not understanding the far reaching ramifications of a change being made to an object contract
+towards the rest of the project. Of those 73\%, examples were broken down as follows. 21\% of examples had to do 
+with the changing of legacy code, with one developer saying ``legacy code does not change because developers 
+are afraid of the long range issues that may arise from that change''. 36\% of interviewed developers mentioned 
+that indirect conflicts occur when an update to an external project, library, or service occurs and the resulting 
+integration fails noting that major releases of libraries can be a large issue with one developer saying 
+``their build never breaks, but it breaks ours''. Finally, 29\% of developers interviewed explained that changes to
+databases are often a large source of indirect conflicts saying ``[schema changes] break stuff all over the place''.
+
+\begin{description}[topsep=6pt]
+	\item[RQ2] \textit{How often do indirect conflicts occur and at what times in a project do they occur more frequently?}
+\end{description}
+
+From the interviewed participants, 58\% of developers explained that indirect conflicts occur all the time in
+their development life cycle with a minimum occurrence of once a week. Of those 58\%, developers noted that a
+lot of their development time is put into understanding code to avoid indirect conflicts, more serious issue tend
+to happen once a month, and that the conflicts that do occur tend to be quite unique from each other.
+
+In terms of when in a project indirect conflicts are more likely to occur 63\% of developers interviewed said that
+when a project is in the early stages of development, indirect conflicts tend to occur far more frequently
+than once a stable point is reached. Developers said ``At a stable point we decided we are not going to change
+[this feature] anymore. We will only add new code instead of changing it.'' and ``the beginning of a project 
+changes a lot, especially with agile''. 21\% if developers interviewed mentioned that the development process
+changes once a stable point of a project is met and the ``add and deprecate model solves a lot of these issues''.
+
+For those developers interviewed, we asked how often indirect conflicts occur in their software development experience,
+how often they occur before and after a project's first release, as well as how often indirect conflicts occur late
+in a project's lifetime. Table~\ref{tab:often} shows the results of these questions.
+
+\begin{table*}[tp]
+\begin{center}
+\begin{tabular}{| p{7cm} | c | c | c | c | c | c | c |}
+\hline
+Question & Daily & Weekly & Bi-Weekly & Monthly & Bi-Monthly & Yearly & Unknown \\
+\hline
+\hline
+How often do you experience indirect conflicts in your software development? & 17\% & 27\% & 21\% & 17\% & 3\% & 5\% & 10\% \\ \hline
+How often do indirect conflicts occur in the early stages of a project’s development? & 32\% & 18\% & 4\% & 5\% & 0\% & 5\% & 36\% \\ \hline
+How often do indirect conflicts occur before the first release of a project? & 13\% & 29\% & 6\% & 8\% & 1\% & 3\% & 40\% \\ \hline
+How often do indirect conflicts occur after the first release of a project? & 6\% & 18\% & 8\% & 18\% & 1\% & 5\% & 44\% \\ \hline
+How often do indirect conflicts occur late in a project’s lifetime? & 6\% & 5\% & 5\% & 18\% & 8\% & 12\% & 46\% \\ \hline
+\end{tabular}
+\end{center}
+\caption{Results of survey questions to how often indirect conflicts occur, in terms of percentage
+of developers surveyed.\label{tab:often}}
+\end{table*}
+
+Of those surveyed that could not give direct answers to the questions in Table~\ref{tab:often}, the more common answers were 
+as follows: ``People rushing to meet [the release date] is where most of my indirect conflicts occur.'', ``Indirect conflicts
+after a release depends on how well the project was built at first'', ``They tend to slow down a bit after a major release, 
+unless the next release is a major rework.'', and ``Conflicts continue to occur at roughly the same rate after the first release,
+with spikes during large revamps or the implementation of cross-cutting new features.''.
+
+
+
+
+
+
+
+
+
+
+
 \section{Future Work}
 
 \section{Conclusions}
@@ -171,7 +262,7 @@ preliminary analysis is a list of common and unique hypotheses to each of the 9 
 \section{Acknowledgments}
 
 We would sincerely like to thank all participants who were willing to be interviewed or who participated
-in completeing our survey. We thank these people for taking time out of their day to participate and for
+in completing our survey. We thank these people for taking time out of their day to participate and for
 sharing their developer experience with us. Without these people our research could not have been possible.
 
 %\bibliographystyle{IEEEtran}
