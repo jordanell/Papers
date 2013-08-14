@@ -165,7 +165,7 @@ as the interview responses. We extracted a list of answers, opinions, and experi
 answer question fields while combining commonly mentioned answers where possible. The results again from this
 preliminary analysis is a list of common and unique hypotheses to each of the 9 short answer questions.
 
-\section{Results and Discussion}
+\section{Results}
 \label{sec:rnd}
 
 We now present our results of both the interviews and surveys conducted in regards to our research questions
@@ -221,7 +221,7 @@ For those developers interviewed, we asked how often indirect conflicts occur in
 how often they occur before and after a project's first release, as well as how often indirect conflicts occur late
 in a project's lifetime. Table~\ref{tab:often} shows the results of these questions.
 
-\begin{table*}[tp]
+\begin{table*}[tb!]
 \begin{center}
 \begin{tabular}{| p{7cm} | c | c | c | c | c | c | c |}
 \hline
@@ -245,15 +245,47 @@ after a release depends on how well the project was built at first'', ``They ten
 unless the next release is a major rework.'', and ``Conflicts continue to occur at roughly the same rate after the first release,
 with spikes during large revamps or the implementation of cross-cutting new features.''.
 
+\begin{description}[topsep=6pt]
+	\item[RQ3] \textit{What software artifacts are susceptible to indirect conflicts?}
+\end{description}
 
+From the developers interviews, 9 were currently working with large scale database applications and all 9 listed database
+schema as a large source of indirect conflicts. Out of the 5 developers interviewed that currently work on either software
+library projects or in test, all 5 said that methods or functions were the root of their indirect conflict issues. Some
+other notable artifacts were user interface displays for web development, and full components in component base game
+architecture. 
 
+\subsection{Processes of Indirect Conflicts}
 
+The results that follow pertain to software development process and its relation to indirect conflicts. We explore
+how developers react to indirect conflicts, which stakeholders are responsible for their fixes, and if any development
+processes can be used to prevent or catch indirect conflicts.
 
+\begin{description}[topsep=6pt]
+	\item[RQ4] \textit{How do developers react to and solve indirect conflicts?}
+\end{description}
 
+% Here use anything they said for tools and process
 
+\begin{description}[topsep=6pt]
+	\item[RQ5] \textit{Who is responsible for fixing indirect conflict issues?}
+\end{description}
 
+\begin{description}[topsep=6pt]
+	\item[RQ6] \textit{Who is responsible for fixing indirect conflict issues?}
+\end{description}
 
+\subsection{Tools for indirect Conflicts}
 
+\begin{description}[topsep=6pt]
+	\item[RQ7] \textit{When are pre-emptive indirect conflict tools best used and what would developers want from them?}
+\end{description}
+
+\begin{description}[topsep=6pt]
+	\item[RQ8] \textit{When are reactionary indirect conflict tools best used and what would developers want from them?}
+\end{description}
+
+\section{Discussion}
 
 \section{Future Work}
 
