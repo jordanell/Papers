@@ -246,7 +246,7 @@ unless the next release is a major rework.'', and ``Conflicts continue to occur 
 with spikes during large revamps or the implementation of cross-cutting new features.''.
 
 \begin{description}[topsep=6pt]
-	\item[RQ3] \textit{What software artifacts are susceptible to indirect conflicts?}
+	\item[RQ3] \textit{What software artifacts and environments are susceptible to indirect conflicts?}
 \end{description}
 
 From the developers interviews, 9 were currently working with large scale database applications and all 9 listed database
@@ -255,6 +255,25 @@ library projects or in test, all 5 said that methods or functions were the root 
 other notable artifacts were user interface displays for web development, and full components in component base game
 architecture. 
 
+As per environments, Table~\ref{tab:env} shows which development team environment developers believe to be the most
+prone to indirect conflicts.
+
+\begin{table*}[tb!]
+\begin{center}
+\begin{tabular}{| p{7cm} | c | c | c | c | c |}
+\hline
+Environment of conflicts & Strongly Disagree & Disagree & Neutral & Agree & Strongly Agree \\
+\hline
+\hline
+Developing alone (conflicts in own code) & 18\% & 20\% & 19\% & 24\% & 19\% \\ \hline
+Developing in a team between 2 - 5 developers (Inter-developers conflicts) & 3\% & 8\% & 22\% & 49\% & 18\% \\ \hline
+Developing in a multi team environment (Inter-team conflicts) & 1\% & 11\% & 14\% & 39\% & 35\% \\ \hline
+\end{tabular}
+\end{center}
+\caption{Results of survey questions to development environments in which indirect conflicts are likely to occur, in terms of percentage
+of developers surveyed.\label{tab:env}}
+\end{table*}
+
 \subsection{Processes of Indirect Conflicts}
 
 The results that follow pertain to software development process and its relation to indirect conflicts. We explore
@@ -262,28 +281,77 @@ how developers react to indirect conflicts, which stakeholders are responsible f
 processes can be used to prevent or catch indirect conflicts.
 
 \begin{description}[topsep=6pt]
-	\item[RQ4] \textit{How do developers react to and solve indirect conflicts?}
+	\item[RQ4] \textit{How do developers catch indirect conflicts?}
 \end{description}
 
-% Here use anything they said for tools and process
+Of the 19 developers interviewed, 69\% mentioned forms of testing (unit, integration, etc) as the major component of catching indirect
+conflict issues, subscribing to the idea of ``run the regression and integration tests and just see if anything breaks''. 31\% of developers 
+said build processes (either nightly builds or building the project themselves), and others mentioned code reviews
+while those dealing with a user interface mentioned user complaints from run time testing.
+
+Of the 78 developers survey, 49\% mentioned forms of testing as the major tool used to catch indirect conflicts, 33\% said build processes,
+while 31\% used work their IDE or IDE plugins to catch indirect conflicts. Other developers surveyed also mention code review process (14\%)
+and project expertise (6\%) as factors of catching indirect conflicts.
 
 \begin{description}[topsep=6pt]
-	\item[RQ5] \textit{Who is responsible for fixing indirect conflict issues?}
+	\item[RQ5] \textit{How to developers react to and solve indirect conflicts?}
 \end{description}
 
-\begin{description}[topsep=6pt]
-	\item[RQ6] \textit{Who is responsible for fixing indirect conflict issues?}
-\end{description}
+Once an indirect conflict has occurred, usually alerted to the developer by test or build failures, 75\% of developers interviewed said
+they checked historical logs to help narrow down where the problem could originate from. Most developers had the mindset of
+``Look at the change log and see what could possibly be breaking the feature.''. The log most commonly referred to was the source
+code change log to see what code has been changed, followed by build failure or test failure logs to examine errors messages and get time 
+frames of when events occurred. Developers also mentioned their personal expertise in the project as a large component of solving indirect
+conflicts as well as issue or work item trackers as many tests and builds can be linked to these management tools.
+
+Of the developers surveyed, 37\% confirmed that they used some type of source control management tools to help them solve their indirect
+conflicts while 23\% said they used native IDE tools and 21\% said they use features of the language's compiler and debugger in order
+to solve indirect conflicts. Interestingly, only 13\% of developers mentioned a form of communication with other developers in aid to
+solving these conflicts and only 4\% mentioned the reading of formal documentation.
 
 \subsection{Tools for indirect Conflicts}
 
 \begin{description}[topsep=6pt]
-	\item[RQ7] \textit{When are pre-emptive indirect conflict tools best used and what would developers want from them?}
+	\item[RQ6] \textit{When are pre-emptive indirect conflict tools best used and what would developers want from them?}
 \end{description}
 
+The developers who were interviewed had a major concern with any pre-emptive tool in that the amount of false positives
+provided by the tool may render the tool useless. Developers said ``this could relate to information overload'', ``this would
+be a real challenge with the number of dependencies'', ``I only want to know if it will break me'', and ``it depends on how
+good the results are in regards to false positives''. These concerns combined with RQ2 suggest that pre-emptive tools are
+best used in unstable phases on the project when indirect conflicts are more likely to happen, thus reducing the number of false
+positives. One developer in particular noted ``You will spend all your time getting notified and reviewing instead of implementing''.
+Interviewed developers also suggested that their proper software development process are already in place to
+catch potential issues before they arise such as code review, individual knowledge, IDE call hierarchies (static language analysis),
+or communication within the project.
+
+As per what developers would want from such pre-emptive tools, Table~\ref{tab:pre} shows how developers feel towards being 
+alerted in certain types of functional changes within code which they are using.
+
+\begin{table*}[tb!]
+\begin{center}
+\begin{tabular}{| p{7cm} | c | c | c | c | c |}
+\hline
+Code change type &Never  & Occasionally & Most Times & Always & I Don't Care \\
+\hline
+\hline
+Method signature change & 5\% & 8\% & 12\% & 68\% & 7\% \\ \hline
+Pre-condition change & 5\% & 27\% & 37\% & 23\% & 7\% \\ \hline
+Main algorithm change & 11\% & 45\% & 19\% & 15\% & 11\% \\ \hline
+User interface change & 12\% & 32\% & 20\% & 27\% & 9\% \\ \hline
+Run time change & 13\% & 29\% & 25\% & 20\% & 12\% \\ \hline
+Post-condition change & 7\% & 28\% & 32\% & 23\% & 11\% \\ \hline
+\end{tabular}
+\end{center}
+\caption{Results of survey questions to source code changes that developers deem notification worthy, in terms of percentage
+of developers surveyed.\label{tab:pre}}
+\end{table*}
+
 \begin{description}[topsep=6pt]
-	\item[RQ8] \textit{When are reactionary indirect conflict tools best used and what would developers want from them?}
+	\item[RQ7] \textit{When are reactionary indirect conflict tools best used and what would developers want from them?}
 \end{description}
+
+
 
 \section{Discussion}
 
