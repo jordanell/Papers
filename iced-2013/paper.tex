@@ -323,7 +323,8 @@ best used in unstable phases on the project when indirect conflicts are more lik
 positives. One developer in particular noted ``You will spend all your time getting notified and reviewing instead of implementing''.
 Interviewed developers also suggested that their proper software development process are already in place to
 catch potential issues before they arise such as code review, individual knowledge, IDE call hierarchies (static language analysis),
-or communication within the project.
+or communication within the project. Finally, most interviewed developers mentioned that their current work flow does
+not subscribe to the ideas of pre-emptive prevention and that they just ``work until something breaks''. 
 
 As per what developers would want from such pre-emptive tools, Table~\ref{tab:pre} shows how developers feel towards being 
 alerted in certain types of functional changes within code which they are using.
@@ -348,10 +349,23 @@ of developers surveyed.\label{tab:pre}}
 \end{table*}
 
 \begin{description}[topsep=6pt]
-	\item[RQ7] \textit{When are reactionary indirect conflict tools best used and what would developers want from them?}
+	\item[RQ7] \textit{What kinds of tools do developers want to help them handle and solve indirect conflicts?}
 \end{description}
 
+The developers who were surveyed, the following list represents the more common suggestions for how an indirect conflict
+resolution tool should be implemented.
 
+\begin{itemize}
+	\item Aid in debugging indirect conflicts by finding which recent code changes are breaking a particular area of code or a test.
+	\item Automated testing to show how code changes affect old tests and the ability to automatically write new tests to compensate for the change.
+	\item IDE plug-ins to show how current changes will affect other components of the current project.
+	\item Analysis of library releases to show how upgrading to a new release will affect your project.
+	\item Built in language features to either the source code architecture (i.e. Eiffle or Java Modeling Language) or the compile time tools to display
+				warning messages towards potential issues.
+	\item A code review time tool which allows deeper analysis of a new patch or pull request to the project allowing the reviewer to see potential 
+				indirect conflicts before actually merging the code in.
+	\item A tool which is non-obtrusive and integrates into their pre-existing development styles without them having to take extra steps.
+\end{itemize}
 
 \section{Discussion}
 
