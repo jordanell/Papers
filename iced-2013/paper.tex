@@ -8,9 +8,7 @@
 \usepackage{balance}
 \usepackage{float}
 
-\usepackage{enumitem}
 
-\setlist[description]{leftmargin=*}
 \floatstyle{plaintop}
 \restylefloat{table}
 
@@ -37,6 +35,18 @@ Victoria, Canada \\ danielad@csc.uvic.ca}
 \maketitle
 
 \begin{abstract}
+Developer awareness techniques have been proposed and studied to aid in developer
+understanding and  efficient developer output in terms of source code produced. These techniques
+involve the sharing of information regarding source code changes in a specific project in order
+to either catch potential issues before they are fully integrated or to help developers debug
+pre-existing issues. These techniques have largely focused on either \textit{direct} or 
+\textit{indirect conflict} issues. While the techniques and tools for direct conflicts have had
+large success, tools either proposed or studied which focus on indirect conflicts have had many common
+struggles and poor developer interest. To better understand why indirect conflict tools either fail or have little
+developer investment, we performed a grounded theory study with 97 developers involved in either
+interviews or a web survey. We identified the main features that characterize indirect conflict issues,
+what processes and techniques developers use to aid in preventing and solving indirect conflict issues,
+and what developers would look for in a tool to aid them in these conflicts.
 
 \end{abstract}
 
@@ -183,7 +193,7 @@ conflicts. This being the case we explored, through our interviews and surveys, 
 to be the case when it came to how indirect conflicts occur, when and how often they occur, and the types of 
 software object's that incur indirect conflicts.
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ1] \textit{How do indirect conflicts occur?}
 \end{description}
 
@@ -201,7 +211,7 @@ integration fails noting that major releases of libraries can be a large issue w
 ``their build never breaks, but it breaks ours''. Finally, 29\% of developers interviewed explained that changes to
 databases are often a large source of indirect conflicts saying ``[schema changes] break stuff all over the place''.
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ2] \textit{How often do indirect conflicts occur and at what times in a project do they occur more frequently?}
 \end{description}
 
@@ -245,7 +255,7 @@ after a release depends on how well the project was built at first'', ``They ten
 unless the next release is a major rework.'', and ``Conflicts continue to occur at roughly the same rate after the first release,
 with spikes during large revamps or the implementation of cross-cutting new features.''.
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ3] \textit{What software artifacts and environments are susceptible to indirect conflicts?}
 \end{description}
 
@@ -280,7 +290,7 @@ The results that follow pertain to software development process and its relation
 how developers react to indirect conflicts, which stakeholders are responsible for their fixes, and if any development
 processes can be used to prevent or catch indirect conflicts.
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ4] \textit{How do developers catch indirect conflicts?}
 \end{description}
 
@@ -293,7 +303,7 @@ Of the 78 developers survey, 49\% mentioned forms of testing as the major tool u
 while 31\% used work their IDE or IDE plugins to catch indirect conflicts. Other developers surveyed also mention code review process (14\%)
 and project expertise (6\%) as factors of catching indirect conflicts.
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ5] \textit{How to developers react to and solve indirect conflicts?}
 \end{description}
 
@@ -311,7 +321,7 @@ solving these conflicts and only 4\% mentioned the reading of formal documentati
 
 \subsection{Tools for indirect Conflicts}
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ6] \textit{When are pre-emptive indirect conflict tools best used and what would developers want from them?}
 \end{description}
 
@@ -348,7 +358,7 @@ Post-condition change & 7\% & 28\% & 32\% & 23\% & 11\% \\ \hline
 of developers surveyed.\label{tab:pre}}
 \end{table*}
 
-\begin{description}[topsep=6pt]
+\begin{description}
 	\item[RQ7] \textit{What kinds of tools do developers want to help them handle and solve indirect conflicts?}
 \end{description}
 
