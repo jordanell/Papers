@@ -26,7 +26,7 @@
 \author{\IEEEauthorblockN{Jordan Ell}
 \IEEEauthorblockA{University of Victoria,
 Victoria, Canada \\ jell@uvic.ca}
-IEEEauthorblockN{Daniela Damian}
+\IEEEauthorblockN{Daniela Damian}
 \IEEEauthorblockA{University of Victoria,
 Victoria, Canada \\ danielad@csc.uvic.ca}
 }
@@ -35,6 +35,7 @@ Victoria, Canada \\ danielad@csc.uvic.ca}
 \maketitle
 
 \begin{abstract}
+
 Developer awareness techniques have been proposed and studied to aid in developer
 understanding and  efficient developer output in terms of source code produced. These techniques
 involve the sharing of information regarding source code changes in a specific project in order
@@ -53,9 +54,63 @@ and what developers would look for in a tool to aid them in these conflicts.
 \section{Introduction}
 \label{sec:intro}
 
-\section{Related Work}
+As Software Configuration Management (SCM) has grown over the years, the maturity and norm of parallel 
+development has become the standard development process instead of the exception. With this parallel development
+comes the need for larger awareness among developers to have ``an understanding of the activities of others
+which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness in theory
+mitigates the downside of parallel development which is the cost of conflict prevention and resolution, however,
+in practice we see these mitigated losses appear quite frequently. Not only do these conflicts still occur,
+but at times they can prove to be a significant and time-consuming chore for developers~\cite{Perry:2001:PCL}.
+
+Two types of conflicts have attracted the attention of academics over the years, \textit{direct} and 
+\textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
+artifact, finding expert knowledge about a particular file, or knowing when another developer is working on
+the same file as you. Tools have been created and studied for these types of issues
+~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
+positive developer feedback. However, indirect conflict tools have not had the same success. Indirect conflicts
+can arise in source code for such reasons as having one's own code negatively affected by a library upgrade or
+making a code change only to find out it had negative effects on unit or integration test or  having negative effects
+on the way other developer's have interpreted the use of your code. Tools that have attempted to either
+help developers prevent or solve indirect conflicts have either attracted little developer interest or have
+had some common struggles which remain to be studied or solved.
+
+% Another paragraph about indirect conflict tools.
+
+We are interested in exploring three main areas in the hopes of resolving some of the issues that are occurring
+with indirect conflict tools: the nature of these conflicts in the how, what, and where, the processes that
+developers use prevent, catch, and solve indirect conflicts, and what developer opinions are on preventative 
+indirect conflicts tools as well as what they would look for in any tool for indirect conflicts. We broke
+these categories down into the following 8 research questions:
+
+\begin{description}
+	\item[RQ1] \textit{How do indirect conflicts occur?}
+	\item[RQ2] \textit{How often do indirect conflicts occur and at what times in a project do they occur more frequently?}
+	\item[RQ3] \textit{What software artifacts and environments are susceptible to indirect conflicts?}
+	\item[RQ4] \textit{How do developer prevent indirect conflicts?}
+	\item[RQ5] \textit{How do developers catch indirect conflicts?}
+	\item[RQ6] \textit{How to developers react to and solve indirect conflicts?}
+	\item[RQ7] \textit{When are pre-emptive indirect conflict tools best used and what would developers want from them?}
+	\item[RQ8] \textit{What kinds of tools do developers want to help them handle and solve indirect conflicts?}
+\end{description}
+
+We interviewed 19 developers from across 12 companies and open source projects as well as surveyed 78 
+developers in order to answer these questions. 
+
+% Paragraph(s) which summarizes the key result points.
+
+We continue this paper by first presenting our motivations for this research in Section~\ref{sec:mot}.
+We then present the summarized methodology we used to perform this study in Section~\ref{sec:meth}. We
+continue with the results of our study in regards to our 8 research questions in Section~\ref{sec:results} 
+followed by a discussion in Section~\ref{sec:disc} of what was found and how it can be applied to future study and implementation
+of indirect tools or processes. We next present how evaluation was performed in terms of the credibility
+and quality of our results in Section~\ref{sec:eval}, then cover related work in Section~\ref{sec:related}
+and conclude in Section~\ref{sec:conc}.
+
+\section{Motivation}
+\label{sec:mot}
 
 \section{Methodology}
+\label{sec:meth}
 
 Our study was performed in two parts. First, a round of semi-structured interviews were conducted which 
 addressed the larger who, what, when, where, and how about indirect conflicts. Secondly, a survey was given
@@ -84,7 +139,7 @@ after the initial invitation if no response had been made. We directly emailed 2
 interviews were not possible, one of Skype or Google Hangout was used with audio and video being recorded but only
 audio being stored for future use. We were quite pleased with the response rate to our initial invitation emails as
 our breadth of participants was rather large spanning multiple open and closed source project and our interview 
-answer saturation was quite high (to be seen in Section~\ref{sec:rnd}). However, we were disappointed in our word
+answer saturation was quite high (to be seen in Section~\ref{sec:results}). However, we were disappointed in our word
 of mouth campaign. We had asked several participants to pass along our interviews invitations to other members of
 their respective organizations but did not receive any additional participants through this method.
 
@@ -117,7 +172,7 @@ participants had strong opinions or any experience on every category mentioned. 
 to the specific categories were not required or pressed upon. We attribute any non answer by a participant to
 either lack of knowledge in their current project pertaining to the category or lack of experience in terms of
 being apart of any one software project for extended periods of time. We account for these non answers
-in our analysis as seen in Section~\ref{sec:rnd}. Interviews lasted 
+in our analysis as seen in Section~\ref{sec:results}. Interviews lasted 
 from 15 minutes up to 75 minutes. The length of the interview largely depended on the amount of experience the
 participant had in software development as they were able to give more experiences and more informed opinions.
 
@@ -176,7 +231,7 @@ answer question fields while combining commonly mentioned answers where possible
 preliminary analysis is a list of common and unique hypotheses to each of the 9 short answer questions.
 
 \section{Results}
-\label{sec:rnd}
+\label{sec:results}
 
 We now present our results of both the interviews and surveys conducted in regards to our research questions
 outlined in Section~\ref{sec:intro}. We first present and discuss the general nature of indirect conflicts in
@@ -291,6 +346,12 @@ how developers react to indirect conflicts, which stakeholders are responsible f
 processes can be used to prevent or catch indirect conflicts.
 
 \begin{description}
+	\item[RQ4] \textit{How do developer prevent indirect conflicts?}
+\end{description}
+
+% Design by contract, add and deprecate
+
+\begin{description}
 	\item[RQ4] \textit{How do developers catch indirect conflicts?}
 \end{description}
 
@@ -378,10 +439,16 @@ resolution tool should be implemented.
 \end{itemize}
 
 \section{Discussion}
+\label{sec:disc}
 
-\section{Future Work}
+\section{Evaluation}
+\label{sec:eval}
+
+\section{Related Work}
+\label{sec:related}
 
 \section{Conclusions}
+\label{sec:conc}
 
 \section{Acknowledgments}
 
@@ -389,9 +456,9 @@ We would sincerely like to thank all participants who were willing to be intervi
 in completing our survey. We thank these people for taking time out of their day to participate and for
 sharing their developer experience with us. Without these people our research could not have been possible.
 
-%\bibliographystyle{IEEEtran}
-%\balance
-%\bibliography{paper}
+\bibliographystyle{IEEEtran}
+\balance
+\bibliography{paper}
 
 % End of the paper
 \end{document}

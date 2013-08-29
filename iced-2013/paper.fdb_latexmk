@@ -1,5 +1,13 @@
 # Fdb version 3
-["pdflatex"] 1377806805 "paper.tex" "paper.pdf" "paper" 
+["bibtex paper"] 1377812017 "paper.aux" "paper.bbl" "paper" 
+  "./IEEEtran.bst" 1376325121 59215 bc5380b3434a66b895bbc75d3d380540 ""
+  "paper.aux" 1377812017 2882 10d3fa8e81378de6723d99b24925ae18 ""
+  "paper.bcf" 0 -1 0 ""
+  "paper.bib" 1377808789 3836 3ce7aa83a809ee3c5be496e5c2cfe3a7 ""
+  (generated)
+  "paper.blg"
+  "paper.bbl"
+["pdflatex"] 1377812017 "paper.tex" "paper.pdf" "paper" 
   "/etc/texmf/tex/latex/config/graphics.cfg" 1255993321 3328 2584cfe577535f0a08f3a9717b5152ab ""
   "/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii" 1251025892 71625 fad1c4b52151c234b6873a255b0ad6b3 ""
   "/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty" 1156703163 3535 ce75ca6de8380293f2081dec8ab08a93 ""
@@ -16,8 +24,9 @@
   "/usr/share/texmf-texlive/tex/latex/preprint/balance.sty" 1137110595 3366 d938ad2440edc1ea1c9042843580ec42 ""
   "/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd" 1137110629 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "IEEEtran.cls" 1376325121 201353 775b18b42342447aea341b76a89fcb61 ""
-  "paper.aux" 1377806805 2202 db3f81979dd6231af5129850392d905e ""
-  "paper.tex" 1377806804 26412 d8520f68debdb5070377aaf3a693d3d9 ""
+  "paper.aux" 1377812017 2882 10d3fa8e81378de6723d99b24925ae18 ""
+  "paper.bbl" 1377812017 3134 2b70dad0ef753130b8ace3a59e2c77e5 "bibtex paper"
+  "paper.tex" 1377812016 30822 762675bf6f8fe63b90191434480ed81c ""
   (generated)
   "paper.pdf"
   "paper.log"
