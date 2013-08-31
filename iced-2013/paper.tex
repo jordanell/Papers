@@ -539,7 +539,9 @@ when expressing how proper unit and integration tests should be written. Develop
 not all indirect conflicts should be caught. This leads us to believe that as long as the contract of a software structure is understood,
 proper tests should be able to be written which will catch most if not all indirect conflicts. The problems occur when the contract is
 not properly understood and use cases are not tested for or examined as explained in previous discussion. Once an object is not properly
-tested, the negative consequences may not be caught until later in a project with the potential for more damage to be caused. Aside from testing
+tested, the negative consequences may not be caught until later in a project with the potential for more damage to be caused. Some languages
+such as Eiffle and the Java Modeling Language enforce object contracts to be well understood through the ideas of pre and post conditions
+of structures. Aside from testing
 was the build process. Developers said that the build process is simply there to ensure a, at least, semi-functioning product. They use
 the build process more to catch compile time errors witch prevent the product from being used. These types of build breaking indirect
 conflicts do occur but for the most part developers posses tools capable to build their solutions in order to catch these problems before
@@ -567,7 +569,53 @@ We sum up the developer process with indirect conflicts with the following findi
 \subsection{Tools for indirect Conflicts}
 \label{sec:td}
 
+Ultimately, the goal of this research would be to produce any sort of tool that could aid developers in any stage (prevention, detection, or
+solving) of indirect conflicts. In order to address what types of tools would be best, we analyze the results from our previous research
+questions along with research questions 7 and 8. We first examined the prevention / detection side of indirect conflicts through the use of
+preemptive indirect conflict tools. Preemptive indirect conflict tools are used to find potential code changes that could result in indirect
+conflicts. As was found through RQ7, developers major concern with preemptive indirect conflict tools was the number of false positives put
+forth by such a tool and the information overload that was sure to follow. Developers were very quick to identify this problem which has
+been a common occurrence among any preemptive indirect conflict tool built. The main issue with false positives is the detection of changes
+which frequently cause indirect conflicts. Change types are very possible to detect through software static analysis, but even those that are
+prone to causing indirect conflicts do not cause them all the time. This is quite evident in Table~\ref{tab:pre} where developers identified
+that there is an even distribution of software changes that could cause indirect conflicts and as to if they would want to be made aware of
+those changes. The only two exceptions which stand out are that of method signature changes and main algorithm changes. The problem here however,
+is that method signature changes will be caught by IDE errors, nightly builds, unit testing, integration testing and so on, while main algorithm
+changes are very difficult to detect. This all leads to the hypothesis that preemptive indirect conflict tools cannot be built without a very
+large number of false positives being reported at any given time. Even if developers, as per Table~\ref{tab:pre}, want to be alerted to 
+changed pre-conditions in methods most times if not always, there is still a large chance that that changed pre-condition will actually not
+introduce an indirect conflict in the source code. This leads to a large number of false positive being reported, which leads to information
+overload, and eventually to developers abandoning the tool.
 
+In order to prevent or catch indirect conflicts with an automated tool without introducing a large amount of false positives, would be to
+have an automatic understanding of how the project's code is suppose to work. From the halting problem, we know it is a rather difficult
+if not impossible task to write one program that can verify the correctness of another. This leaves us with the only option of some kind of
+human intervention in the matter which leads us back to use case coverage. As was stated before, if the developer has a complete understand
+of the use cases of a particular code artifact, then they can write proper tests to ensure those use cases are always met and not broken which
+would be the best form of preventing and catching indirect conflicts.
+
+Given the above challenges, some indirect conflict tools have had some general success. The key difference with these tools is that they
+contain the idea of developer exploration. The idea of only presenting information to users on request is the complete opposite of the preemptive
+notion of notifying developers to potential upcoming problems. The tools which provide information on user request usually involve taking some
+artifact of interest and presenting information which is dependent on the artifact. Here, the idea that a user can provide some sort of
+input, some sort of context, is a powerful tool for reducing false positives. We have really just moved the false positives of the preemptive
+tool to the ``search results'' of the exploratory tool, however, with the user input the results can be narrowed down to provide a larger
+precision of results. These types of tools are in direct comparison with the results of RQ8 in that developers were more interested in
+the debugging of issues quickly and being able to narrow down where problems emanate from. This also sticks with the findings found in
+Section~\ref{sec:pd} being that developers would rather spend their time fixing and exploring a real issue when it does occur than trying
+to prevent potential issues moving forward. As researchers, we should be focusing our efforts on the solving as opposed to prevention and 
+the detection of indirect conflicts. Prevention does not appear to worth developer time as indirect conflicts and software failures will always
+occur, detection will always require some form of human intervention to determine the correctness of a program, so this only leaves us with
+the time and effort spent on debugging. 
+
+We sum up our conclusions for future indirect conflict tools with the following findings:
+\begin{description}
+	\item[F7] It is extremely difficult, if not impossible, to create a preemptive indirect conflict tool which can detect indirect conflicts
+						with a low rate of false positives.
+	\item[F8] Indirect conflict tools are best used by providing exploratory environments to aid in the solving of indirect conflicts.
+	\item[F9] Indirect conflict tools should be reducing debugging time of indirect conflicts as opposed to preventative
+						time in order to better fit developer activities.
+\end{description}
 
 
 \section{Evaluation}
