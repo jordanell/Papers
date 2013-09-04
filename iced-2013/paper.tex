@@ -25,6 +25,8 @@
 }
 \makeatother
 
+\newcommand{\totalCategories}{10}
+
 % Begin the paper here
 \begin{document}
 
@@ -33,12 +35,9 @@
 % Can use linebreaks \\ within to get better formatting as desired
 \title{Indirect Conflicts: An Exploration and Discussion of Tools, Process, and Developer Insight}
 
-\author{\IEEEauthorblockN{Jordan Ell}
+\author{\IEEEauthorblockN{Jordan Ell and Daniela Damian}
 \IEEEauthorblockA{University of Victoria,
-Victoria, Canada \\ jell@uvic.ca}
-\IEEEauthorblockN{Daniela Damian}
-\IEEEauthorblockA{University of Victoria,
-Victoria, Canada \\ danielad@csc.uvic.ca}
+Victoria, Canada \\ jell@uvic.ca, danielad@csc.uvic.ca}
 }
 
 % Make the title area
@@ -140,10 +139,26 @@ and conclude in Section~\ref{sec:conc}.
 \section{Methodology}
 \label{sec:meth}
 
-Our study was performed in two parts. First, a round of semi-structured interviews were conducted which 
+Our grounded theory study was performed in two parts. First, a round of semi-structured interviews were conducted which 
 addressed the larger who, what, when, where, and how about indirect conflicts. Secondly, a survey was given
-out which was used to confirm what was learned from the interviews on a larger sample size as well as get
-a larger opinion base on general issues.
+out which was used to confirm what was theorized from the interviews on a larger sample size as well as obtain
+larger developer opinion.
+
+\subsection{Grounded Theory}
+We approached our study based on grounded theory as described by Corbin and Strauss~\cite{Corbin:1998:SP}.
+Grounded theory is a qualitative research methodology that utilizes \textit{theoretical sampling} and
+\textit{open code} to create a social theory ``grounded'' in the empirical data. For an exploratory study such as
+the ours, grounded theory is well suited because involves starting from very broad and abstract type questions and
+making refinements along the way as the study progresses and hypotheses begin to take shape. Grounded theory involves
+regining the sampling criteria throughout the course of the study to ensure that participants are able to answer new
+questions that have been formulated in regards to forming hypotheses. In our study being presented, data collected from
+both interviews and surveys (when open ended questions were involved) was analyzed using open coding. Open coding involves
+assigning codes to what participants said at a low sentence level or abstractly at a paragraph or full answer level. These
+codes were defined as the study progressed and different hypotheses began to grow. We finally use axial coding it order to
+link our defined codes to categories of grounded theory such as context and consequences. The ultimate goal of grounded 
+theory is to produce a theory that is tied to the empirical data collected; our final theories can be seen in
+findings~\ref{itm:f1} -~\ref{itm:f9}. In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
+3 criteria that are commonly used in evaluating grounded theory studies.
 
 \subsection{Interview Participants}
 
@@ -167,15 +182,14 @@ after the initial invitation if no response had been made. We directly emailed 2
 interviews were not possible, one of Skype or Google Hangout was used with audio and video being recorded but only
 audio being stored for future use. We were quite pleased with the response rate to our initial invitation emails as
 our breadth of participants was rather large spanning multiple open and closed source project and our interview 
-answer saturation was quite high (to be seen in Section~\ref{sec:results}). However, we were disappointed in our word
-of mouth campaign. We had asked several participants to pass along our interviews invitations to other members of
-their respective organizations but did not receive any additional participants through this method.
+answer saturation~\cite{Guest:2006:SAP} was quite high (to be seen in Section~\ref{sec:results}).
 
 Interview participants first answered a number of structured demographic items. Next, participants were 
-asked to describe various software development processes they use or encounter in their current working
-environment. These structured process questions were used for later analysis to provided context to
-any answer for questions that involve indirect conflicts. They next were engaged in a
-semi-structured round of questions pertaining to 12 categories of questions. 
+asked to describe various software development experiences regarding our three main areas of focus: the nature
+of indirect conflicts, current processes used regarding indirect conflicts, opinions on future and the use of
+current tools. processes they use or encounter in their current working environment. These three areas of focus
+were studied by having the interview participants talk about their experiences and opinions in the following
+\totalCategories{} semi-structured research topics which were asked of:
 
 \begin{itemize}
 \item Software development tools for dependency tracking and awareness.
@@ -190,9 +204,7 @@ semi-structured round of questions pertaining to 12 categories of questions.
 \item Developer opinion on who is responsible for fixing or preventing indirect conflicts.
 \end{itemize}
 
-Each of the categories was used as a
-point of aggregation for later analysis as a way of answering the X research questions laid out in 
-Section~\ref{sec:intro}. While each of the 12 question categories had a number of starter questions, interviews 
+While each of the \totalCategories{} question categories had a number of starter questions, interviews 
 largely became discussions of developer experience and opinion as opposed to direct answers to any specific question.
 In general, once the category was explained to the participant, little prompting was necessary as the participant
 would jump right into an experience, or issue he or she had with the question or category. However, not all
@@ -200,42 +212,43 @@ participants had strong opinions or any experience on every category mentioned. 
 to the specific categories were not required or pressed upon. We attribute any non answer by a participant to
 either lack of knowledge in their current project pertaining to the category or lack of experience in terms of
 being apart of any one software project for extended periods of time. We account for these non answers
-in our analysis as seen in Section~\ref{sec:results}. Interviews lasted 
+in our analysis and results as seen in Section~\ref{sec:results}. Interviews lasted 
 from 15 minutes up to 75 minutes. The length of the interview largely depended on the amount of experience the
 participant had in software development as they were able to give more experiences and more informed opinions.
 
-After the interviews, we extracted a list of answers, opinions, and experiences for each of the 12 categorical
-question fields. We combined commonly mentioned opinions and answers where possible, and noted where experiences
-with indirect conflicts from participants were similar but generally kept the experiences tied to the individual.
-Where more direct answers were given, we used the wording of our participants rather than our own descriptive 
-aggregations. The results of this preliminary analysis was a list of short hypotheses supported by direct developer
-experience and opinion for the 12 categories. These hypotheses were then used as a template for creating the
-second step survey, in order to further test the answers given by interview participants and validate any possible
-conclusions to be drawn.
+%After the interviews, we extracted a list of answers, opinions, and experiences for each of the \totalCategories{} categorical
+%question fields. We combined commonly mentioned opinions and answers where possible, and noted where experiences
+%with indirect conflicts from participants were similar but generally kept the experiences tied to the individual.
+%Where more direct answers were given, we used the wording of our participants rather than our own descriptive 
+%aggregations. The results of this preliminary analysis was a list of short hypotheses supported by direct developer
+%experience and opinion for the \totalCategories{} categories. These hypotheses were then used as a template for creating the
+%second step survey, in order to further test the answers given by interview participants and validate any possible
+%conclusions to be drawn.
 
 \subsection{Survey Participants}
 
 We selected our survey participants from a similar breadth of open and closed source software development 
 companies and projects as the interviews participants with two large exceptions. The software organizations
 that remained the same between interview and survey were: Mozilla, The GNOME Project, Microsoft Corporation, 
-Subnet Solutions, Ruboss Technology Corporation, Amazon, Kano Apps, Fireworks Design, and Frost Tree Games.
+Subnet Solutions, and Amazon.
 However, participants who took part in the round of interviews were not asked to participate in the surveys but
 rather to act as a contact point for other developers in their team, project, or organization who may be interested
 in completing the survey. Aside from this aforementioned list, two large groups of developers were asked to
 participate as well, these being GitHub users as well as Apache Software Foundation (Apache) developers. The GitHub
-users were selected based on their large amounts of development activity on GitHub and the Apache developers
+users were selected based on large amounts of development activity on GitHub and the Apache developers
 were selected based on their software development participation on specific projects known to be used heavily
-by other organizations and projects.
+utilized by other organizations and projects.
 
 \subsection{Survey Procedure}
 
-The created survey was based off of the 12 categorical hypotheses given by the round of interviews. The survey
+The created survey was based off of the \totalCategories{} categorical hypotheses given by the round of interviews. The survey
 was designed to test these hypotheses and to acquire a larger sample size of developers who may have similar
 or different opinions from those already acquired from the interviews. The survey went through two rounds of
 piloting. Each pilot round consisted of five participants, who were previously interviewed, completing the survey
 with feedback given at the end. The previous interview participants were selected based on their domain knowledge
 expertise with indirect conflicts in order to provide what we think would be amount to better feedback and resulting
-in a more polished survey. The final survey consisted of the following questions:
+in a more polished survey. This also allowed the previously interviewed developers to examine what hypotheses were
+formed and we would be moving forward with. The final survey consisted of the following:
 2 multiple choice questions for developer experience and demographic information; 3 level of agreement questions for an indication of
 what types of environments indirect conflicts are more likely to occur;
 6 level of use questions to indicate what types of software changed developers find trouble some with respect to
@@ -253,10 +266,21 @@ Two, our GitHub and Apache participants could not be verified as to whether or n
 email addresses used in the invitations. And finally, the survey was considered by some to be long and require
 more development experience than may have been typical of some of those invited to participate.
 
-After the survey was closed, preliminary analysis was applied to the short answer questions in the same manor
-as the interview responses. We extracted a list of answers, opinions, and experiences for each of the 9 short
-answer question fields while combining commonly mentioned answers where possible. The results again from this
-preliminary analysis is a list of common and unique hypotheses to each of the 9 short answer questions.
+%After the survey was closed, preliminary analysis was applied to the short answer questions in the same manor
+%as the interview responses. We extracted a list of answers, opinions, and experiences for each of the 9 short
+%answer question fields while combining commonly mentioned answers where possible. The results again from this
+%preliminary analysis is a list of common and unique hypotheses to each of the 9 short answer questions.
+
+\subsection{Evaluation}
+
+Following our data collection and analysis, we re-interviewed some of our initial interview participants
+in order to validate our findings. We confirmed our hypotheses as to whether or not they resonate with 
+industry participants' opinions and experiences regarding indirect conflicts and as to their industrial 
+applicability. Due to limited time constraints of the interviewed participants, we could only re-interview
+five participants. Those that were re-interviewed came from the range of 5-10 years of software development
+experience. Re-interviewed participants were given our 8 research questions along with results and 9 findings
+and asked open ended questions regarding their opinions and experiences to validate our findings. The five
+participants found FILL IN HERE WHEN COMPLETE.
 
 \section{Results}
 \label{sec:results}
@@ -265,8 +289,7 @@ We now present our results of both the interviews and surveys conducted in regar
 outlined in Section~\ref{sec:intro}. We first present and discuss the general nature of indirect conflicts in
 terms of when, what types, and how often indirect conflicts occur. We next show the findings for the process
 related research questions in regards to how developers react to, processes to prevent, and reactionary steps
-to indirect conflicts. Lastly, we present and discuss findings for what potential tools are wanted by developers
-and what researchers are currently developing.
+to indirect conflicts.
 
 \subsection{The Nature of Indirect Conflicts}
 
