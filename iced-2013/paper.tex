@@ -304,7 +304,10 @@ software object's that incur indirect conflicts.
 \end{description}
 
 From the interviewed participants, 63\% of developers believe that a large contributing factor to the cause
-of indirect conflicts comes from the changing of a software object's contract. One developer stated that ``design
+of indirect conflicts comes from the changing of a software object's contract. Object contracts are, in a sense,
+what a software object guarantees, meaning how the input, output, or how any aspect of the object is garuntee
+to work; made famous by Eiffle Software's~\footnote{http://www.eiffel.com/} ``Design by Contract''\textregistered. 
+One developer stated that ``design
 by contract was invented to solve this problem and it does it quite well'', while another noted that software 
 object contracts do solve the problem in theory, but that doesn't mean that problems don't occur in practice.
 In light of object contracts, 73\% of interviewed developers gave examples of indirect conflicts they had experienced
@@ -595,8 +598,8 @@ not all indirect conflicts should be caught. This leads us to believe that as lo
 proper tests should be able to be written which will catch most if not all indirect conflicts. The problems occur when the contract is
 not properly understood and use cases are not tested for or examined as explained in previous discussion. Once an object is not properly
 tested, the negative consequences may not be caught until later in a project with the potential for more damage to be caused. Some languages
-such as Eiffle and the Java Modeling Language enforce object contracts to be well understood through the ideas of pre and post conditions
-of structures. Aside from testing
+such as Eiffle and the Java Modeling Language~\footnote{http://www.eecs.ucf.edu/~leavens/JML//index.shtml}
+enforce object contracts to be well understood through the ideas of pre and post conditions of structures. Aside from testing
 was the build process. Developers said that the build process is simply there to ensure a, at least, semi-functioning product. They use
 the build process more to catch compile time errors witch prevent the product from being used. These types of build breaking indirect
 conflicts do occur but for the most part developers posses tools capable to build their solutions in order to catch these problems before
@@ -710,6 +713,8 @@ in the generalized theories and findings.
 
 \section{Related Work}
 \label{sec:related}
+
+% insert here
 
 \section{Conclusions}
 \label{sec:conc}
