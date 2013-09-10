@@ -305,14 +305,11 @@ software object's that incur indirect conflicts.
 
 From the interviewed participants, 63\% of developers believe that a large contributing factor to the cause
 of indirect conflicts comes from the changing of a software object's contract. Object contracts are, in a sense,
-what a software object guarantees, meaning how the input, output, or how any aspect of the object is garuntee
-to work; made famous by Eiffle Software's~\footnote{http://www.eiffel.com/} ``Design by Contract''\textregistered. 
-One developer stated that ``design
-by contract was invented to solve this problem and it does it quite well'', while another noted that software 
-object contracts do solve the problem in theory, but that doesn't mean that problems don't occur in practice.
+what a software object guarantees, meaning how the input, output, or how any aspect of the object is garunteed
+to work; made famous by Eiffle Software's~\footnote{http://www.eiffel.com/} ``Design by Contract''\texttrademark. 
 In light of object contracts, 73\% of interviewed developers gave examples of indirect conflicts they had experienced
 which stemmed from not understanding the far reaching ramifications of a change being made to an object contract
-towards the rest of the project. Of those 73\%, examples were broken down as follows. 21\% of examples had to do 
+towards the rest of the project. Of those 73\%, examples were broken down as follows. 21\% of examples dealt
 with the changing of legacy code, with one developer saying ``legacy code does not change because developers 
 are afraid of the long range issues that may arise from that change''. 36\% of interviewed developers mentioned 
 that indirect conflicts occur when an update to an external project, library, or service occurs and the resulting 
@@ -333,8 +330,7 @@ In terms of when in a project indirect conflicts are more likely to occur 63\% o
 when a project is in the early stages of development, indirect conflicts tend to occur far more frequently
 than once a stable point is reached. Developers said ``At a stable point we decided we are not going to change
 [this feature] anymore. We will only add new code instead of changing it.'' and ``the beginning of a project 
-changes a lot, especially with agile''. 21\% if developers interviewed mentioned that the development process
-changes once a stable point of a project is met and the ``add and deprecate model solves a lot of these issues''.
+changes a lot, especially with agile''.
 
 For those developers interviewed, we asked how often indirect conflicts occur in their software development experience,
 how often they occur before and after a project's first release, as well as how often indirect conflicts occur late
@@ -403,7 +399,24 @@ processes can be used to prevent or catch indirect conflicts.
 	\item[~\ref{itm:rq4}] \textit{How do developer prevent indirect conflicts?}
 \end{description}
 
-% Design by contract, add and deprecate
+Of the developers interviewed, 3 main points of interest were found in preventing indirect conflicts. The first was
+the use of ``Design by Contract''\texttrademark, meaning that software objects have certain guarantees about their behavior
+in terms of input, output, and internal workings. This methodology can be used as a type of documentation towards awareness of
+a software object. One developer stated that ``design by contract was invented to solve this problem and it does it quite well'', 
+while another noted that software  object contracts do solve the problem in theory, but that doesn't mean that problems don't 
+still occur in practice. The second point was the add and deprecate methodology. 21\% if developers interviewed mentioned 
+that the development process changes once a stable point of a project is met and the ``add and deprecate model [prevents] a lot 
+of these issues''. Add and deprecate meaning instead of editing code, the developer simply clones code (if needed) and edits the clone
+while slowly phasing out the out code in subsequent releases or other development cycle needs. This allows a stoppage of indirect conflicts
+by allowing developers to use the older versions of software objects which remain unchanged. Lastly, pure developer experience was mentioned
+as a source to prevent indirect conflicts. 37\% of developers mentioned that when planning code changes, either a very experienced member
+of the project was involved in the planning and has duties to foresee any indirect conflicts that may arise, or that while implementing
+a code change developers must use their personal knowledge to predict where indirect conflicts will occur. 
+
+Of the developers surveyed who could give positive identification to preventative measures taken to avoid indirect conflicts (37 developers
+total), 27\% said that individual knowledge of the code base and their impact of code change was used, 59\% mentioned some form of ``Design
+by Contract'' or the testing of a methods contract (which could be viewed as catching indirect conflicts), and 14\% said that add and
+deprecate was used in their projects to avoid indirect conflicts.
 
 \begin{description}
 	\item[~\ref{itm:rq5}] \textit{How do developers catch indirect conflicts?}
@@ -533,8 +546,8 @@ solve indirect conflicts.
 From ~\ref{itm:rq2}, we can make the deduction that indirect conflicts are more likely to occur early in a projects development life cycle as opposed
 to later. We used to notion of the first major release to make the distinction between early and late in a project but the same hypothesis
 could be applied to iterative development where during the earlier stages of the current phase could be considered more probable for indirect
-conflict to occur. In Table~\ref{tab:often}, we see that as the project becomes more mature. we see a drop off in the frequency of indirect
-conflicts. Developers surveyed answered that daily and weekly indirect conflict frequencies trail off past the project's first release and 
+conflict to occur. In Table~\ref{tab:often}, we see that as the project becomes more mature, a drop off in the frequency of indirect
+conflicts occurs. Developers surveyed answered that daily and weekly indirect conflict frequencies trail off past the project's first release and 
 those developers interviewed mentioned a point in the project, the ``mature point'', in which indirect conflicts become less frequent after.
 This would suggest that, as will be seen in Section~\ref{sec:td}, preemptive indirect conflict tools would be more useful before this point as the
 number of false positives will have a higher chance of being true positives. This ``mature point'' may be cause for one of two reasons. The
@@ -550,10 +563,11 @@ From the results of~\ref{itm:rq3} we can also see evidence that the problemed ar
 the interfaces between structures. As was seen, developers listed both methods/functions and database schema's as the largest contributors
 to indirect conflict structures. Since methods are often the interface which developers use most, it seems natural that they are identified
 as the main software structure in regards to indirect conflicts. It appears that when interfaces of methods change through natural software
-evolution, indirect conflicts are more prone to occurring. This corresponds well with where most academic research has taken place with indirect
-conflicts. Most tools built so far have focused on the method level, and those that attempt to prevent indirect conflicts often look for a change
+evolution, indirect conflicts are more prone to occurring.
+Most tools built so far have focused on the method level, and those that attempt to prevent indirect conflicts often look for a change
 in interface to a method, either in signature or in internal body composition. The more interesting result was that of database schema based 
-indirect conflicts. There has been little to no focus of indirect conflicts at the schema level, possibly due to the inherit difficult nature
+indirect conflicts. There has been little focus of indirect conflicts at the relational database schema level~\cite{Maule:2008:IAD}, 
+possibly due to the inherit difficult nature
 of analysis a database schema in relation to source code structure. Project often use unique libraries and procedures when dealing with
 database operations which causes a generic tool for this analysis to be difficult at best to implement. However, developers have noted that this
 is often a very problemed area and can affect large portions of the software project. 
@@ -575,15 +589,19 @@ We theorize the nature of indirect conflicts with the following findings:
 
 To be able to accommodate developers in the prevention and solving of indirect conflicts, it is important to understand the current
 work flows of developers in regards to how they prevent, catch, and solve indirect conflicts. ~\ref{itm:rq4} shows us that most developers rely on
-two items in order to prevent indirect conflicts. The first of these items is the development process known as add and deprecate. This
-is the process of instead of changing old code, the code is simply copied into a new method/function and then modified to make a new 
-version while the old version gets deprecated and phased out later in the project's life. Most project's which are past their ``mature point''
-use this development process as their number one way of preventing indirect conflicts. The second item is to have highly experienced team
+two items in order to prevent indirect conflicts. The first of these items are development processes known as
+``Design by Contract''\texttrademark and the add and deprecate methodology. These processes are implementation of software artifacts based
+on what guarantees should be made about their behavior, and instead of changing old code, the code is simply copied into a new method/function and then modified to make a new version while the old version gets deprecated and phased out later in the project's life, respectively. 
+``Design by Contract''\texttrademark ensures that software artifacts, while they can be changed, should always behave in a way that is understood
+by other developers (the guaranteed aspects of the artifact), and should be documented in a way to reflect this behavior in order to avoid
+misinterpretations of the artifact. Most project's which are past their ``mature point''
+use add and deprecate development process as a way of preventing indirect conflicts of legacy code by not changing it. 
+The second item is to have highly experienced team
 members be involved in the project planning in order to foresee where problems may arise and act accordingly. (Developers also mentioned
-their personal experience in preventing indirect conflicts.) These two tools are really the only measures that developers have right now
+their personal experience in preventing indirect conflicts.) These three tools are really the only measures that developers use right now
 in order to prevent indirect conflicts. This is probably due to the inherit difficulties in predicting indirect conflicts, as will be seen in
-Section~\ref{sec:td}. Even with proper process and expert knowledge, it is still improbable to predict every indirect conflict, and conflicts 
-continue to occur. However, developers did not seem overly concerned that these two items do not totally prevent indirect conflicts. This
+Section~\ref{sec:td}. Even with proper process and expert knowledge, it is still improbable to predict every indirect conflict, and thus, conflicts 
+continue to occur. However, developers did not seem overly concerned that these three items do not totally prevent indirect conflicts. This
 is because most developers ascribe to the idea of ``I work until something breaks''. This shows that developers are somewhat content with
 the level of prevention that happens for indirect conflicts and would explain why preemptive indirect conflict tools have failed to catch on,
 as will be seen in Section~\ref{sec:td}. This again is probably due to the difficult nature of predicting indirect conflicts. ~\ref{itm:rq4} has mostly
@@ -613,13 +631,14 @@ efficiently are they able to solve them?
 While each developer gave some examples on solving indirect conflicts and the times needed, they all agreed that to be able to solve them
 quicker would be a huge benefit. A possible solutions as to solving indirect conflicts quicker are the automatic analysis of source code
 change logs to detect what changes will affect a certain part of a project's code. Luckily, some of this solution has already been implemented
-by several researchers in both delta debugging and code slicing. The interest that developer's have in fixing issues as they
+by several researchers in both delta debugging~\cite{Zeller:2002:ICC} and program slicing~\cite{Weiser:1982:PUS}. 
+The interest that developer's have in fixing issues as they
 arise more quickly again shows that developer's prefer fixing real problems directly as opposed to trying to prevent potential problems.
 Their time is more effectively spent developing than speculating. 
 
 We sum up the developer process with indirect conflicts with the following findings:
 \begin{description}
-	\item[F4\namedlabel{itm:f4}{F4}] Developers use a combination of the add and deprecate model as well as expert 
+	\item[F4\namedlabel{itm:f4}{F4}] Developers use a combination of object contract understanding, the add and deprecate model, as well as expert 
 																	 knowledge in order to prevent indirect conflicts.
 	\item[F5\namedlabel{itm:f5}{F5}] Developers use unit and integration testing to examine use case coverage in order to detect indirect conflicts.
 	\item[F6\namedlabel{itm:f6}{F6}] Developers prefer to spend time debugging real problems opposed to preventing potential problems.
@@ -647,8 +666,8 @@ introduce an indirect conflict in the source code. This leads to a large number 
 overload, and eventually to developers abandoning the tool.
 
 In order to prevent or catch indirect conflicts with an automated tool without introducing a large amount of false positives, would be to
-have an automatic understanding of how the project's code is suppose to work. From the halting problem, we know it is a rather difficult
-if not impossible task to write one program that can verify the correctness of another. This leaves us with the only option of some kind of
+have an automatic understanding of how the project's code is suppose to work. From the halting problem~\cite{Burkholder:1987}, 
+we know it is an impossible task to write one program that can verify the correctness of another. This leaves us with the only option of some kind of
 human intervention in the matter which leads us back to use case coverage. As was stated before, if the developer has a complete understand
 of the use cases of a particular code artifact, then they can write proper tests to ensure those use cases are always met and not broken which
 would be the best form of preventing and catching indirect conflicts.
@@ -714,7 +733,40 @@ in the generalized theories and findings.
 \section{Related Work}
 \label{sec:related}
 
-% insert here
+Since this paper has covered a wide spectrum in regards to indirect conflicts (preventing, catching, solving, process, and tools), there
+exists a large body of work in which to draw from regarding indirect conflicts. While some of the previous literature may not deal explicitly
+in the notion of indirect conflicts, lessons learned from topic in awareness, preemptive direct conflict detection, and debugging can be used.
+
+Kim conducted several initial focus groups as well as web surveys to determine what developers are interested in with regards to software
+modifications~\cite{Kim:2011:ESA}. The top two interests found were that developers wanted to know whose recent code changes semantically
+interfere with their own code changes, and whether their code is impacted by a code change. These areas of interest resonate with what was
+found in this paper. Developers want to know when a code change is going to interfere with their work in a potentially negative way.  Kim
+also found that developers are concerned with interfaces of objects and when those interfaces change, similar to the object contracts that
+were found in this paper. Finally, Kim also identified the same issues towards information overload through false positives with developers
+noting ``I get a big laundry list... I see the email and I delete it''.
+
+In a case study of impact awareness de Souza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
+code base to determine the impact of their code changes on fellow developers, teams, and projects. This corresponds with the findings of
+preventative measures we have found in that some human interaction or knowledge is required in preventing indirect conflicts along with
+development processes.
+
+In a study regarding static analysis tools, Johnson et. al~\cite{Johnson:2013:WDS} found similar conclusions towards false positive output
+as well as developer process integration. Developers complained that static analysis tools usually produce a large amount of false
+positives to the point where output is ignored, as well as the tool not being designed properly to fit their current development work
+flow. In our case we found that the current development work flow is ``work until something breaks'' as opposed to try and find where things
+might break before making code changes.
+
+Hattori et. al.~\cite{Hattori:2012:ICG} found, through qualitative user studies, that developers tend to use the bare amount of communication
+towards other developers in order to solve direct conflicts, and take the same approach of only communicating once a conflict has arose. This
+is the same mentality found in this paper as ``I work until something breaks''. Hattori et. al. also show that with direct conflicts, the
+sooner preemptive information if available to developers the more they will communicate and either avoid or easily solve their code merges.
+This is the situation many indirect conflict tools have strived for.
+
+While not specifically developed with indirect conflicts in mind, Zeller's delta debugging techniques~\cite{Zeller:2005:WPF}, 
+can be, and should be, applied to solving indirect conflict issues. Zeller gives automated techniques for identifying failure-inducing
+changes (as well as other failure causing components) of the software project in order to isolate and debug some issue. These practices fit
+with the idea that developers wait for something to go wrong, then wish to fix the issue as fast as possible. Program slicing~\cite{Xu:2005:BSP}
+has also been extensively studied in order to aid in debugging in manual or automated techniques.
 
 \section{Conclusions}
 \label{sec:conc}
