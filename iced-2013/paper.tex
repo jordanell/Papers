@@ -45,18 +45,19 @@ Victoria, Canada \\ jell@uvic.ca, danielad@csc.uvic.ca}
 
 \begin{abstract}
 
-Developer awareness techniques have been proposed and studied to aid in developer
-understanding and  efficient developer output in terms of source code produced. These techniques
-involve the sharing of information regarding source code changes in a specific project in order
-to either catch potential issues before they are fully integrated or to help developers debug
-pre-existing issues. These techniques have largely focused on either \textit{direct} or 
-\textit{indirect conflict} issues. While the techniques and tools for direct conflicts have had
-large success, tools either proposed or studied which focus on indirect conflicts have had many common
-struggles and poor developer interest. To better understand why indirect conflict tools either fail or have little
-developer investment, we performed a grounded theory study with 97 developers involved in either
-interviews or a web survey. We identified the main features that characterize indirect conflict issues,
-what processes and techniques developers use to aid in preventing and solving indirect conflict issues,
-and what developers would look for in a tool to aid them in these conflicts.
+Awareness techniques have been proposed and studied to aid in developer
+understanding, efficiency, and quality of software produced. Some of these techniques have focused 
+on either \textit{direct} or 
+\textit{indirect conflicts} in regards to prevent, catching, or debugging these conflicts as they arise
+through source code changes. While the techniques and tools for direct conflicts have had
+large success, tools either proposed or studied for indirect conflicts have had many common
+struggles and little developer interest. To better understand common indirect conflict tool issues, 
+we performed a grounded theory study with 97 developers involved in either
+interviews or a web survey. We found that: indirect conflicts are a real and frequent problem,
+developers already posses a large suite of tools and processes which can prevent and catch
+indirect conflicts at a manageable scale, and that developers have a work until something breaks philosophy
+which leads to the lesser want of prevention tool as to the want of quick and perhaps automatic debugging tools
+for indirect conflicts.
 
 \end{abstract}
 
@@ -66,96 +67,87 @@ and what developers would look for in a tool to aid them in these conflicts.
 As Software Configuration Management (SCM) has grown over the years, the maturity and norm of parallel 
 development has become the standard development process instead of the exception. With this parallel development
 comes the need for larger awareness among developers to have ``an understanding of the activities of others
-which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness in theory
-mitigates the downside of parallel development which is the cost of conflict prevention and resolution, however,
-in practice we see these mitigated losses appear quite frequently. Not only do these conflicts still occur,
+which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness
+mitigates some downsides of parallel development which include the cost of conflict prevention and resolution, however,
+in practice we see these mitigated losses continue to appear quite frequently. Not only do these conflicts still occur,
 but at times they can prove to be a significant and time-consuming chore for developers~\cite{Perry:2001:PCL}.
 
 Two types of conflicts have attracted the attention of academics over the years, \textit{direct} and 
 \textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
-artifact, finding expert knowledge about a particular file, or knowing when another developer is working on
-the same file as you. Tools have been created and studied for these types of issues
+artifact, or finding expert knowledge about a particular file. Tools have been created and studied for direct conflicts
 ~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
-positive developer feedback. However, indirect conflict tools have not had the same success. Indirect conflicts
-can arise in source code for such reasons as having one's own code negatively affected by a library upgrade or
-making a code change only to find out it had negative effects on unit or integration test or  having negative effects
+positive developer feedback. However, indirect conflict tools have not shared the same success. Indirect conflicts
+can arise in source code for such reasons as having one's own code negatively affected by a library upgrade,
+making a code change only to find out it had negative effects on unit or integration test, or having negative effects
 on the way other developer's have interpreted the use of your code. Tools that have attempted to either
 help developers prevent or solve indirect conflicts have either attracted little developer interest or have
 had some common struggles which remain to be studied or solved.
 
-The inherent difficulty regarding indirect conflicts is one, to determine which software dependencies are
-causing indirect conflicts, and two, to be able to analyze these dependencies, specifically as to when they change
-and whether or not they will induce an indirect conflict or otherwise negative consequences of a software project.
-Sarma et al.~\cite{Sarma:2007:TSA} have devised a tool (Palantir) which can both detect potential indirect conflicts and alert
-developers to these conflicts arising in their software projects at the class signature level. Ariadne~\cite{Trainer:2005:BGT}, another indirect 
-conflict tool, creates an exploratory environment where developers can see what areas of a project they are affecting with
-source code changes at the method level and thus where indirect conflicts may occur. 
-Another tool developer for indirect conflicts is CASI~\cite{Servant:2010:CPI}
-which utilizes dependency slicing~\cite{Bajracharya:2009:SIS} instead of the more traditional method call graphs to provide 
-again an environment to see what areas of a project are being affected by a source code change. 
-These tools have all shown to have the same common difficulty of scalability in the face of information overload. Too many
-dependencies with the potential for indirect conflicts are being reported to developers to the point where the number of false
-positives reported becomes unbearable. Our own unpublished tool Impact!~\footnote{https://github.com/jordanell/Impact} also suffered this same fate.
+Difficulties regarding indirect conflicts are to determine when software dependencies change and more crucially,
+when those changes will create negative consequences in a software project.
+Sarma et al.~\cite{Sarma:2007:TSA} built Palantir, which can both detect potential indirect conflicts, at the class signature level,
+and alert developers to these conflicts. Holmes et al.~\cite{Holmes:2010:CAR} take it
+one step further with their tool YooHoo by detecting fine grained source code changes, such as method return type changes, 
+and create a taxonomy for different
+types of changes and their proneness to cause indirect conflicts. The tool Ariadne~\cite{Trainer:2005:BGT} 
+creates an environment where developers can see how source code changes will affect other areas of a project at the 
+method level and thus where indirect conflicts may occur. 
+Another indirect conflict tool, CASI~\cite{Servant:2010:CPI},
+utilizes dependency slicing~\cite{Bajracharya:2009:SIS} instead of method call graphs to provide 
+an environment to see what areas of a project are being affected by a source code change. 
+Most of these tools have all shown to have common difficulties of: scalability, false positives, information overload, 
+or providing redundant information to preexisting tools. 
+Our own tool Impact!~\footnote{https://github.com/jordanell/Impact} also suffered these same fates.
 
-Many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
-developers solve their indirect conflict issues through the means of other 
-developers~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}. Common issues arise here in that developers do not always
-utilize others to solve issues, socio-technical congruence is largely unproven in regards to its correlation to
-software quality~\cite{Kwan:2011:SCE} and again the problem with scalability in that many many developers may be linked to
-anyone particular persons work. Again the notion of confirmation overload becomes apparent and false positives become a large
-concern.
+Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
+times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
+developers solve their indirect conflict issues through social means~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}. 
+However, socio-technical congruence is largely unproven in regards to its correlation to
+software quality~\cite{Kwan:2011:SCE} and again the problems of scalability and information overload become a factor.
 
-We are interested in exploring three main areas in the hopes of resolving some of the issues that are occurring
-with indirect conflict tools: the nature of these conflicts in the how, what, and where, the processes that
-developers use prevent, catch, and solve indirect conflicts, and what developer opinions are on preventative 
-indirect conflicts tools as well as what they would look for in any tool for indirect conflicts. We broke
-these categories down into the following 8 research questions:
+We are interested in exploring three questions in the hopes of resolving some of the issues that are occurring
+with indirect conflict tools: 
 
 \begin{description}
-	\item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{How do indirect conflicts occur?}
-	\item[RQ2\namedlabel{itm:rq2}{RQ2}] \textit{How often do indirect conflicts occur and at what times in a project do they occur more frequently?}
-	\item[RQ3\namedlabel{itm:rq3}{RQ3}] \textit{What software artifacts and environments are susceptible to indirect conflicts?}
-	\item[RQ4\namedlabel{itm:rq4}{RQ4}] \textit{How do developer prevent indirect conflicts?}
-	\item[RQ5\namedlabel{itm:rq5}{RQ5}] \textit{How do developers catch indirect conflicts?}
-	\item[RQ6\namedlabel{itm:rq6}{RQ6}] \textit{How to developers react to and solve indirect conflicts?}
-	\item[RQ7\namedlabel{itm:rq7}{RQ7}] \textit{When are preemptive indirect conflict tools best used and what would developers want from them?}
-	\item[RQ8\namedlabel{itm:rq8}{RQ8}] \textit{What kinds of tools do developers want to help them handle and solve indirect conflicts?}
+	\item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What is the nature of indirect conflicts?}
+	\item[RQ2\namedlabel{itm:rq2}{RQ2}] \textit{What types of process and tools are being used by developers in regards to indirect conflicts?}
+	\item[RQ3\namedlabel{itm:rq3}{RQ3}] \textit{How should indirect conflict tools work to best benefit developers?}
 \end{description}
 
 We interviewed 19 developers from across 12 companies and open source projects as well as surveyed 78 
-developers in order to answer these questions. Our findings indicate that while indirect conflicts are very much a real problem
-in software development, developers already poses the tools to prevent and catch indirect conflicts to a certain manageable degree and have
+developers in order to answer the aforementioned questions. Our findings indicate that while indirect conflicts are very much a real 
+and frequent problem
+in software development, developers already posses the tools to prevent and catch indirect conflicts to a manageable degree and have
 the mindset of working until something breaks, then attempting a fix. Thus, developers would rather spend their time developing instead
-of taking or reading preventative measures, resulting in the need of tools to debug and solve indirect conflicts quickly
-(reactionary tools) as opposed to tools which attempt to prevent or catch indirect conflicts early (preemptive tools).
+of taking or reading preventative measures, resulting in the need of tools to debug and solve indirect conflicts quickly as opposed to tools 
+which attempt to prevent or catch indirect conflicts early.
 
 We continue this paper by first presenting our summarized methodology we used to perform this study in Section~\ref{sec:meth}. We
-continue with the results of our study in regards to our 8 research questions in Section~\ref{sec:results} 
-followed by a discussion in Section~\ref{sec:disc} of what was found and how it can be applied to future study and implementation
-of indirect tools or processes. We next present how evaluation was performed in terms of the credibility
-and quality of our results in Section~\ref{sec:eval}, then cover related work in Section~\ref{sec:related}
+then explain and discuss the results of our study in regards to our 3 research questions in Section~\ref{sec:results}.
+Next, an evaluation of how our study was performed in terms of the credibility
+and quality of our results is described in Section~\ref{sec:eval}. We then cover related work in Section~\ref{sec:related}
 and conclude in Section~\ref{sec:conc}.
 
 \section{Methodology}
 \label{sec:meth}
 
 Our grounded theory study was performed in two parts. First, a round of semi-structured interviews were conducted which 
-addressed the larger who, what, when, where, and how about indirect conflicts. Secondly, a survey was given
-out which was used to confirm what was theorized from the interviews on a larger sample size as well as obtain
-larger developer opinion.
+addressed the 3 research questions as mentioned above. Secondly, a survey was conducted
+which was used to confirm and test what was theorized from the interviews on a larger sample size as well as obtain
+larger developer opinion of the subject.
 
 \subsection{Grounded Theory}
 We approached our study based on grounded theory as described by Corbin and Strauss~\cite{Corbin:1998:SP}.
 Grounded theory is a qualitative research methodology that utilizes \textit{theoretical sampling} and
-\textit{open code} to create a social theory ``grounded'' in the empirical data. For an exploratory study such as
-the ours, grounded theory is well suited because involves starting from very broad and abstract type questions and
+\textit{open coding} to create a theory ``grounded'' in the empirical data. For an exploratory study such as
+the ours, grounded theory is well suited because it involves starting from very broad and abstract type questions and
 making refinements along the way as the study progresses and hypotheses begin to take shape. Grounded theory involves
-regining the sampling criteria throughout the course of the study to ensure that participants are able to answer new
+realigning the sampling criteria throughout the course of the study to ensure that participants are able to answer new
 questions that have been formulated in regards to forming hypotheses. In our study being presented, data collected from
 both interviews and surveys (when open ended questions were involved) was analyzed using open coding. Open coding involves
 assigning codes to what participants said at a low sentence level or abstractly at a paragraph or full answer level. These
 codes were defined as the study progressed and different hypotheses began to grow. We finally use axial coding it order to
-link our defined codes to categories of grounded theory such as context and consequences. The ultimate goal of grounded 
+link our defined codes through categories of grounded theory such as context and consequences. The ultimate goal of grounded 
 theory is to produce a theory that is tied to the empirical data collected; our final theories can be seen in
 findings~\ref{itm:f1} -~\ref{itm:f9}. In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
 3 criteria that are commonly used in evaluating grounded theory studies.
@@ -167,12 +159,10 @@ and projects. The population which participated in our interview came from the f
 IBM, Mozilla, The GNOME Project, Microsoft Corporation, Subnet Solutions, Ruboss Technology Corporation, 
 Amazon, Exporq Oy, Kano Apps, Fireworks Design, James Evans and Associates, and Frost Tree Games. 
 Our participants we chosen based on their direct involvement in the actual writing of software for
-their respective companies or projects. These participants' software development titles included: senior developer,
-lead developer, software developer, software developer in test, and junior developer.
-In addition to software development, some participants were also chosen based on their previous experience
-of software development as well as their current experience with project management at some capacity. These management
-type participants involved in project planning to some capacity between technical architecture, project maintainer,  
-chief technical officer, or program manager.
+their respective companies or projects. These participants' software development experience ranged from 3-25 years of experience
+with an average of 8 years of experience.
+In addition to software development, some participants were also chosen based on both their experience of software development 
+as well as their experience with project management at some capacity.
 
 \subsection{Interview Procedure}
 
@@ -180,23 +170,21 @@ Participants were invited to participate in the interviews by email and were sen
 after the initial invitation if no response had been made. We directly emailed 22 participants and ended up conducting
 19 interviews. Interviews were conducted in person when possible and recorded for audio content only. When in person
 interviews were not possible, one of Skype or Google Hangout was used with audio and video being recorded but only
-audio being stored for future use. We were quite pleased with the response rate to our initial invitation emails as
-our breadth of participants was rather large spanning multiple open and closed source project and our interview 
-answer saturation~\cite{Guest:2006:SAP} was quite high (to be seen in Section~\ref{sec:results}).
+audio being stored for future use. We were pleased with the response rate to our initial invitation emails as
+our breadth of participants was rather large, spanning multiple open and closed source, Agile and Waterfall based projects,
+and our interview answer saturation~\cite{Guest:2006:SAP} was quite high.
 
 Interview participants first answered a number of structured demographic items. Next, participants were 
-asked to describe various software development experiences regarding our three main areas of focus: the nature
-of indirect conflicts, current processes used regarding indirect conflicts, opinions on future and the use of
-current tools. processes they use or encounter in their current working environment. These three areas of focus
-were studied by having the interview participants talk about their experiences and opinions in the following
-\totalCategories{} semi-structured research topics which were asked of:
+asked to describe various software development experiences regarding our three research questions.
+Our three questions were studied by having the interview participants talk about their experiences and opinions in the following
+\totalCategories{} semi-structured research topics:
 
 \begin{itemize}
+\item Examples of indirect conflicts from real world experiences.
+\item Software artifact dependency levels and where conflicts can arise.
 \item Software development tools for dependency tracking and awareness.
 \item Software development process for preventing indirect conflicts.
-\item Software artifact dependency levels and where conflicts can arise.
 \item How developers find internal or external software dependencies.
-\item Examples of indirect conflicts from real world experiences.
 \item How indirect conflicts are detected and found.
 \item How indirect conflict issues are solved or dealt with.
 \item Developer opinion of preemptive measures to prevent indirect conflicts.
@@ -206,15 +194,12 @@ were studied by having the interview participants talk about their experiences a
 
 While each of the \totalCategories{} question categories had a number of starter questions, interviews 
 largely became discussions of developer experience and opinion as opposed to direct answers to any specific question.
-In general, once the category was explained to the participant, little prompting was necessary as the participant
-would jump right into an experience, or issue he or she had with the question or category. However, not all
-participants had strong opinions or any experience on every category mentioned. For these participants, answers 
+However, not all participants had strong opinions or any experience on every category mentioned. For these participants, answers 
 to the specific categories were not required or pressed upon. We attribute any non answer by a participant to
 either lack of knowledge in their current project pertaining to the category or lack of experience in terms of
 being apart of any one software project for extended periods of time. We account for these non answers
 in our analysis and results as seen in Section~\ref{sec:results}. Interviews lasted 
-from 15 minutes up to 75 minutes. The length of the interview largely depended on the amount of experience the
-participant had in software development as they were able to give more experiences and more informed opinions.
+from 15 minutes up to 75 minutes and were very much dependent on the experience of the participant.
 
 %After the interviews, we extracted a list of answers, opinions, and experiences for each of the \totalCategories{} categorical
 %question fields. We combined commonly mentioned opinions and answers where possible, and noted where experiences
@@ -231,40 +216,38 @@ We selected our survey participants from a similar breadth of open and closed so
 companies and projects as the interviews participants with two large exceptions. The software organizations
 that remained the same between interview and survey were: Mozilla, The GNOME Project, Microsoft Corporation, 
 Subnet Solutions, and Amazon.
-However, participants who took part in the round of interviews were not asked to participate in the surveys but
-rather to act as a contact point for other developers in their team, project, or organization who may be interested
-in completing the survey. Aside from this aforementioned list, two large groups of developers were asked to
+However, participants who took part in the round of interviews were asked to act as a contact point for other 
+developers in their team, project, or organization who may be interested
+in completing the survey. Aside from this aforementioned list, two groups of developers were asked to
 participate as well, these being GitHub users as well as Apache Software Foundation (Apache) developers. The GitHub
 users were selected based on large amounts of development activity on GitHub and the Apache developers
-were selected based on their software development participation on specific projects known to be used heavily
+were selected based on their software development contributions on specific projects known to be used heavily
 utilized by other organizations and projects.
 
 \subsection{Survey Procedure}
 
-The created survey was based off of the \totalCategories{} categorical hypotheses given by the round of interviews. The survey
+Survey participants were invited to participate in the survey by email. No reminder email was sent as the
+survey responses were not connected with the invitation email addresses and thus participants who did respond
+could not be identified. We directly emailed 1300 participants and ended with 78 responses
+giving a response rate of 6\%. We attribute the low response rate with: the surveys
+were conducted during the months of July and August while many participants may be away from their regular positions.
+and our GitHub and Apache participants could not be verified as to whether or not they actively support the
+email addresses used in the invitations. In addition, the survey was considered by some to be long and require
+more development experience than may have been typical of some of those invited to participate.
+
+The created the survey was based off of categorical hypotheses created by the round of interviews. The survey
 was designed to test these hypotheses and to acquire a larger sample size of developers who may have similar
 or different opinions from those already acquired from the interviews. The survey went through two rounds of
 piloting. Each pilot round consisted of five participants, who were previously interviewed, completing the survey
-with feedback given at the end. The previous interview participants were selected based on their domain knowledge
-expertise with indirect conflicts in order to provide what we think would be amount to better feedback and resulting
-in a more polished survey. This also allowed the previously interviewed developers to examine what hypotheses were
-formed and we would be moving forward with. The final survey consisted of the following:
-2 multiple choice questions for developer experience and demographic information; 3 level of agreement questions for an indication of
+with feedback given at the end. Not only did this allow us to create a more polished survey, but it also allowed the previously interviewed developers to examine what hypotheses were
+formed and what we would be moving forward with. The final survey consisted of:
+2 multiple choice questions for demographic information; 3 level of agreement questions for an indication of
 what types of environments indirect conflicts are more likely to occur;
 6 level of use questions to indicate what types of software changed developers find trouble some with respect to
 indirect conflicts; and 9 short answer questions for indication of when indirect conflicts occur, what types of
 processes are used to prevent or react to indirect conflict, and to provide an outlet for general opinion
 on the matter. Each non demographic question was made optional as it was shown 
 through the interviews that some questions require more experience from participants than may be provided.
-
-Survey participants were invited to participate in the survey by email. No reminder email was ever sent as the
-survey responses were not connected with the invitation email addresses and thus participants who did respond
-could not be removed from a reminder list. We directly emailed 1300 participants and ended with 78 responses
-giving a response rate of 6\%. We attribute the low response rate with a couple of factors. One, the surveys
-were conducted during the months of July and August while many participants may be away from their regular positions.
-Two, our GitHub and Apache participants could not be verified as to whether or not they actively support the
-email addresses used in the invitations. And finally, the survey was considered by some to be long and require
-more development experience than may have been typical of some of those invited to participate.
 
 %After the survey was closed, preliminary analysis was applied to the short answer questions in the same manor
 %as the interview responses. We extracted a list of answers, opinions, and experiences for each of the 9 short
@@ -278,7 +261,7 @@ in order to validate our findings. We confirmed our hypotheses as to whether or 
 industry participants' opinions and experiences regarding indirect conflicts and as to their industrial 
 applicability. Due to limited time constraints of the interviewed participants, we could only re-interview
 five participants. Those that were re-interviewed came from the range of 5-10 years of software development
-experience. Re-interviewed participants were given our 8 research questions along with results and 9 findings
+experience. Re-interviewed participants were given our 3 research questions along with results and 9 findings,
 and asked open ended questions regarding their opinions and experiences to validate our findings. The five
 participants found FILL IN HERE WHEN COMPLETE.
 
