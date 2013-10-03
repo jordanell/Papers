@@ -149,7 +149,7 @@ assigning codes to what participants said at a low sentence level or abstractly 
 codes were defined as the study progressed and different hypotheses began to grow. We finally use axial coding it order to
 link our defined codes through categories of grounded theory such as context and consequences. The ultimate goal of grounded 
 theory is to produce a theory that is tied to the empirical data collected; our final theories can be seen in
-findings~\ref{itm:f1} -~\ref{itm:f9}. In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
+findings~\ref{itm:f1} -~\ref{itm:f8}. In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
 3 criteria that are commonly used in evaluating grounded theory studies.
 
 \subsection{Interview Participants}
@@ -292,24 +292,24 @@ what a software object guarantees, meaning how the input, output, or how any asp
 to work; made famous by Eiffle Software's~\footnote{http://www.eiffel.com/} ``Design by Contract''\texttrademark. 
 In light of object contracts, 73\% of interviewed developers gave examples of indirect conflicts they had experienced
 which stemmed from not understanding the far reaching ramifications of a change being made to an object contract
-towards the rest of the project. Of those 73\%, examples were broken down as follows. 21\% of examples dealt
+towards the rest of the project. Of those 73\%, 21\% dealt
 with the changing of legacy code, with one developer saying ``legacy code does not change because developers 
 are afraid of the long range issues that may arise from that change''.
 
 From these listed results, we see a common theme of awareness is obvious. Developers cause indirect conflicts because they do not
 fully understand the ramifications of their source code change, especially when a software object's contract is being changed. 
 This was largely apparent when developers were dealing with legacy code,
-or another developer's code in general. The non-understanding of how implementation decisions were made is a large factor and that changing
+or another developer's code in general. The non-understanding of how implementation decisions were previously made is a large factor and that changing
 older code was quite prone to indirect conflicts as they were unsure of where the code was being used. This presents an immediate problem regarding
 indirect conflicts in software maintenance and we would think the simple fix would be static analysis tools for source
 code to allow developers to identify which parts of the project they are affecting with a change. However, as we found out this is not always
-the easy fix. For starters, not all programming languages are subject to strong static analysis if any, while some projects involve many
+the easy fix. Not all programming languages are subject to strong static analysis if any, while some projects involve many
 cross language dependencies which also breaks down any potential for static analysis on these software dependencies. Another potential solution
 to this issue could be formal documentation such as UML. However, from Petre~\cite{Petre:2013:UP} we see that UML is not used so much in practice.
 These short comings leave the door open for other type of pro-developer documentation or tools to allow quick understanding of code changes and
 how they may impact cross team, cross project, or other dependencies. At any rate, it is clear that developers do not posses the tools needed
 to quickly evaluate a software change (especially when contracts change) from a wide spectrum of dependencies that may not have the ability to
-be statically analyzed.
+be analyzed by traditional means. This finding lays the foundation for the reality of indirect conflicts occurring in industry,
 
 \begin{description}
 	\item[F2\namedlabel{itm:f2}{F2}] Indirect conflicts, while occurring quite frequently throughout a development cycle,
@@ -321,7 +321,8 @@ their development life cycle with a minimum occurrence of once a week. Of those 
 lot of their development time is put into understanding code to avoid indirect conflicts, with more serious issues tending
 to occur once a month, and that the conflicts that do occur tend to be quite unique from each other. Right away we can see a serious issue with the standard
 development work flow. Developers are not actually spending their time developing, rather they are spending large amounts of time trying to avoid indirect
-conflicts. This shows that indirect conflicts are a serious threat to developer productivity and are a problem worth study and investigation.
+conflicts. This shows that indirect conflicts are a serious threat to developer productivity and are a problem worth study and investigation. This also
+raises the point of how developers should be spending their time: preventing, or solving indirect conflicts.
 
 In terms of when in a project indirect conflicts are more likely to occur 63\% of developers interviewed said that
 when a project is in the early stages of development, indirect conflicts tend to occur far more frequently
@@ -355,7 +356,7 @@ From the interviews and the surveys combined we can make the deduction that indi
 in a projects development cycle as opposed to later. This must be a major concern for any indirect conflict tools moving forward. Since many
 of the tools listen in Section~\ref{sec:intro} implement some sort of filtering system or taxonomy to avoid information overload, this
 finding should be included in future workings. Knowing that indirect conflicts occur more frequently early in a development cycle will let
-these tools know that those reported later in the development life cycle have a high probability (compared to without this knowledge) of
+these tools know that those reported later in the development life cycle have a higher probability (compared to without this knowledge) of
 being a true positive. This is a major concern when dealing with information overload and to provide developers with what they may find
 relevant to their work. The results in in Table~\ref{tab:often} also suggest that preemptive indirect conflict tools may be more accurate
 towards the mature point of a project, but have potentially more use earlier where the indirect conflicts are more likely to occur.
@@ -372,10 +373,11 @@ Of those surveyed that could not give direct answers to the questions in Table~\
 as follows: ``People rushing to meet [the release date] is where most of my indirect conflicts occur.'', ``Indirect conflicts
 after a release depends on how well the project was built at first'', ``They tend to slow down a bit after a major release, 
 unless the next release is a major rework.'', and ``Conflicts continue to occur at roughly the same rate after the first release,
-with spikes during large revamps or the implementation of cross-cutting new features.''. These results can be argued to show that the occurance
+with spikes during large revamps or the implementation of cross-cutting new features.''. These results can be argued to show that the occurrence
 of indirect conflicts can largely depend on the management, and deadlines of projects. These are important factors to consider when trying
 to define a ``mature point''. A large refactoring or rewrite can reset the ``mature point'' of a project and should be considered for
-any taxonomies created for preemptive indirect conflict tools.
+any taxonomies created for preemptive indirect conflict tools. The ``mature point'' of a project (or multiple mature points) should be
+considered when building a taxonomy for indirect conflict tools.
 
 As per environments, Table~\ref{tab:env} shows which development team environment developers believe to be the most
 prone to indirect conflicts.
@@ -405,9 +407,12 @@ seem to be compounded by a multiple human factor found in parallel development. 
 again comes to light. We would think that developers would leverage the other developer's knowledge in their projects to avoid indirect conflicts
 but as we will see most developers tend not leverage their social connections within a project to help solve indirect conflicts. This could be
 a potential issue of social structure in that developers simply do not have the means or will to talk to their colleagues, or it could be that
-developers heavily leverage the notion of software stigmergy as shown by Bolici et. al~\cite{Bolici}. Creating effective communication around
+developers heavily leverage the notion of software stigmergy as shown by Bolici et. al~\cite{Bolici:2009}. Creating effective communication around
 technical dependencies between developers and teams through either explicit or implicit means appears to be a large task to accomplish but a
 carsickness task as shown by these result being that static analysis breaks down at these levels.
+
+This finding characterizes that indirect conflicts are a frequent problem in industry. It also shows what environments are more prone to indirect
+conflicts and should be handled with more delicate care than others.
 
 \begin{description}
 	\item[F3\namedlabel{itm:f3}{F3}] Indirect conflicts are largely brought on by the changing of interfaces to software structures. The most common type of structures
@@ -481,7 +486,7 @@ of the project was involved in the planning and has duties to foresee any indire
 a code change developers must use their personal knowledge to predict where indirect conflicts will occur. While most interviewed developers
 had such an expert in their software projects, they admitted to not being able to foresee all indirect conflicts that may occur, especially
 when talking about external teams or projects who may or may not use their final product. This raises the question of how much planning
-by expert developers should really go into avoiding indirect conflicts? Dromey~\cite{} raises the debate of prevention versus cure of software
+by expert developers should really go into avoiding indirect conflicts? Dromey~\cite{Dromey:2003} raises the debate of prevention versus cure of software
 defects and how difficult a problem it is to measure. Should developers be using certain tools to plan their changes or should they be even
 planning at all? Which method provides the best software quality for the minimum effort. These are not easy questions to answer but may
 be key in improving developer productivity when concerning indirect conflicts.
@@ -682,7 +687,7 @@ after participants gave their own opinions on a topic, we presented them with pr
 on and potentially agree with what the majority has been on the topic. Often the developers own opinions already matched those of
 the majority before them and did not necessarily have to directly verify it themselves.
 
-To ensure the correctness of the results, we also linked all findings in Section~\ref{sec:disc} to either a majority of agreeing
+To ensure the correctness of the results, we also linked all findings in Section~\ref{sec:results} to either a majority of agreeing
 responses on a topic or to a large amount of direct quotes presented by participants.
 
 {\bfseries Applicability or Usefulness.} ``Do the findings offer new insights? Can they be used to develop policy or change practice?''
@@ -734,7 +739,7 @@ Hattori et. al.~\cite{Hattori:2012:ICG} found, through qualitative user studies,
 towards other developers in order to solve direct conflicts, and take the same approach of only communicating once a conflict has arose. This
 is the same mentality found in this paper as ``I work until something breaks''. Hattori et. al. also show that with direct conflicts, the
 sooner preemptive information if available to developers the more they will communicate and either avoid or easily solve their code merges.
-This is the situation many indirect conflict tools have strived for. In terms of communication, Bolici et. al~\cite{Bolici} give the 
+This is the situation many indirect conflict tools have strived for. In terms of communication, Bolici et. al~\cite{Bolici:2009} give the 
 possibility of developer stigmergy as the reason that developers do not need to explicitly communicate with each other about issues. The idea
 that developers use artifacts left behind by other developers to solve their issues could play a large role in a lack of formal communication.
 
