@@ -18,7 +18,7 @@
 
 % Paper title
 % Can use linebreaks \\ within to get better formatting as desired
-\title{API Evolution: A Study of Software Stability and Change Trends}
+\title{API Evolution: A Study of Software Releases and Change Trends Leading to Stability}
 
 % Authors names
 \author{\IEEEauthorblockN{Jordan Ell}
@@ -48,7 +48,7 @@ Intorduction goes here.
 Related work goes here.
 
 \section{Methodology}
-In order to answer our research question, we decided to use the tool ChangeDistiller created by Fluri et al.~\cite{}. This tool allows us to detect fine grained
+In order to answer our research question, we decided to use the tool ChangeDistiller created by Fluri et al.~\cite{Fluri:2007:CDT}. This tool allows us to detect fine grained
 source code changes in Java projects This tool works by building an abstract syntax tree of a file before and after a code change, then it tries to determine
 the smallest possible edit distance between the tree. This results in the source code change at a fine grained level performed in the commit.
 
@@ -110,21 +110,24 @@ eclipse.mylyn.commons, eclipse.mylyn.context, hibernate-orm, hibernate-ogm, hibe
 because of their high use amongst other Java projects and to study specific ecosystems of projects and their evolution trends.
 
 Due to the space requirements of this paper, we focus our results on Major releases of the 10 case study projects and a select few of the calculated change ratios. 
-There were 109 major releases across the 10 studied projects. All of the major findings as per values computed from Equation~\ref{eq:norm}
+There were 109 major releases across the 10 studied projects. All of the major findings as per values computed from Equation~\ref{eq:norm} for non test metrics
 can be seen in Table~\ref{tab:ratio}.
 
 \begin{table}[h]
 \begin{center}
+\tabcolsep=0.11cm
 \begin{tabular}{| l | c | c | c |}
 \hline
 Object & Added & Changed & Removed\\
 \hline
-Public Classes & 0.78 & 0.76 & 0.67 \\
-Public Methods (Signature) & 1.12 & 0.66 & 2.45 \\
-Public Methods (Bodies) & - & 0.86 & - \\
-Private Classes & 0.59 & 0.92 & 0.32 \\
-Private Methods (Signatures) & 0.86 & 0.91 & 1.49 \\
-Private Methods (Bodies) & - & 0.91 & - \\
+Public Classes & 1.14 & 0.86 & 1.16 \\
+Public Methods (Signature) & 1.07 & 0.92 & 1.34 \\
+Public Methods (Bodies) & - & 1.06 & - \\
+Private Classes & 0.81 & 1.18 & 1.44 \\
+Private Methods (Signatures) & 1.00 & 1.10 & 1.22 \\
+Private Methods (Bodies) & - & 1.08 & - \\
+Files & 1.12 & 0.96 & 1.14 \\
+Documentation & - & 0.99 & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -132,22 +135,23 @@ Private Methods (Bodies) & - & 0.91 & - \\
 \end{table}
 
 As it can be seen in Table~\ref{tab:ratio}, there a few notable change type trends around major releases. We can see that any changes to public classes are
-more likely to occur before a major release than after, noting that the addition, changing, and deletion of public classes have change ratios of 0.78, 
-0.76 and 0.67 respectively. The two most drastic change type trends to note from this table however are the removing of public methods and the removing
-of private classes. We can see that public methods are more than twice as likely to occur after a major release than before it and the removal of 
-private classes is three times as likely to happen before a major release than after. 
+more likely to occur before a major release than after, noting that the addition and deletion of public classes have change ratios of 1.14, 
+and 1.16 respectively. This means that on average classes are added and removed 10\% more often after major releases than before.
+The two most drastic change type trends to note from this table however are the adding and removing of private classes. We can see that private classes are
+44\% more likely to be added after a major release and that adding private classes to a project is roughly 24\% more likely to occur before a major release.
+All results in Table~\ref{tab:ratio} could be used as identified trends of major software releases, while we have just highlighted the larger ratios in
+this paper.
 
-In terms of added code, we found as per Table~\ref{tab:ratio} that additions to private classes are a large indicator of a project being at a stable
-release point with almost being twice as likely to occur before a major release than after. A large surprise to changed code indicators was that of the
-public method bodies. We can see that with a change ration of 0.86 there is not a major indication of these types of changes happening before or after a 
-release which leads us to believe that method implementation may not be able to be detected as stable through software metrics. Changes
-to method signatures also point towards changes before a release rather than after which may indicate that stable software only needs to be stable after the
-release and not prior, as changing method signature is considered a fairly unstable change~\cite{Fluri}.
+Some of the more interesting trends found around major release points from Table~\ref{tab:ratio} are private methods being removed and public method signatures
+being changed. We hypothesized that public method signatures being changed would be heavily favored towards before a major release indicating a larger sens
+of stability in the public API, however we found that only a change ratio of 0.92 exists meaning that public method signatures undergo changed almost through
+the project steadily. The private methods being removed is also suggestive of possible maintenance being done post release, meaning that code is being
+cleaned up in order to reduce the number of overall methods in a project which are not publicly available.
 
 Our qualitative results from manual graph inspections can be seen in Table~\ref{tab:qual}. These results show that adding, changing signatures and bodies of, and
 removing public methods tend to all be at a local minimum of change type trends at major releases.
 
-\begin{table}[h]
+\begin{table*}[tb!]
 \begin{center}
 \begin{tabular}{| l | c | c | c | c |}
 \hline
@@ -161,17 +165,12 @@ Removed Public Methods & 7.8\% & 16.4\% & 12.9\% & 41.4\% \\
 \end{tabular}
 \end{center}
 \caption{Qualitative graph analysis results. \label{tab:qual}}
-\end{table}
+\end{table*}
 
 Lastly we found that software changes related to testing can be highly used as an indicator of a major release point within the projects studied. The change
 ratios found can be seen in Table~\ref{tab:test}. As it can be seen, the three largest indicators of a project release and stability with regards to test based
-changes as the addition of test classes, the removal of test classes, and the removal of test methods.
-
-We summarize our key findings as to source code change type trends which can be found at points of stability as the following: the addition of private classes more often
-before a stable point, the changing of public method signatures more often before a stable point, the removal of public methods more than twice as often
-after a stable point, the removal of private classes three times as often after a stable point, and the removal of test classes more than twice as often after
-a stable point. There are of course other change ratios to consider as listed in this section, however we found the aforementioned to be the most indicative of 
-software stability around major releases.
+changes are the removal of test classes, the changing of method signatures (both occurring more before releases), and test classes being changed. An interesting
+side note is that documentation is changed heavily before releases as opposed to after.
 
 \begin{table}[h]
 \begin{center}
@@ -179,15 +178,31 @@ software stability around major releases.
 \hline
 Object & Added & Changed & Removed\\
 \hline
-Classes & 0.72 & 0.86 & 0.36 \\
-Methods & 1.55 & 0.98 & 1.93 \\
+Classes & 1.07 & 1.21 & 0.76 \\
+Methods (Signatures) & 1.23 & 0.83 & 1.01 \\
+Methods (Bodies) & - & 0.90 & - \\
+Documentation & - & 0.72 & - \\
 \hline
 \end{tabular}
 \end{center}
 \caption{Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:test}}
 \end{table}
 
+We summarize our key findings as to source code change type trends which can be found at points of stability as the following: the addition of private classes more often
+before a release point, the removal of private classes more often after a release point, the removal of public methods more often after a release point, 
+the removal of private methods more often after a release point, the removal of test classes more often after a release point, and the changing of test method
+signatures more often before a release point. While all change ratios may need to be considered for a final analysis or taxonomy, we have offered the strongest
+change trends.
+
 \section{Future Work}
+
+In future work of change trend analysis, we have planned further statistical tests of the change trends identified in this paper. We would like to
+be able to determine if these patterns are unique to major releases versus other types of releases (minor, alpha, beta, release candidate) and to
+be able to determine if these pattern are unique to releases alone or can be spotted throughout the history of a project.
+
+If it is deemed that these change trends are present in no other releases, some, all, or in non release history of the project, we will
+compare the history of the projects as to where these trends are found against preexisting software stability and quality metrics. We will use this data to
+create a new method of discovering when software can be considered stable in reference to the types of software changes being made. 
 
 \section{Conclusions}
 
@@ -197,9 +212,9 @@ releases. The source code change trends found in this paper, in combination with
 points throughout a software projects life time. This paper has also shown the beginnings of a visualization for source code change trends which may
 be used as a visual cue towards project stability and potential areas of instability where action may need to be taken.
 
-% End of the paper
-\end{document}
-
 \bibliographystyle{IEEEtran}
 %\balance
 \bibliography{paper}
+
+% End of the paper
+\end{document}
