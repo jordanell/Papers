@@ -66,19 +66,21 @@ what types of source code changes or trends constitute software stability or mat
 home pages on-line and looked through their release histories for major, minor, alpha, beta, and release candidate type releases. In total we identified 472 releases
 across our 10 studied projects.  
 
-Once the release dates were collected we set about analyzing out data by creating change ratios surrounding the release dates of each project as a way to measure
-the trend of a particular change type. 
-To do this we used Equation~\ref{eq:norm}. Equation~\ref{eq:norm} works by summing a particular change type in commits ($T_c$)
-from the release date ($r$) to a given number of days after the release ($d$) divided by the number of commits in this date range ($|c|$), then dividing
-this by the sum of that same particular change type in commits($T_c$) from a given number of days ($d$) before the release date ($r$) to
-the release date divided by divided by the number of commits in this date range ($|c|$). 
+Once the release dates were collected we set about analyzing out data by creating average change ratios surrounding the release dates of each 
+project as a way to measure the trend of a particular change type at a release type. 
+To do this we used Equation~\ref{eq:norm}. Equation~\ref{eq:norm} works to create a change ratio by first creating a numerator by summing across all releases of
+a given release type a sum of a particular change type in commits ($T_c$)
+from the release date ($r$) to a given number of days after the release ($d$) divided by the number of commits in this date range ($|c|$). Next the denominator
+is created by summing across all release of a given release type
+a sum of that same particular change type in commits($T_c$) from a given number of days ($d$) before the release date ($r$) to
+the release date divided by divided by the number of commits in this date range ($|c|$). This numerator and denominator form the final change ratio.
 This equation gives us a ratio of a particular change type happening before and after a particular release. If the ratio is above 1 then that particular change
 type occurs more frequently after the release and if it is below 1 then is occurs more frequently before the release. For the purposes of our study, we set the
 number of days before and after the release ($d$) to 60 as the projects studies had many months in between their major releases. This quantitative data
 formed much of the basis for the results to come in Section~\ref{sec:results}
 
 \begin{equation}
-\text{Ratio}_{norm} = \frac{ \sum_{c=r}^{r+d} T_c / |c|} { \sum_{c=r}^{r-d} T_c / |c|}
+\text{ChangeRatio} = \frac{ \sum_{r_0}^{r_n}\sum_{c=r}^{r+d} T_c / |c|} { \sum_{r_0}\sum_{c=r}^{r-d} T_c / |c|}
 \label{eq:norm}
 \end{equation}
 
