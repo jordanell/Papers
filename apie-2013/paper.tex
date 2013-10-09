@@ -38,16 +38,75 @@ British Columbia, Canada \\ danielad@csc.uvic.ca}
 \maketitle
 
 \begin{abstract}
-Something
+As software evolves over the lifetime of a project, changes to software objects such as methods or classes occur which can have ripple effects throughout
+the rest of the system causing relationships to be re-engineered and causing instability. However, projects are sometimes deemed stable at certain release
+points by projects owners or maintainers. We know that studying a release history of a project can give clues as to a project's history, release process,
+and how processes change, but can it shed light on what causes a project to be released and deemed stable? This paper presents our findings from studying
+source code change trends surrounding 109 major release points of 10 open source projects. We found 6 large source code change trends at these release
+points that can be used to determine if a project is likely near a major release point and thus deemed stable. 
 \end{abstract}
 
 \section{Introduction}
-Intorduction goes here.
+Release points are a vital milestone of software projects. From major releases of a Waterfall based project to minor iterations of an Agile development,
+releases form an interesting single point of a project's development history.
+Third party users of a system often only see a product at a release point either major or minor,
+and expect the system to come with a sense of reliability and stability at this point. However, the decision as to when a project is ready for public usage
+as to its reliability, quality and stability can be a difficult decision to make for most project owners or maintainers.
+
+While measuring software quality has had a major focus in software engineering research for many years~\cite{Bowen:1978:CAS}~\cite{Grady:1993:PRM}~\cite{ISOIEC9126},
+the sub study of software stability and its implications on quality and reliability remains a difficult subject to understand. 
+The decision of what makes a project stable and ready
+for a release often comes down to the release manager or maintainer of a project and is often a reflection of the open source community which surrounds 
+the project~\cite{Conway:1968}. Code is an often looked to statistic for stability but can be grossly misleading
+in terms of pre-release and post-release defects~\cite{Fenton:2000:QAF}, with some exceptions~\cite{Nagappan:2005:URC}. 
+Creating a different quantitative approach to determining software stability and release preparedness is still a large open area of
+interest in software engineering research.
+
+We turn our analysis to the notions of software change trends, specifically those trends around major releases. Change trends have been used to detect
+stability in core architecture~\cite{Wermelinger:2008:AEE} as well as evolving dependencies~\cite{Businge:2010:ESE}.
+With the power of major release points in open source projects as a starting point for project stability and the understanding that change trends can
+be leveraged to detect stability and the evolution of source code, the question we investigate in this paper is:
+``\textit{Is it possible to identify trends in source code changes surrounding major releases of open source projects as a notion towards a project
+stability measure?}''. By answering this question, we hope to provide industry with the ability to determine a project's stability and perhaps
+reliability based on its current change trends. We also hope to provide researchers with the ability to perform further analysis of projects in
+regards to software quality with the findings of this paper.
+
+In this paper, we perform a case study of 10 open source projects in order to study their source code change trends surrounding major release points
+throughout their history. We studied 26 quantitative and 16 qualitative change trends and identified a core group of 6 change trends which occur
+prominently at major release points of the projects studied.
+
+The remainder of this paper is laid out as follows. Section~\ref{sec:rel} goes over the related work of release study and stability. Sections~\ref{sec:meth}
+explains our methodology and tools used in solving our research problem.
+Section \ref{sec:results} gives a full representation of the results and trends found as well as a summarized results of the 6 change trends found
+to be most prominent. Finally, Sections~\ref{sec:fut} and~\ref{sec:con} give our future work to follow this study and final conclusions respectively.
 
 \section{Related Work}
-Related work goes here.
+\label{sec:rel}
+While very little has been published about release quality studies and stability, there have been a few studies which attempt to address the issues directly
+or indirectly. Wu et al.~\cite{Wu:2008:QAF} performed a case study of SoftPM, a widely adopted project management tool, to explore the relationships of
+pre-release and post-release failures at major releases. Wu et al. found that the ratio of post-release failures to pre-release failures is significantly low
+and can be used to show reliability and stability. Hindle et al.~\cite{Hindle:2007:RPD} performed a case study on MySQL which observed a the project's behavior
+around major and minor release by monitoring artifact check-ins and changes. They found that there are temporary stoppages for source revisions around releases,
+indicating that a temporary freeze is taking place for developers and that last minute fixes and manual testing may be being performed.
+Zaidman et al.~\cite{Zaidman:2011:SCP}, in comparison, studied the co-evolution of production and test code with inspections and analysis
+at major and minor releases. 
+
+The study of open source projects revolving around release points has become more available by the work of Tsay et al~\cite{Tsay:2011:EMO}. Tsay et al. created
+a resource of historical release dates for open source software projects to be used for future studies by other researchers.
+
+In terms of software stability, many proposed development techniques have been proposed to increase software stability. 
+Fayad~\cite{Fayad:2001:TOI}~\cite{Fayad:2002:ASS} suggests that ``business objects'' (BOs) do not change in nature and that they are inherently stable. These
+objects only need to change to accommodate external modules at the interface. Some studies such as Chow et al.~\cite{Chow:2011:SJI} have investigated
+the stability of changes to interfaces which are considered a good indication of stability.
+Mockus et al.~\cite{Mockus:2008:IQR} used major and minor release points to compare industry process quality to customer-perceived quality of the software
+project. Mockus et al. found that defect density is lowest at major releases but at the same time software quality is at its lowest all when compared to minor
+releases. The low software quality here related to end-user errors of installations and configurations. Wermelinger et al.~\cite{Wermelinger:2008:AEE}
+showed that stable core architectures can be detected by using source code changes. Finally, Fayad et al.~\cite{Fayad:2010:SSM} have
+investigated the Software Stability Model (SSM) for Software Product Lines to show that the SSM's impact on architecture and design of a software product
+can help improve the life of the product line and make it more adaptable and applicable.
 
 \section{Methodology}
+\label{sec:meth}
 In order to answer our research question, we decided to use the tool ChangeDistiller created by Fluri et al.~\cite{Fluri:2007:CDT}. This tool allows us to detect fine grained
 source code changes in Java projects This tool works by building an abstract syntax tree of a file before and after a code change, then it tries to determine
 the smallest possible edit distance between the tree. This results in the source code change at a fine grained level performed in the commit.
@@ -188,13 +247,14 @@ Documentation & - & 0.72 & - \\
 \caption{Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:test}}
 \end{table}
 
-We summarize our key findings as to source code change type trends which can be found at points of stability as the following: the addition of private classes more often
+We summarize our key findings as to these 6 source code change type trends which can be found at points of stability as the following: the addition of private classes more often
 before a release point, the removal of private classes more often after a release point, the removal of public methods more often after a release point, 
 the removal of private methods more often after a release point, the removal of test classes more often after a release point, and the changing of test method
 signatures more often before a release point. While all change ratios may need to be considered for a final analysis or taxonomy, we have offered the strongest
-change trends.
+change trends here as a suggestion for future focus.
 
 \section{Future Work}
+\label{sec:fut}
 
 In future work of change trend analysis, we have planned further statistical tests of the change trends identified in this paper. We would like to
 be able to determine if these patterns are unique to major releases versus other types of releases (minor, alpha, beta, release candidate) and to
@@ -205,6 +265,7 @@ compare the history of the projects as to where these trends are found against p
 create a new method of discovering when software can be considered stable in reference to the types of software changes being made. 
 
 \section{Conclusions}
+\label{sec:con}
 
 Software stability is an often used measure in determining some aspects of code quality. This paper has present some initial indications as to how
 software stability may be found, based on major release stabilities, by analyzing source code change type trends both before and after major software
