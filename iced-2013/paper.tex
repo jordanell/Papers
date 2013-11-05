@@ -131,8 +131,8 @@ and conclude in Section~\ref{sec:conc}.
 \section{Methodology}
 \label{sec:meth}
 
-Our grounded theory study was performed in two parts. First, a round of semi-structured interviews were conducted which 
-addressed the 3 research questions as mentioned above. Secondly, a survey was conducted
+We performed a grounded theory study in two parts. First, a round of semi-structured interviews were conducted which 
+addressed the 3 research questions as mentioned above. Second, a survey was conducted
 which was used to confirm and test what was theorized from the interviews on a larger sample size as well as obtain
 larger developer opinion of the subject.
 
@@ -140,57 +140,45 @@ larger developer opinion of the subject.
 We approached our study based on grounded theory as described by Corbin and Strauss~\cite{Corbin:1998:SP}.
 Grounded theory is a qualitative research methodology that utilizes \textit{theoretical sampling} and
 \textit{open coding} to create a theory ``grounded'' in the empirical data. For an exploratory study such as
-the ours, grounded theory is well suited because it involves starting from very broad and abstract type questions and
+the ours, grounded theory is well suited because it involves starting from very broad and abstract type questions, and
 making refinements along the way as the study progresses and hypotheses begin to take shape. Grounded theory involves
 realigning the sampling criteria throughout the course of the study to ensure that participants are able to answer new
 questions that have been formulated in regards to forming hypotheses. In our study being presented, data collected from
-both interviews and surveys (when open ended questions were involved) was analyzed using open coding. Open coding involves
+both interviews and surveys (when open ended questions were involved) was analyzed using open and axial coding. Open coding involves
 assigning codes to what participants said at a low sentence level or abstractly at a paragraph or full answer level. These
 codes were defined as the study progressed and different hypotheses began to grow. We finally use axial coding it order to
 link our defined codes through categories of grounded theory such as context and consequences. The ultimate goal of grounded 
-theory is to produce a theory that is tied to the empirical data collected; our final theories can be seen in
-findings~\ref{itm:f1} -~\ref{itm:f8}. In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
+theory is to produce a theory that is tied to the empirical data collected; our final theories can be seen in 
+Section~\ref{sec:disc}. In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
 3 criteria that are commonly used in evaluating grounded theory studies.
 
 \subsection{Interview Participants}
 
 We selected our interview participants from a large breadth of both open and closed source software development companies
-and projects. The population which participated in our interview came from the following software groups: 
+and projects as well as Agile and Waterfall based projects.
+The population which participated in our interview came from the following software groups: 
 IBM, Mozilla, The GNOME Project, Microsoft Corporation, Subnet Solutions, Ruboss Technology Corporation, 
 Amazon, Exporq Oy, Kano Apps, Fireworks Design, James Evans and Associates, and Frost Tree Games. 
-Our participants we chosen based on their direct involvement in the actual writing of software for
+Our participants were chosen based on their direct involvement in the actual writing of software for
 their respective companies or projects. These participants' software development experience ranged from 3-25 years of experience
 with an average of 8 years of experience.
-In addition to software development, some participants were also chosen based on both their experience of software development 
-as well as their experience with project management at some capacity.
+In addition to software development, some participants were also chosen based on their experience with project management
+at some capacity.
 
 \subsection{Interview Procedure}
 
-Participants were invited to participate in the interviews by email and were sent a single reminder email one week
-after the initial invitation if no response had been made. We directly emailed 22 participants and ended up conducting
+Participants were invited to be interviewed by email and were sent a single reminder email one week
+after the initial invitation if no response was made. We directly emailed 22 participants and ended up conducting
 19 interviews. Interviews were conducted in person when possible and recorded for audio content only. When in person
 interviews were not possible, one of Skype or Google Hangout was used with audio and video being recorded but only
 audio being stored for future use. We were pleased with the response rate to our initial invitation emails as
 our breadth of participants was rather large, spanning multiple open and closed source, Agile and Waterfall based projects,
 and our interview answer saturation~\cite{Guest:2006:SAP} was quite high.
 
-Interview participants first answered a number of structured demographic items. Next, participants were 
+Interview participants first answered a number of structured demographic items, followed by being  
 asked to describe various software development experiences regarding our three research questions.
-Our three questions were studied by having the interview participants talk about their experiences and opinions in the following
-\totalCategories{} semi-structured research topics:
-
-\begin{itemize}
-\item Examples of indirect conflicts from real world experiences.
-\item Software artifact dependency levels and where conflicts can arise.
-\item Software development tools for dependency tracking and awareness.
-\item Software development process for preventing indirect conflicts.
-\item How developers find internal or external software dependencies.
-\item How indirect conflicts are detected and found.
-\item How indirect conflict issues are solved or dealt with.
-\item Developer opinion of preemptive measures to prevent indirect conflicts.
-\item Developer opinion on what types of changes are worth a preemptive action.
-\item Developer opinion on who is responsible for fixing or preventing indirect conflicts.
-\end{itemize}
+Our three questions were studied by having the interview participants talk about their experiences and opinions in
+\totalCategories{} semi-structured research topics.
 
 While each of the \totalCategories{} question categories had a number of starter questions, interviews 
 largely became discussions of developer experience and opinion as opposed to direct answers to any specific question.
@@ -198,17 +186,7 @@ However, not all participants had strong opinions or any experience on every cat
 to the specific categories were not required or pressed upon. We attribute any non answer by a participant to
 either lack of knowledge in their current project pertaining to the category or lack of experience in terms of
 being apart of any one software project for extended periods of time. We account for these non answers
-in our analysis and results as seen in Section~\ref{sec:results}. Interviews lasted 
-from 15 minutes up to 75 minutes and were very much dependent on the experience of the participant.
-
-%After the interviews, we extracted a list of answers, opinions, and experiences for each of the \totalCategories{} categorical
-%question fields. We combined commonly mentioned opinions and answers where possible, and noted where experiences
-%with indirect conflicts from participants were similar but generally kept the experiences tied to the individual.
-%Where more direct answers were given, we used the wording of our participants rather than our own descriptive 
-%aggregations. The results of this preliminary analysis was a list of short hypotheses supported by direct developer
-%experience and opinion for the \totalCategories{} categories. These hypotheses were then used as a template for creating the
-%second step survey, in order to further test the answers given by interview participants and validate any possible
-%conclusions to be drawn.
+in our analysis and results as seen in Section~\ref{sec:results}.
 
 \subsection{Survey Participants}
 
@@ -216,9 +194,9 @@ We selected our survey participants from a similar breadth of open and closed so
 companies and projects as the interviews participants with two large exceptions. The software organizations
 that remained the same between interview and survey were: Mozilla, The GNOME Project, Microsoft Corporation, 
 Subnet Solutions, and Amazon.
-However, participants who took part in the round of interviews were asked to act as a contact point for other 
+Participants who took part in the round of interviews were asked to act as a contact point for other 
 developers in their team, project, or organization who may be interested
-in completing the survey. Aside from this aforementioned list, two groups of developers were asked to
+in completing the survey. Aside from this aforementioned list, two other groups of developers were asked to
 participate as well, these being GitHub users as well as Apache Software Foundation (Apache) developers. The GitHub
 users were selected based on large amounts of development activity on GitHub and the Apache developers
 were selected based on their software development contributions on specific projects known to be used heavily
@@ -235,24 +213,16 @@ and our GitHub and Apache participants could not be verified as to whether or no
 email addresses used in the invitations. In addition, the survey was considered by some to be long and require
 more development experience than may have been typical of some of those invited to participate.
 
-The created the survey was based off of categorical hypotheses created by the round of interviews. The survey
+The created survey~\footnote{http://thesegalgroup.org/people/jordan-ell/iced\_survey/}
+was based off of hypotheses created by the round of interviews. The survey
 was designed to test these hypotheses and to acquire a larger sample size of developers who may have similar
 or different opinions from those already acquired from the interviews. The survey went through two rounds of
 piloting. Each pilot round consisted of five participants, who were previously interviewed, completing the survey
-with feedback given at the end. Not only did this allow us to create a more polished survey, but it also allowed the previously interviewed developers to examine what hypotheses were
-formed and what we would be moving forward with. The final survey consisted of:
-2 multiple choice questions for demographic information; 3 level of agreement questions for an indication of
-what types of environments indirect conflicts are more likely to occur;
-6 level of use questions to indicate what types of software changed developers find trouble some with respect to
-indirect conflicts; and 9 short answer questions for indication of when indirect conflicts occur, what types of
-processes are used to prevent or react to indirect conflict, and to provide an outlet for general opinion
-on the matter. Each non demographic question was made optional as it was shown 
+with feedback given at the end. Not only did this allow us to create a more polished survey, but it also allowed 
+the previously interviewed developers to examine what hypotheses were
+formed and what we would be moving forward with.
+Each non demographic question was made optional as it was shown 
 through the interviews that some questions require more experience from participants than may be provided.
-
-%After the survey was closed, preliminary analysis was applied to the short answer questions in the same manor
-%as the interview responses. We extracted a list of answers, opinions, and experiences for each of the 9 short
-%answer question fields while combining commonly mentioned answers where possible. The results again from this
-%preliminary analysis is a list of common and unique hypotheses to each of the 9 short answer questions.
 
 \subsection{Evaluation}
 
