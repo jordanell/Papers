@@ -48,16 +48,15 @@ Victoria, Canada \\ jell@uvic.ca, danielad@csc.uvic.ca}
 Awareness techniques have been proposed and studied to aid in developer
 understanding, efficiency, and quality of software produced. Some of these techniques have focused 
 on either \textit{direct} or 
-\textit{indirect conflicts} in regards to prevent, catching, or debugging these conflicts as they arise
+\textit{indirect conflicts} in regards to prevent, detect, or resolve these conflicts as they arise
 through source code changes. While the techniques and tools for direct conflicts have had
 large success, tools either proposed or studied for indirect conflicts have had many common
 struggles and little developer interest. To better understand common indirect conflict tool issues, 
 we performed a grounded theory study with 97 developers involved in either
-interviews or a web survey. We found that: indirect conflicts are a real and frequent problem,
-developers already posses a large suite of tools and processes which can prevent and catch
-indirect conflicts at a manageable scale, and that developers have a work until something breaks philosophy
-which leads to the lesser want of prevention tool as to the want of quick and perhaps automatic debugging tools
-for indirect conflicts.
+interviews or a web survey. We found that: indirect conflicts are a real and frequent problem in
+software development, that developers tend to prefer to use detection and resolution processes or tools
+over those of prevention, that developers do not want awareness mechanisms which provide non actionable results,
+and that there exists a gap in software evolution analytical tools from the reliance on static analysis.
 
 \end{abstract}
 
@@ -97,28 +96,6 @@ Human factors have also shown to cause issues as Cataldo et al.~\cite{Cataldo:20
 congruence has been leveraged in several indirect conflict tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA}.
 Factors again of information overload, human dependencies, and scalability lay at the root of these problems.
 
-%Difficulties regarding indirect conflicts are to determine when software dependencies change and more crucially,
-%when those changes will create negative consequences in a software project.
-%Sarma et al.~\cite{Sarma:2007:TSA} built Palantir, which can both detect potential indirect conflicts, at the class signature level,
-%and alert developers to these conflicts. Holmes et al.~\cite{Holmes:2010:CAR} take it
-%one step further with their tool YooHoo by detecting fine grained source code changes, such as method return type changes, 
-%and create a taxonomy for different
-%types of changes and their proneness to cause indirect conflicts. The tool Ariadne~\cite{Trainer:2005:BGT} 
-%creates an environment where developers can see how source code changes will affect other areas of a project at the 
-%method level and thus where indirect conflicts may occur. 
-%Another indirect conflict tool, CASI~\cite{Servant:2010:CPI},
-%utilizes dependency slicing~\cite{Bajracharya:2009:SIS} instead of method call graphs to provide 
-%an environment to see what areas of a project are being affected by a source code change. 
-%Most of these tools have all shown to have common difficulties of: scalability, false positives, information overload, 
-%or providing redundant information to preexisting tools. 
-%Our own tool Impact!~\footnote{https://github.com/jordanell/Impact} also suffered these same fates.
-
-%Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
-%times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
-%developers solve their indirect conflict issues through social means~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}. 
-%However, socio-technical congruence is largely unproven in regards to its correlation to
-%software quality~\cite{Kwan:2011:SCE} and again the problems of scalability and information overload become a factor.
-
 In the hopes of resolving some of the aforementioned issues surrounding indirect conflicts and their tools, we 
 are interested in exploring the following three research questions: 
 
@@ -130,9 +107,10 @@ are interested in exploring the following three research questions:
 
 We interviewed 19 developers from across 12 companies and open source projects as well as surveyed 78 
 developers in order to answer the aforementioned questions. Our findings indicate that: indirect conflicts are very much a real 
-and frequent problem in software development, contextual patterns of indirect conflicts have been missed in previous tools through
-the lack of dependency identification, that developers tend to prefer to use detection and resolution processes or tools
-over those of prevention, and that developers do not want awareness mechanisms which provide non actionable results.
+and frequent problem in software development, that developers tend to prefer to use detection and resolution processes or tools
+over those of prevention, that developers do not want awareness mechanisms which provide non actionable results, 
+and that there exists a gap in software evolution analytical tools from the reliance on static analysis resulting in missed
+context of indirect conflicts.
 
 We continue this paper by first presenting our methodology used to perform this study in Section~\ref{sec:meth}. We
 then present and discuss the results of our study in regards to our 3 research questions in Section~\ref{sec:results}
