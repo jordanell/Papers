@@ -380,7 +380,7 @@ Surveyed developers suggested the following improvements to curative tools:
 	\item Automatically write new tests to compensate for changes.
 	\item IDE plug-ins to show how current changes will affect other components of the current project.
 	\item Analysis of library releases to show how upgrading to a new release will affect your project.
-	\item Built in language features to either the source code architecture (i.e. Eiffle or 
+	\item Built in language features to either the source code architecture (i.e. Eiffel or 
 				Java Modeling Language~\footnote{http://www.eecs.ucf.edu/~leavens/JML//index.shtml}) or the compile 
 				time tools to display warning messages towards potential issues.
 	\item A code review time tool which allows deeper analysis of a new patch to the project allowing the reviewer to see potential 
@@ -522,6 +522,30 @@ has lead to some of the deficiencies of indirect conflict research.
 \subsection{Implication for Research}
 \label{sec:implr}
 
+The largest implication for future research found in this paper is the need for continued study of the open question
+``Which of prevention or cure is more effective for software development?''. This simple question will undoubtedly 
+produce extremely complex answers. With software developers focusing their current efforts on curative measures suggests
+that while it may not be the most effective, it may be the easiest road for developers to take. This may be the path of
+least resistance, but it may not be optimal. Software engineering as a whole should strive to answer this question or
+provide more insight into possibilities, as its answer may determine many future actions taken by the research community.
+
+Recommendations towards the study of prevention versus cure involve the examination of formal processes and tools used
+by industry professionals with measurements of efficiency and effectiveness, similar to the work of
+Tiwana~\cite{Tiwana:2008:ICD} in coordination tools. With these studies, we may find insight into the correct balance
+of prevention versus cure, thus being able to increase developer productivity as well as identify gaps in theory 
+where new discoveries may be made.
+
+A second implication for research derived by the paper, which is more directly related to awareness, is the continued
+understanding of the disjoint between theoretical awareness and awareness as perceived by industry practitioners.
+As was identified in the previous discussion, while theory suggests that awareness of all events related to ones work
+produces a more coherent understanding of a person's environment, developers find this to be overly time consuming
+to the point where they only want to be aware of events which require action on their part. This disjoint, of what 
+theoretically should be and what physically is, should be further understood to combat future potential failures in
+tool development or theories attempted to be used in practice. These disjoints may be detected by conducting case 
+studies of tools built primarily on theoretical models, while having these tools tested in industry. We found developers
+to be quite honest when using a tool they dislike which should lend itself to the detection of the aforementioned
+disjoints.
+
 \subsection{Implication for Tools}
 \label{sec:implt}
 
@@ -532,7 +556,7 @@ is crucial for success. It should be noted here that detection must come with an
 current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
 
 The more indirect implication of this research on tool creation is that of improving existing tools. While not all existing
-tools are used for indirect conflicts alone (automatic debugging, unit tests, etc), most of these tools
+tools are used for indirect conflicts alone (automatic debugging~\cite{Zeller:2005:WPF}, unit tests, etc), most of these tools
 have need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
 automatically written for a given software object's contract, the ability to find a change  in an external project
 which has broken a developer's own project, or any automation of the existing detection and resolution stages of indirect
@@ -583,7 +607,7 @@ in the generalized theories and findings.
 \section{Related Work}
 \label{sec:related}
 
-Since this paper has covered a wide spectrum in regards to indirect conflicts (preventing, catching, solving, process, and tools), there
+Since this paper has covered a wide spectrum in regards to indirect conflicts (prevention, detection, resolution, process, and tools), there
 exists a large body of work in which to draw from regarding indirect conflicts. While some of the previous literature may not deal explicitly
 in the notion of indirect conflicts, lessons learned from topic in awareness, preemptive direct conflict detection, and debugging can be used.
 
