@@ -68,45 +68,59 @@ As Software Configuration Management (SCM) has grown over the years, the maturit
 development has become the standard development process instead of the exception. With this parallel development
 comes the need for larger awareness among developers to have ``an understanding of the activities of others
 which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness
-mitigates some downsides of parallel development which include the cost of conflict prevention and resolution, however,
-in practice we see these mitigated losses continue to appear quite frequently. Not only do these conflicts still occur,
-but at times they can prove to be a significant and time-consuming chore for developers~\cite{Perry:2001:PCL}.
+mitigates some downsides of parallel development which include the cost of conflict prevention and resolution. However,
+in practice we see these mitigated losses continue to appear quite frequently and can prove to be a significant
+and time-consuming chore for developers~\cite{Perry:2001:PCL}.
 
-Two types of conflicts have attracted the attention of academics over the years, \textit{direct} and 
+Two types of conflicts have attracted the attention of academics, \textit{direct} and 
 \textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
 artifact, or finding expert knowledge about a particular file. Tools have been created and studied for direct conflicts
 ~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
-positive developer feedback. However, indirect conflict tools have not shared the same success. Indirect conflicts
-can arise in source code for such reasons as having one's own code negatively affected by a library upgrade,
-making a code change only to find out it had negative effects on unit or integration test, or having negative effects
-on the way other developer's have interpreted the use of your code. Tools that have attempted to either
-help developers prevent or solve indirect conflicts have either attracted little developer interest or have
-had some common struggles which remain to be studied or solved.
+positive developer feedback. Indirect conflicts involve source code change influences such as making a change which
+causes an error in another location in the system, having code negatively affected by a library upgrade, or even
+breaking an integration test of a separate component than the one changed. Indirect conflict tools however, have
+not shared the same success as direct conflict 
+tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}.
 
-Difficulties regarding indirect conflicts are to determine when software dependencies change and more crucially,
-when those changes will create negative consequences in a software project.
-Sarma et al.~\cite{Sarma:2007:TSA} built Palantir, which can both detect potential indirect conflicts, at the class signature level,
-and alert developers to these conflicts. Holmes et al.~\cite{Holmes:2010:CAR} take it
-one step further with their tool YooHoo by detecting fine grained source code changes, such as method return type changes, 
-and create a taxonomy for different
-types of changes and their proneness to cause indirect conflicts. The tool Ariadne~\cite{Trainer:2005:BGT} 
-creates an environment where developers can see how source code changes will affect other areas of a project at the 
-method level and thus where indirect conflicts may occur. 
-Another indirect conflict tool, CASI~\cite{Servant:2010:CPI},
-utilizes dependency slicing~\cite{Bajracharya:2009:SIS} instead of method call graphs to provide 
-an environment to see what areas of a project are being affected by a source code change. 
-Most of these tools have all shown to have common difficulties of: scalability, false positives, information overload, 
-or providing redundant information to preexisting tools. 
-Our own tool Impact!~\footnote{https://github.com/jordanell/Impact} also suffered these same fates.
+While indirect conflict tools have shown potential from developer studies, some of the same problems continue
+to arise throughout most, if not all tools. The most prevalent issue is that of false positives and information
+overload. Through case studies, developers have noted that current indirect conflict tools provide too many 
+false positive results leading to information overload and the tool eventually being
+ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of dependency identification and
+tracking. Many different dependencies have been proposed and used in indirect conflict tools such as method 
+invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success, but the 
+identification of failure inducing changes, other than those which are already identifiable by other means such
+as compilers, and unit tests, to these dependencies still remains an issue. Dependency tracking issues are
+also compounded by the scale of many software development projects leading to further information overload.
 
-Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
-times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
-developers solve their indirect conflict issues through social means~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}. 
-However, socio-technical congruence is largely unproven in regards to its correlation to
-software quality~\cite{Kwan:2011:SCE} and again the problems of scalability and information overload become a factor.
+Human factors have also shown to cause issues as Cataldo et al.~\cite{Cataldo:2006:ICR} notion of socio-technical
+congruence has been leveraged in several indirect conflict tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA}.
+Factors again of information overload, human dependencies, and scalability lay at the root of these problems.
 
-We are interested in exploring three questions in the hopes of resolving some of the issues that are occurring
-with indirect conflict tools: 
+%Difficulties regarding indirect conflicts are to determine when software dependencies change and more crucially,
+%when those changes will create negative consequences in a software project.
+%Sarma et al.~\cite{Sarma:2007:TSA} built Palantir, which can both detect potential indirect conflicts, at the class signature level,
+%and alert developers to these conflicts. Holmes et al.~\cite{Holmes:2010:CAR} take it
+%one step further with their tool YooHoo by detecting fine grained source code changes, such as method return type changes, 
+%and create a taxonomy for different
+%types of changes and their proneness to cause indirect conflicts. The tool Ariadne~\cite{Trainer:2005:BGT} 
+%creates an environment where developers can see how source code changes will affect other areas of a project at the 
+%method level and thus where indirect conflicts may occur. 
+%Another indirect conflict tool, CASI~\cite{Servant:2010:CPI},
+%utilizes dependency slicing~\cite{Bajracharya:2009:SIS} instead of method call graphs to provide 
+%an environment to see what areas of a project are being affected by a source code change. 
+%Most of these tools have all shown to have common difficulties of: scalability, false positives, information overload, 
+%or providing redundant information to preexisting tools. 
+%Our own tool Impact!~\footnote{https://github.com/jordanell/Impact} also suffered these same fates.
+
+%Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
+%times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
+%developers solve their indirect conflict issues through social means~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}. 
+%However, socio-technical congruence is largely unproven in regards to its correlation to
+%software quality~\cite{Kwan:2011:SCE} and again the problems of scalability and information overload become a factor.
+
+In the hopes of resolving some of the aforementioned issues surrounding indirect conflicts and their tools, we 
+are interested in exploring the following three research questions: 
 
 \begin{description}
 	\item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What is the nature of indirect conflicts?}
@@ -115,15 +129,14 @@ with indirect conflict tools:
 \end{description}
 
 We interviewed 19 developers from across 12 companies and open source projects as well as surveyed 78 
-developers in order to answer the aforementioned questions. Our findings indicate that while indirect conflicts are very much a real 
-and frequent problem
-in software development, developers already posses the tools to prevent and catch indirect conflicts to a manageable degree and have
-the mindset of working until something breaks, then attempting a fix. Thus, developers would rather spend their time developing instead
-of taking or reading preventative measures, resulting in the need of tools to debug and solve indirect conflicts quickly as opposed to tools 
-which attempt to prevent or catch indirect conflicts early.
+developers in order to answer the aforementioned questions. Our findings indicate that: indirect conflicts are very much a real 
+and frequent problem in software development, contextual patterns of indirect conflicts have been missed in previous tools through
+the lack of dependency identification, that developers tend to prefer to use detection and resolution processes or tools
+over those of prevention, and that developers do not want awareness mechanisms which provide non actionable results.
 
-We continue this paper by first presenting our summarized methodology we used to perform this study in Section~\ref{sec:meth}. We
-then explain and discuss the results of our study in regards to our 3 research questions in Section~\ref{sec:results}.
+We continue this paper by first presenting our methodology used to perform this study in Section~\ref{sec:meth}. We
+then present and discuss the results of our study in regards to our 3 research questions in Section~\ref{sec:results}
+and Section~\ref{sec:disc}.
 Next, an evaluation of how our study was performed in terms of the credibility
 and quality of our results is described in Section~\ref{sec:eval}. We then cover related work in Section~\ref{sec:related}
 and conclude in Section~\ref{sec:conc}.
@@ -541,8 +554,10 @@ As was identified in the previous discussion, while theory suggests that awarene
 produces a more coherent understanding of a person's environment, developers find this to be overly time consuming
 to the point where they only want to be aware of events which require action on their part. This disjoint, of what 
 theoretically should be and what physically is, should be further understood to combat future potential failures in
-tool development or theories attempted to be used in practice. These disjoints may be detected by conducting case 
-studies of tools built primarily on theoretical models, while having these tools tested in industry. We found developers
+tool development or theories attempted to be used in practice.
+
+These disjoints may be detected by conducting case 
+studies of tools built primarily on theoretical models, while having said tools tested in industry. We found developers
 to be quite honest when using a tool they dislike which should lend itself to the detection of the aforementioned
 disjoints.
 
