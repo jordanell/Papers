@@ -607,26 +607,49 @@ in the generalized theories and findings.
 
 Since this paper has covered a wide spectrum in regards to indirect conflicts (prevention, detection, resolution, process, and tools), there
 exists a large body of work in which to draw from regarding indirect conflicts. While some of the previous literature may not deal explicitly
-in the notion of indirect conflicts, lessons learned from topic in awareness, preemptive direct conflict detection, and debugging can be used.
+in the notion of indirect conflicts, lessons learned from topics in awareness, direct conflict detection, and debugging can be used.
+
+Many indirect conflict tools have been created, tested, and published. Sarma et al.~\cite{Sarma:2007:TSA} created Palantir, 
+which can both detect potential indirect conflicts, at the class signature level, and alert developers to these conflicts. 
+Palantir represented one of the first serious attempts at aiding developers towards indirect conflicts. Holmes et 
+al.~\cite{Holmes:2010:CAR} take it one step further with their tool YooHoo, by detecting fine grained source code changes, 
+such as method return type changes, and create a taxonomy for different types of changes and their proneness to cause 
+indirect conflicts. This tool and its taxonomy had a severely reduced false positive rate, however, the true positives 
+detected may already be detectable by current tools such as compilers and unit testing. The tool Ariadne~\cite{Trainer:2005:BGT} 
+creates an environment where developers can see how source code changes will affect other areas of a project at the 
+method level, using method call graphs, showing where indirect conflicts may occur. This type of exploratory design has 
+been used often in the visualization of indirect conflict tools, allowing developers a type of search area for their development
+needs. Another indirect conflict tool, CASI~\cite{Servant:2010:CPI}, utilizes dependency slicing~\cite{Bajracharya:2009:SIS} 
+instead of method call graphs to provide an environment to see what areas of a project are being affected by a source code change. 
+Most of these tools have all shown to have the same common difficulties of scalability, false positives, and information overload, 
+which were explored in this paper. Our own tool Impact!~\footnote{https://github.com/jordanell/Impact} also suffered these same fates.
+
+Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
+times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
+developers solve their indirect conflict issues through social means~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}. 
+Begel et al.~\cite{Begel:2010:CDE} created Codebook, a type of social developer network related directly to source code
+artifacts, which can be used to identify developers and expert knowledge of the code base. Borici et al.~\cite{Borici:2012:CHA}
+created ProxiScientia which used technical dependencies between developers to create a network of coordination needs.
+Socio-technical congruence however, is largely unproven in regards to its correlation to
+software quality~\cite{Kwan:2011:SCE} and again the problems of scalability and information overload become a factor.
 
 Kim conducted several initial focus groups as well as web surveys to determine what developers are interested in with regards to software
 modifications~\cite{Kim:2011:ESA}. The top two interests found were that developers wanted to know whose recent code changes semantically
 interfere with their own code changes, and whether their code is impacted by a code change. These areas of interest resonate with what was
-found in this paper. Developers want to know when a code change is going to interfere with their work in a potentially negative way.  Kim
+found in this paper. Developers want to know when a code change is going to interfere with their work in a potentially negative way and
+require action on the developer's half.  Kim
 also found that developers are concerned with interfaces of objects and when those interfaces change, similar to the object contracts that
 were found in this paper. Finally, Kim also identified the same issues towards information overload through false positives with developers
 noting ``I get a big laundry list... I see the email and I delete it''.
 
-In a case study of impact awareness de Souza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
+In a case study of impact awareness, de Souza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
 code base to determine the impact of their code changes on fellow developers, teams, and projects. This corresponds with the findings of
 preventative measures we have found in that some human interaction or knowledge is required in preventing indirect conflicts along with
 development processes.
 
-In a study regarding static analysis tools, Johnson et. al~\cite{Johnson:2013:WDS} found similar conclusions towards false positive output
-as well as developer process integration. Developers complained that static analysis tools usually produce a large amount of false
-positives to the point where output is ignored, as well as the tool not being designed properly to fit their current development work
-flow. In our case we found that the current development work flow is ``work until something breaks'' as opposed to try and find where things
-might break before making code changes.
+In a study regarding static analysis tools, Johnson et. al~\cite{Johnson:2013:WDS} found similar conclusions towards the
+ill fit of current static analysis to current development practices. Not being designed properly to fit current development work
+flow, and the over abundance of false positives were shown to be factors of developer non-use. 
 
 Hattori et. al.~\cite{Hattori:2012:ICG} found, through qualitative user studies, that developers tend to use the bare amount of communication
 towards other developers in order to solve direct conflicts, and take the same approach of only communicating once a conflict has arose. This
@@ -635,6 +658,9 @@ sooner preemptive information if available to developers the more they will comm
 This is the situation many indirect conflict tools have strived for. In terms of communication, Bolici et. al~\cite{Bolici:2009} give the 
 possibility of developer stigmergy as the reason that developers do not need to explicitly communicate with each other about issues. The idea
 that developers use artifacts left behind by other developers to solve their issues could play a large role in a lack of formal communication.
+Blincoe et al.~\cite{Blincoe:2013:UCC} also found, through data mining techniques, a subset of events related to awareness 
+which occur that developers will communicate about as opposed to all awareness events. This again confirms our understanding that developers
+only care about certain events which require some action on their part.
 
 While not specifically developed with indirect conflicts in mind, Zeller's delta debugging techniques~\cite{Zeller:2005:WPF}, 
 can be, and should be, applied to solving indirect conflict issues. Zeller gives automated techniques for identifying failure-inducing
