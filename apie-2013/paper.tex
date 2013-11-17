@@ -38,11 +38,11 @@ British Columbia, Canada \\ danielad@csc.uvic.ca}
 \maketitle
 
 \begin{abstract}
-As software evolves over the lifetime of a project, changes to software objects such as methods or classes occur which can have ripple effects throughout
+As software evolves over the lifetime of a project, changes to software objects such as methods or classes occur, which can have ripple effects throughout
 the rest of the system causing relationships to be re-engineered and causing instability. However, projects are sometimes deemed stable at certain release
 points by projects owners or maintainers. We know that studying a release history of a project can give clues as to a project's history, release process,
 and how processes change, but can it shed light on what causes a project to be released and deemed stable? This paper presents our findings from studying
-source code change trends surrounding 109 major release points of 10 open source projects. We found 6 large source code change trends at these release
+source code change trends surrounding 109 major release points of 10 open source projects. We found 9 large source code change trends at these release
 points that can be used to determine if a project is likely near a major release point and thus deemed stable. 
 \end{abstract}
 
@@ -57,27 +57,28 @@ While measuring software quality has had a major focus in software engineering r
 the sub study of software stability and its implications on quality and reliability remains a difficult subject to understand. 
 The decision of what makes a project stable and ready
 for a release often comes down to the release manager or maintainer of a project and is often a reflection of the open source community which surrounds 
-the project~\cite{Conway:1968}. Code is an often looked to statistic for stability but can be grossly misleading
+the project~\cite{Conway:1968}, or a reduction in code churn. Code is an often looked to statistic for stability but can be grossly misleading
 in terms of pre-release and post-release defects~\cite{Fenton:2000:QAF}, with some exceptions~\cite{Nagappan:2005:URC}. 
-Creating a different quantitative approach to determining software stability and release preparedness is still a large open area of
+Creating an approach to determining software stability and release preparedness is still a large open area of
 interest in software engineering research.
 
-We turn our analysis to the notions of software change trends, specifically those trends around major releases. Change trends have been used to detect
+We turn our analysis to the notions of software change trends, specifically those trends around major releases. Change trends are trends which indicate
+a likelihood for a change type to occur around a certain event. Change trends have been used to detect
 stability in core architecture~\cite{Wermelinger:2008:AEE} as well as evolving dependencies~\cite{Businge:2010:ESE}.
 With the power of major release points in open source projects as a starting point for project stability and the understanding that change trends can
 be leveraged to detect stability and the evolution of source code, the question we investigate in this paper is:
-``\textit{Is it possible to identify trends in source code changes surrounding major releases of open source projects as a notion towards a project
+``\textit{What trends exist in source code changes surrounding major releases of open source projects as a notion towards a project
 stability measure?}''. By answering this question, we hope to provide industry with the ability to determine a project's stability and perhaps
 reliability based on its current change trends. We also hope to provide researchers with the ability to perform further analysis of projects in
 regards to software quality with the findings of this paper.
 
 In this paper, we perform a case study of 10 open source projects in order to study their source code change trends surrounding major release points
-throughout their history. We studied 26 quantitative and 16 qualitative change trends and identified a core group of 6 change trends which occur
+throughout their history. We studied 26 quantitative and 16 qualitative change trends and identified a core group of 9 change trends which occur
 prominently at major release points of the projects studied.
 
 The remainder of this paper is laid out as follows. Section~\ref{sec:rel} goes over the related work of release study and stability. Sections~\ref{sec:meth}
 explains our methodology and tools used in solving our research problem.
-Section \ref{sec:results} gives a full representation of the results and trends found as well as a summarized results of the 6 change trends found
+Section \ref{sec:results} gives a full representation of the results and trends found as well as a summarized results of the 9 change trends found
 to be most prominent. Finally, Sections~\ref{sec:fut} and~\ref{sec:con} give our future work to follow this study and final conclusions respectively.
 
 \section{Related Work}
@@ -108,26 +109,31 @@ can help improve the life of the product line and make it more adaptable and app
 \section{Methodology}
 \label{sec:meth}
 In order to answer our research question, we decided to use the tool ChangeDistiller created by Fluri et al.~\cite{Fluri:2007:CDT}. This tool allows us to detect fine grained
-source code changes in Java projects This tool works by building an abstract syntax tree of a file before and after a code change, then it tries to determine
-the smallest possible edit distance between the tree. This results in the source code change at a fine grained level performed in the commit.
+source code changes in Java projects. This tool works by building an abstract syntax tree of a file before and after a code change, then it tries to determine
+the smallest possible edit distance between the trees. This results in the source code change at a fine grained level performed in the commit.
 
-We took ChangeDistiller and applied it across 10 open source Java projects. For each of the projects, we obtained the software configuration management (SCM) system
+We took ChangeDistiller and applied it across 10 open source Java projects. Java projects were nesissary because ChangeDistiller only works for Java source code.
+For each of the projects, we obtained the software configuration management (SCM) system
 which is used to store all source code changes of a project. When it was necessary, we converted some forms of SCM system to Git in order to reduce implementation
 burdens of using multiple SCMs. Once the SCM was obtained, we used ChangeDistiller and iterated over every commit found in a project's git master branch. We stored
 34 of ChangeDistiller's built in source code change types for each commit. We noted how many of each change type was performed in each commit and stored that information
-in a PostgreSQL database. In order to filter and protect our results, we manually inspected the 10 Java projects studied in order to identify code built for test.
+in a PostgreSQL database. In order to filter and protect our results, we manually inspected the 10 Java projects studied in order to identify code built for test
+purposes.
 We separated changes to this test code from all other code to ensure our results only focused on real implementation while allowing us to study changes to
 test based code separately.
 
 Once the ChangeDistiller information was collected, we decided to examine software change trends surrounding releases of the project's we had selected. Since releases
 have preconceived notions of software stability, we decided that by studying the types of changes surrounding these releases, we could get a better understanding of
 what types of source code changes or trends constitute software stability or maturity. In order to study the release points, we went to each of our 10 project's 
-home pages on-line and looked through their release histories for major, minor, alpha, beta, and release candidate type releases. In total we identified 472 releases
+web pages and looked through their release histories for major, minor, alpha, beta, and release candidate type releases. In total we identified 472 releases
 across our 10 studied projects.  
 
 Once the release dates were collected we set about analyzing out data by creating average change ratios surrounding the release dates of each 
-project as a way to measure the trend of a particular change type at a release type. 
-To do this we used Equation~\ref{eq:norm}. Equation~\ref{eq:norm} works to create a change ratio by first creating a numerator by summing across all releases of
+project as a way to measure the trend of a particular change type at a release type. This change ratio simply compares the number of change events (of a given
+change type) before a release to after the release. Both of the before and after event totals are divided by the number of commits on their respective side
+of the release to account for activity. We implemented this algorithm through Equation~\ref{eq:norm}.
+
+Equation~\ref{eq:norm} works to create a change ratio by first creating a numerator by summing across all releases of
 a given release type a sum of a particular change type in commits ($T_c$)
 from the release date ($r$) to a given number of days after the release ($d$) divided by the number of commits in this date range ($|c|$). Next the denominator
 is created by summing across all release of a given release type
@@ -147,19 +153,21 @@ Aside from generating quantitative data, we also created a web application for t
 us to inspect a single project and a single change type metric at a time (see Figure~\ref{fig:apie}) for qualitative analysis of software evolution trends. We
 used this tool to manually inspect 4 specific change type trends surround release dates. To do this, we aggregated change types across 50 commits, meaning that
 each point in the graph represented the date of a commit and the sum of the particular change type's occurrences over the last 50 commits. This was used to smooth
-out the curves presented by the tool to allow easier manual inspection. Manual inspections were labeled into 4 categories: upward trending, local maximum, downward
-trending, and local minimum. Since the graphs were quite turbulent, best estimations were given by two judges at each release point to fit the graph into the aforementioned
+out the curves presented by the tool to allow easier manual inspection. This method however does not take activity into account as seen in
+Equation~\ref{eq:norm}, so it represents the true activity and change types occuring. Manual inspections were labeled into 4 categories: upward trending, local maximum, downward
+trending, and local minimum. Since the graphs were quite turbulent, best estimations were conducted by two judges at each release point to fit the graph into the aforementioned
 4 slope categories. The two judges used 1.5 months before and after the release date as start and end points for the graph trend line.
 
 % APIE graph figure
 \begin{figure}[tb!]
 \centering
 \includegraphics[width=0.5\textwidth]{images/apie.png}
-\caption{An screen shot of the APIE visualizer showing project Eclipse.Mylyn.Context with change type PUBLIC\_ADDED\_METHODS being analyzed.\label{fig:apie}}
+\caption{An screen shot of the APIE visualizer showing project Eclipse.Mylyn.Context with change type PUBLIC\_ADDED\_METHODS being analyzed and showing
+major releases as vertical yellow lines.\label{fig:apie}}
 \end{figure}
 
 We performed 1888 manual inspections across 10 projects, 472 release dates and 4 change types, and used this data to form the basis of our qualitative data.
-Quantitative data was cross validated with qualitative data to form some of the final results to be seen in the next section. 
+Quantitative data was used to compliment the quantitative ratios found from the previous methodology. 
 
 \section{Results}
 \label{sec:results}
@@ -193,22 +201,24 @@ Documentation & - & 0.99 & - \\
 \caption{Implementation oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:ratio}}
 \end{table}
 
-As it can be seen in Table~\ref{tab:ratio}, there a few notable change type trends around major releases. We can see that any changes to public classes are
-more likely to occur before a major release than after, noting that the addition and deletion of public classes have change ratios of 1.14, 
-and 1.16 respectively. This means that on average classes are added and removed 10\% more often after major releases than before.
-The two most drastic change type trends to note from this table however are the adding and removing of private classes. We can see that private classes are
-44\% more likely to be added after a major release and that adding private classes to a project is roughly 24\% more likely to occur before a major release.
-All results in Table~\ref{tab:ratio} could be used as identified trends of major software releases, while we have just highlighted the larger ratios in
-this paper.
+To study the most prevalent change trends, we set a ratio threshold of greater than 1.2, or less than 0.83 (20\% greater trend of after the release date
+or 20\% greater trend of before the release date) to indicate the greatest trends.
 
-Some of the more interesting trends found around major release points from Table~\ref{tab:ratio} are private methods being removed and public method signatures
-being changed. We hypothesized that public method signatures being changed would be heavily favored towards before a major release indicating a larger sens
-of stability in the public API, however we found that only a change ratio of 0.92 exists meaning that public method signatures undergo changed almost through
-the project steadily. The private methods being removed is also suggestive of possible maintenance being done post release, meaning that code is being
-cleaned up in order to reduce the number of overall methods in a project which are not publicly available.
+As it can be seen in Table~\ref{tab:ratio}, there a few change type trends around major releases which pass the threshold. We can see that both public
+and private methods
+being removed from a project is more likely to occur after a major release than after. Table~\ref{tab:ratio} also shows significance in the changes to private
+classes. We see that private classes are added more (24\%) before a major release and removed more after (44\%) the release. 
+All results in Table~\ref{tab:ratio} could be used as identified trends of major software releases, while we have just highlighted the larger ratios
+which meet our threshold criteria in this paper.
 
-Our qualitative results from manual graph inspections can be seen in Table~\ref{tab:qual}. These results show that adding, changing signatures and bodies of, and
-removing public methods tend to all be at a local minimum of change type trends at major releases.
+Another interesting trend that can been seen in Table~\ref{tab:ratio} is that of changes to public objects. We can see for public classes and methods that
+5 out of 7 ratios indicate changes occur to these objects after major release rather than before. We hypothesize that these changes to the public API
+after a major release come from newly reported bugs from end users as well as having old features being deprecated while adding new features to the project
+after the stable build had been released.
+
+Our complementary qualitative results from manual graph inspections can be seen in Table~\ref{tab:qual}. These results show that adding, changing signatures
+and bodies of, and removing public methods tend to all be at a local minimum of change type trends at major releases when activity is not taken into
+account. These results confirm previous results of low code churn as an indication of stability.
 
 \begin{table*}[tb!]
 \begin{center}
@@ -226,10 +236,10 @@ Removed Public Methods & 7.8\% & 16.4\% & 12.9\% & 41.4\% \\
 \caption{Qualitative graph analysis results. \label{tab:qual}}
 \end{table*}
 
-Lastly we found that software changes related to testing can be highly used as an indicator of a major release point within the projects studied. The change
-ratios found can be seen in Table~\ref{tab:test}. As it can be seen, the three largest indicators of a project release and stability with regards to test based
-changes are the removal of test classes, the changing of method signatures (both occurring more before releases), and test classes being changed. An interesting
-side note is that documentation is changed heavily before releases as opposed to after.
+Lastly we found that software changes related to testing can be an indicator of a major release points within the projects studied. The change
+ratios found can be seen in Table~\ref{tab:test}. As it can be seen, the four ratios which meet our threshold and are indicators of stability with regards to test based
+changes are: the changing of test classes, the removal of test classes, the adding of methods, and the changing of method signatures, and test classes being changed.
+Changes to documentation also meets our threshold and occurs more before a major release.
 
 \begin{table}[h]
 \begin{center}
@@ -247,11 +257,8 @@ Documentation & - & 0.72 & - \\
 \caption{Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:test}}
 \end{table}
 
-We summarize our key findings as to these 6 source code change type trends which can be found at points of stability as the following: the addition of private classes more often
-before a release point, the removal of private classes more often after a release point, the removal of public methods more often after a release point, 
-the removal of private methods more often after a release point, the removal of test classes more often after a release point, and the changing of test method
-signatures more often before a release point. While all change ratios may need to be considered for a final analysis or taxonomy, we have offered the strongest
-change trends here as a suggestion for future focus.
+While all change ratios may need to be considered for continued analysis or a taxonomy of change trends, we have offered the strongest
+change trends in these results as a suggestion for future focus.
 
 \section{Future Work}
 \label{sec:fut}
@@ -267,9 +274,16 @@ create a new method of discovering when software can be considered stable in ref
 \section{Conclusions}
 \label{sec:con}
 
-Software stability is an often used measure in determining some aspects of code quality. This paper has present some initial indications as to how
+Software stability is an often used measure in determining some aspects of code quality. This paper has presented some initial indications as to how
 software stability may be found, based on major release stabilities, by analyzing source code change type trends both before and after major software
-releases. The source code change trends found in this paper, in combination with future work and analysis, will allow for the detection of stable code
+releases. 
+
+The 4 change trends found in this paper occurring before major releases are: added private classes, changed test method signatures, changed documentation,
+and removed test classes.
+The 5 change trends found in this paper occurring after major release are: added test methods, changed test classes, removed public methods, removed
+private classes, and removed private methods.
+
+The source code change trends found in this paper, in combination with future work and analysis, will allow for the detection of stable code
 points throughout a software projects life time. This paper has also shown the beginnings of a visualization for source code change trends which may
 be used as a visual cue towards project stability and potential areas of instability where action may need to be taken.
 
