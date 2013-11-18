@@ -57,7 +57,7 @@ While measuring software quality has had a major focus in software engineering r
 the sub study of software stability and its implications on quality and reliability remains a difficult subject to understand. 
 The decision of what makes a project stable and ready
 for a release often comes down to the release manager or maintainer of a project and is often a reflection of the open source community which surrounds 
-the project~\cite{Conway:1968}, or a reduction in code churn. Code is an often looked to statistic for stability but can be grossly misleading
+the project~\cite{Conway:1968}. Code churn is an often looked to statistically for stability but can be grossly misleading
 in terms of pre-release and post-release defects~\cite{Fenton:2000:QAF}, with some exceptions~\cite{Nagappan:2005:URC}. 
 Creating an approach to determining software stability and release preparedness is still a large open area of
 interest in software engineering research.
@@ -78,7 +78,7 @@ prominently at major release points of the projects studied.
 
 The remainder of this paper is laid out as follows. Section~\ref{sec:rel} goes over the related work of release study and stability. Sections~\ref{sec:meth}
 explains our methodology and tools used in solving our research problem.
-Section \ref{sec:results} gives a full representation of the results and trends found as well as a summarized results of the 9 change trends found
+Section \ref{sec:results} gives a full representation of the results and trends found as well as the 9 change trends found
 to be most prominent. Finally, Sections~\ref{sec:fut} and~\ref{sec:con} give our future work to follow this study and final conclusions respectively.
 
 \section{Related Work}
@@ -86,22 +86,23 @@ to be most prominent. Finally, Sections~\ref{sec:fut} and~\ref{sec:con} give our
 While very little has been published about release quality studies and stability, there have been a few studies which attempt to address the issues directly
 or indirectly. Wu et al.~\cite{Wu:2008:QAF} performed a case study of SoftPM, a widely adopted project management tool, to explore the relationships of
 pre-release and post-release failures at major releases. Wu et al. found that the ratio of post-release failures to pre-release failures is significantly low
-and can be used to show reliability and stability. Hindle et al.~\cite{Hindle:2007:RPD} performed a case study on MySQL which observed a the project's behavior
+and can be used to show reliability and stability. Hindle et al.~\cite{Hindle:2007:RPD} performed a case study on MySQL which observed a project's behavior
 around major and minor release by monitoring artifact check-ins and changes. They found that there are temporary stoppages for source revisions around releases,
-indicating that a temporary freeze is taking place for developers and that last minute fixes and manual testing may be being performed.
+indicating that a temporary freeze is taking place for developers and that last minute fixes and manual testing may be performed.
 Zaidman et al.~\cite{Zaidman:2011:SCP}, in comparison, studied the co-evolution of production and test code with inspections and analysis
-at major and minor releases. 
+at major and minor releases, showing how test and production code can evolve at different rates and times. These results show that production
+and test code should be handled as different cases for a stability measure around major releases. 
 
-The study of open source projects revolving around release points has become more available by the work of Tsay et al~\cite{Tsay:2011:EMO}. Tsay et al. created
+The study of open source projects revolving around release points has become more accessible by the work of Tsay et al~\cite{Tsay:2011:EMO}. Tsay et al. created
 a resource of historical release dates for open source software projects to be used for future studies by other researchers.
 
-In terms of software stability, many proposed development techniques have been proposed to increase software stability. 
+In terms of software stability, development techniques have been proposed to increase software stability. 
 Fayad~\cite{Fayad:2001:TOI}~\cite{Fayad:2002:ASS} suggests that ``business objects'' (BOs) do not change in nature and that they are inherently stable. These
 objects only need to change to accommodate external modules at the interface. Some studies such as Chow et al.~\cite{Chow:2011:SJI} have investigated
 the stability of changes to interfaces which are considered a good indication of stability.
 Mockus et al.~\cite{Mockus:2008:IQR} used major and minor release points to compare industry process quality to customer-perceived quality of the software
 project. Mockus et al. found that defect density is lowest at major releases but at the same time software quality is at its lowest all when compared to minor
-releases. The low software quality here related to end-user errors of installations and configurations. Wermelinger et al.~\cite{Wermelinger:2008:AEE}
+releases. The low software quality here relates to end-user errors of installations and configurations. Wermelinger et al.~\cite{Wermelinger:2008:AEE}
 showed that stable core architectures can be detected by using source code changes. Finally, Fayad et al.~\cite{Fayad:2010:SSM} have
 investigated the Software Stability Model (SSM) for Software Product Lines to show that the SSM's impact on architecture and design of a software product
 can help improve the life of the product line and make it more adaptable and applicable.
@@ -123,7 +124,7 @@ We separated changes to this test code from all other code to ensure our results
 test based code separately.
 
 Once the ChangeDistiller information was collected, we decided to examine software change trends surrounding releases of the project's we had selected. Since releases
-have preconceived notions of software stability, we decided that by studying the types of changes surrounding these releases, we could get a better understanding of
+have preconceived notions of software stability, we decided that by studying the change types surrounding these releases, we could get a better understanding of
 what types of source code changes or trends constitute software stability or maturity. In order to study the release points, we went to each of our 10 project's 
 web pages and looked through their release histories for major, minor, alpha, beta, and release candidate type releases. In total we identified 472 releases
 across our 10 studied projects.  
@@ -137,10 +138,10 @@ Equation~\ref{eq:norm} works to create a change ratio by first creating a numera
 a given release type a sum of a particular change type in commits ($T_c$)
 from the release date ($r$) to a given number of days after the release ($d$) divided by the number of commits in this date range ($|c|$). Next the denominator
 is created by summing across all release of a given release type
-a sum of that same particular change type in commits($T_c$) from a given number of days ($d$) before the release date ($r$) to
-the release date divided by divided by the number of commits in this date range ($|c|$). This numerator and denominator form the final change ratio.
+a sum of that same particular change type in commits ($T_c$) from a given number of days ($d$) before the release date ($r$) to
+the release date divided by the number of commits in this date range ($|c|$). This numerator and denominator form the final change ratio.
 This equation gives us a ratio of a particular change type happening before and after a particular release. If the ratio is above 1 then that particular change
-type occurs more frequently after the release and if it is below 1 then is occurs more frequently before the release. For the purposes of our study, we set the
+type occurs more frequently after the release and if it is below 1 then it occurs more frequently before the release. For the purposes of our study, we set the
 number of days before and after the release ($d$) to 60 as the projects studies had many months in between their major releases. This quantitative data
 formed much of the basis for the results to come in Section~\ref{sec:results}
 
@@ -162,7 +163,7 @@ trending, and local minimum. Since the graphs were quite turbulent, best estimat
 \begin{figure}[tb!]
 \centering
 \includegraphics[width=0.5\textwidth]{images/apie.png}
-\caption{An screen shot of the APIE visualizer showing project Eclipse.Mylyn.Context with change type PUBLIC\_ADDED\_METHODS being analyzed and showing
+\caption{A screen shot of the APIE visualizer showing project Eclipse.Mylyn.Context with change type PUBLIC\_ADDED\_METHODS being analyzed and showing
 major releases as vertical yellow lines.\label{fig:apie}}
 \end{figure}
 
@@ -176,7 +177,7 @@ To answer our research question, we conducted a case study of 10 open source Jav
 eclipse.mylyn.commons, eclipse.mylyn.context, hibernate-orm, hibernate-ogm, hibernate-search, eclipse.maven.core, and eclipse.maven.surefire. These project were chosen
 because of their high use amongst other Java projects and to study specific ecosystems of projects and their evolution trends.
 
-Due to the space requirements of this paper, we focus our results on Major releases of the 10 case study projects and a select few of the calculated change ratios. 
+Due to space requirements of this paper, we focus our results on major releases of the 10 case study projects and select few of the calculated change ratios. 
 There were 109 major releases across the 10 studied projects. All of the major findings as per values computed from Equation~\ref{eq:norm} for non test metrics
 can be seen in Table~\ref{tab:ratio}.
 
@@ -204,7 +205,7 @@ Documentation & - & 0.99 & - \\
 To study the most prevalent change trends, we set a ratio threshold of greater than 1.2, or less than 0.83 (20\% greater trend of after the release date
 or 20\% greater trend of before the release date) to indicate the greatest trends.
 
-As it can be seen in Table~\ref{tab:ratio}, there a few change type trends around major releases which pass the threshold. We can see that both public
+As it can be seen in Table~\ref{tab:ratio}, there are few change type trends around major releases which pass our threshold. We can see that both public
 and private methods
 being removed from a project is more likely to occur after a major release than after. Table~\ref{tab:ratio} also shows significance in the changes to private
 classes. We see that private classes are added more (24\%) before a major release and removed more after (44\%) the release. 
