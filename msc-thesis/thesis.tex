@@ -1,0 +1,35 @@
+\documentclass[12pt,oneside]{book}
+\include{macros/style}
+\include{macros/use-packages}
+
+\begin{document}
+
+% Front Matter
+\input frontmatter/fm
+
+\newpage
+
+	\include{chapters/1/chapter-intro}
+	\include{chapters/2/chapter-problem}
+	\include{chapters/3/chapter-new}
+	\include{chapters/4/chapter-experiments}
+	\include{chapters/5/chapter-evaluation}
+	\include{chapters/6/chapter-conclusion}
+	\appendix
+	\include{chapters/appendix/chapter-app}
+
+% The style of bibliography exemplified here is the "plain",
+% normally used in science theses. This is shown
+% by the entry {plain} below. Substitute the
+% appropriate bibliography style. See also the
+% PDF file "InformationOnBibliographyStyles" in this
+% directory for more choices.
+
+% The Bibliography file is a BibTex file named
+% UVicThesis.bib and called below
+
+	\TOCadd{Bibliography}
+	\bibliographystyle{plain}
+	\bibliography{thesis}
+
+\end{document}
