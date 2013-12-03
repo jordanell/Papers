@@ -1,0 +1,157 @@
+\section{Study 1: Failure Inducing Developer Pairs}
+
+% Explain technical network research that already exists
+Technical dependencies in a project can be used to predict success or failure in
+ builds or code changes~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU}. However, most 
+research in this area is based on identifying
+central modules inside a large code base which are likely to cause software failures or
+detecting frequently changed code that can be associated with previous failures
+~\cite{Kim:2006:AIB}. 
+This module-based method also results in predictions 
+at the file or binary level of software development as opposed to a code change level
+and often lack the ability to provide recommendations for improved coordination
+other than test focus.
+
+% Research question
+With the power of technical dependencies in predicting software failures, the question I
+investigated in this study was : 
+``\textit{Is it possible to identify pairs of developers whose technical dependencies in code changes
+statistically relate to bugs?}''
+
+% Explain our brief intended approach
+This study explains the approach used to locate these pairs of developers in developer networks.
+The process utilizes code changes and the call hierarchies effected  to find patterns of developer 
+relationships in successful and failed code changes. As it will be seen, we found 27 statistically
+significant failure inducing developer pairs. These developer relationships can also be used
+to promote the idea of leveraging socio-technical congruence, a measure of coordination compared
+to technical dependencies amongst stakeholders, to provide coordination recommendations.
+
+\subsection{Technical Approach}
+
+\subsubsection{Extracting Technical Networks}
+% End goal
+The basis of this approach is to create a technical network of developers based on method ownership
+and those methods' call hierarchies effected by code changes. These networks will provide
+dependency edges between contributors caused by code changes which may be 
+identified as possible failure inducing pairings (Figure~\ref{fig:network}). To achieve this goal,
+developer owners of methods, method call hierarchies (technical
+dependencies) and code change effects on these hierarchies must be identified.
+This approach is described in detail by illustrating its application to mining the data in a Git
+repository although it can be used with any software repository.
+
+% Technical network figure
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/TecNetwork}
+\caption{A technical network for a code change. Carl has changed method getX() which is being
+called by Bret's method foo() as well as Daniel and Anne's method bar().\label{fig:network}}
+\end{figure}
+
+% Owners
+To determine which developers own which methods at a given code change,
+the Git repository is queried. Git stores developers of a file per line, which was used to extrapolate
+a percentage of ownership given a method inside a file. If developer A has written 6/10 lines of 
+method foo, then developer A owns 60\% of said method.
+
+% Call Graph
+A method call graph is then constructed to extract method call hierarchies in a project at a given code change. 
+Unlike other approaches such as Bodden's et al.~\cite{Bodden:2003:HVJ} 
+of using byte code and whole projects, call graphs are built directly from source code files
+inside of a code change, 
+which does not have the assumptions of being able to compile or have access to all project 
+files. It is important to not require project compilation at each code change because it is
+an expensive operation as well as code change effects may cause the project
+to be unable to compile. Using source files also allowed an update to the call graph
+with changed files as opposed to completely rebuilding at 
+every code change. This creates a rolling call graph which 
+is used to show method hierarchy at each code change inside a project opposed to
+a static project view. As some method invocations may only be determined at run time, all
+possible method invocations are considered for these types of method calls while constructing
+the call graph.
+
+% Changeset effects
+The code change effect, if any, to the call hierarchy is now found. The Git
+software repository is used to determine what changes were made to any give file inside a 
+code change. Specifically, methods modified by a code change are searched for. The call graph 
+is then used to determine which methods call those that have been changed, which
+gives the code change technical dependencies.
+
+%Resulting network
+These procedures result in a technical network based on contributor method ownership 
+inside a call hierarchy effected by a code change (Figure~\ref{fig:network} left hand side).
+The network is then simplified by only using edges between developers, since I
+am only interested in discovering the failure inducing edges between developers and not the 
+methods themselves (Figure~\ref{fig:network} right hand side). This is the final technical 
+network.
+
+\subsubsection{Identifying Failure Inducing Developer Pairs}
+To identify failure inducing developer pairs (edges) inside technical networks, 
+edges in relation to discovered code change failures are now analysed. To determine whether a code change 
+was a success or failure (introduce a software failure), the approach of
+Sliwerski et al.~\cite{Sliwerski:2005:CIF} is used. The following steps are then taken:
+
+\begin{enumerate}
+\item Identify all possible edges from the technical networks.
+\item For each edge, count occurrences in technical networks of failed code changes.
+\item For each edge, count occurrences in technical networks of successful code changes.
+\item Determine if the edge is related to success or failure.
+\end{enumerate}
+
+To determine an edge's relation to success or failure,  the value FI (failure
+index) which represents the normalized chance of a code change failure in the presence
+of the edge, is created. 
+
+\begin{equation}
+\text{FI} = \frac{ \text{edge}_{failed} / \text{total}_{failed}}{\text{edge}_{failed} / \text{total}_{failed} + \text{edge}_{success} / \text{total}_{success}}
+\end{equation}
+
+Developer pairs with the highest FI value are said to be failure inducing structures
+inside a project. These edges are stored in Table~\ref{tab:ratio}. A Fisher Exact Value test 
+is also preformed on edge appearance in successful and failed
+code changes, and non-appearance in successful and failed code changes to only
+consider statistically significant edges (Table ~\ref{tab:ratio}'s p-value). 
+
+
+\subsection{Results}
+To illustrate the use of the approach, I conducted a case study of
+the Hibernate-ORM project, an open source Java 
+application hosted on GitHub\footnote{https://github.com/} with issue tracking 
+performed by Jira\footnote{http://www.atlassian.com/software/jira/overview}.
+
+This project was chosen because the tool created only handles Java code and it is written in Java 
+for all internal structures and control flow
+and uses Git for version control. Hibernate-ORM also uses issue tracking software which 
+is needed for determining code change success or failure~\cite{Sliwerski:2005:CIF}.
+
+In Hibernate-ORM, 27 statistically significant failure inducing developer pairs (FI value of 0.5 or higher) 
+were found out of a total of 46 statistically significant pairs that existed over the project's lifetime.
+The pairings are ranked by their respective FI values (Table~\ref{tab:ratio}).
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{@{\hspace{.2cm}}ccc@{\hspace{.75cm}}c@{\hspace{.2cm}}c@{\hspace{.2cm}}}
+\hline
+Pair & Successful & Failed & FI & P-Value\\
+\hline
+(Daniel, Anne) & 0 & 14 & 1.0000 & 0.0001249 \\
+(Carl, Bret)   & 1 & 12 & 0.9190 & 0.003468  \\
+(Emily, Frank) & 1 &  9 & 0.8948 & 0.02165   \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Top 3 failure inducing developer pairs found.\label{tab:ratio}}
+\end{table}
+
+
+\subsection{Analysis}
+Technical dependencies are often used to predict software failures
+in large software system~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU, Kim:2006:AIB}. 
+This study has presented a method for detecting failure inducing pairs of developers inside
+of technical networks based on code changes. These developer pairs can be used in the prediction
+of future bugs as well as provide coordination recommendations for developers within a project.
+
+This study however, did not consider the technical dependencies themselves to be the root cause of
+the software failures. This study focused purely on developer ownership of software methods and
+the dependencies between developers as the possible root cause of the failures. To study this root
+cause futher, a study of indirect conflicts and their relationship to developer code ownership
+will be conducted.
