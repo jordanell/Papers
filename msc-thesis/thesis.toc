@@ -9,41 +9,23 @@
 \contentsline {section}{\numberline {1.1}How to Start an Introduction}{1}
 \contentsline {section}{\numberline {1.2}Is a Review of All Previous Work Necessary Here?}{1}
 \contentsline {chapter}{\numberline {2}The Problem}{2}
-\contentsline {section}{\numberline {2.1}Study 1: Failure Inducing Developer Pairs}{2}
+\contentsline {section}{\numberline {2.1}Study 1: Failure Inducing Developer Pairs}{3}
 \contentsline {subsection}{\numberline {2.1.1}Technical Approach}{3}
 \contentsline {subsubsection}{Extracting Technical Networks}{3}
-\contentsline {subsubsection}{Identifying Failure Inducing Developer Pairs}{4}
+\contentsline {subsubsection}{Identifying Failure Inducing Developer Pairs}{5}
 \contentsline {subsection}{\numberline {2.1.2}Results}{5}
-\contentsline {subsection}{\numberline {2.1.3}Analysis}{5}
+\contentsline {subsection}{\numberline {2.1.3}Conclusions of Study}{6}
 \contentsline {section}{\numberline {2.2}Study 2: Awareness with Impact}{6}
 \contentsline {subsection}{\numberline {2.2.1}Impact}{7}
-\contentsline {subsubsection}{Design}{7}
+\contentsline {subsubsection}{Design}{8}
 \contentsline {subsubsection}{Implementation}{9}
-\contentsline {subsection}{\numberline {2.2.2}Evaluation}{10}
-\contentsline {subsection}{\numberline {2.2.3}Analysis}{11}
+\contentsline {subsection}{\numberline {2.2.2}Evaluation}{11}
+\contentsline {subsection}{\numberline {2.2.3}Conclusions of Study}{12}
 \contentsline {section}{\numberline {2.3}Problem Description}{12}
-\contentsline {chapter}{\numberline {3}The New Approach and Solution}{13}
+\contentsline {chapter}{\numberline {3}The New Approach and Solution}{14}
 \contentsline {section}{\numberline {3.1}Some \LaTeX Examples}{14}
-\contentsline {subsection}{\numberline {3.1.1}Preamble}{14}
-\contentsline {subsection}{\numberline {3.1.2}Document Body}{14}
-\contentsline {section}{\numberline {3.2}How to Number Pages}{14}
-\contentsline {section}{\numberline {3.3}How to Create a Title Page}{15}
-\contentsline {section}{\numberline {3.4}How to Create an Abstract}{15}
-\contentsline {section}{\numberline {3.5}How to Create a Table of Contents}{16}
-\contentsline {section}{\numberline {3.6}How to Create Sections}{16}
-\contentsline {section}{\numberline {3.7}How to Create a List}{16}
-\contentsline {section}{\numberline {3.8}How to Insert Tables, Figures, Captions, and Footnotes}{17}
-\contentsline {subsection}{\numberline {3.8.1}Tables}{17}
-\contentsline {subsection}{\numberline {3.8.2}Figures}{18}
-\contentsline {subsection}{\numberline {3.8.3}Captions}{19}
-\contentsline {subsection}{\numberline {3.8.4}Footnotes}{19}
-\contentsline {section}{\numberline {3.9}How to Alter Font}{20}
-\contentsline {subsection}{\numberline {3.9.1}Type Style}{20}
-\contentsline {subsection}{\numberline {3.9.2}Type Size}{20}
-\contentsline {section}{\numberline {3.10}Math Mode}{20}
-\contentsline {section}{\numberline {3.11}Formatting Extras}{21}
-\contentsline {chapter}{\numberline {4}Experiments}{22}
-\contentsline {chapter}{\numberline {5}Evaluation, Analysis and Comparisons}{24}
-\contentsline {chapter}{\numberline {6}Conclusions}{26}
-\contentsline {chapter}{\numberline {A}Additional Information}{27}
-\contentsline {chapter}{Bibliography}{28}
+\contentsline {chapter}{\numberline {4}Experiments}{15}
+\contentsline {chapter}{\numberline {5}Evaluation, Analysis and Comparisons}{16}
+\contentsline {chapter}{\numberline {6}Conclusions}{17}
+\contentsline {chapter}{\numberline {A}Additional Information}{18}
+\contentsline {chapter}{Bibliography}{19}

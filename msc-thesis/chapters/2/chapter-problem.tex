@@ -4,13 +4,85 @@
 \newlength{\savedunitlength}
 \setlength{\unitlength}{2em}
 
-Introduction paragraph about the problem and the various motivations.
+While the research problems have been briefly outlined in Chapter~\ref{chapter:introduction}, this chapter
+will focus on the underlying studies which motivated the research of this thesis as well as give a more full
+and rich description of the problem being solved.
+
+In this chapter, two studies will be presented that I conducted which motivated, and gave insights into, 
+the final research goals
+of this thesis. The first study entitled ``Failure Inducing Developer Pairs''
+(Section~\ref{study:pairs}), focuses on the prediction of
+software failures through identifying indirect conflicts of developers linked by their software modules. 
+This study found that certain pairs of developers when linked through indirect code changes are more prone
+to software failures than others. The ideas of developer pairs linked in indirect conflicts will be
+useful for the further development of indirect conflict tools as it shows that a human factor is present
+and may be used to help resolve such issues.
+
+The second study, ``Awareness with Impact'' ((Section~\ref{study:impact})), 
+takes the notion of developer
+pairs in indirect conflicts learned from Study 1, and adds in source code change detection in order to create
+an awareness notification system for developers called \textit{Impact}. \textit{Impact} was designed to a developer
+to any source code changes preformed by another developers when the two are linked in a technical dependency through
+a developer pair. \textit{Impact} utilized a non-obtrusive RSS style feed for notifications for visualization. 
+While \textit{Impact} showed some promise through its user evaluation, it ultimately suffered the fate of information
+overload as was seen in other indirect conflict tools~\cite{Sarma:2007:TSA,Servant:2010:CPI,Trainer:2005:BGT}.
 
 \input chapters/2/sec-developer-pairs
 \input chapters/2/sec-impact
 
 \section{Problem Description}
 
-Use the two case studies as motivating examples to show the full problem.
+As Software Configuration Management (SCM) has grown over the years, the maturity and norm of parallel 
+development has become the standard development process instead of the exception. With this parallel development
+comes the need for larger awareness among developers to have ``an understanding of the activities of others
+which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness
+mitigates some downsides of parallel development which include the cost of conflict prevention and resolution. However,
+empirical evidence shows that these mitigated losses continue to appear quite frequently and can prove to be a significant
+and time-consuming chore for developers~\cite{Perry:2001:PCL}.
+
+Through the two previous studies, I have shown that developers linked indirectly in source code changes can statistically
+related to software failures. In the attempts of mitigating these loses through added awareness, I implemented
+an indirect conflict tool called \textit{Impact}. However, \textit{Impact} ultimately suffered from information
+overload as seen in its evaluation which was caused by false positives and scalability of the tool.
+
+While other indirect conflict tools have shown potential from developer studies, some of the same problems continue
+to arise throughout most, if not all tools. The most prevalent issue is that of information
+overload and false positives. Through case studies, developers have noted that current indirect conflict tools provide too many 
+false positive results leading to information overload and the tool eventually being
+ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of dependency identification and
+tracking. Many different dependencies have been proposed and used in indirect conflict tools such as method 
+invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success, but the 
+identification of failure inducing changes, other than those which are already identifiable by other means such
+as compilers, and unit tests, to these dependencies still remains an issue. Dependency tracking issues are
+also compounded by the scale of many software development projects leading to further information overload.
+
+Social factors such as Cataldo et al.~\cite{Cataldo:2006:ICR} notion of socio-technical
+congruence, have also been leveraged in indirect conflict tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA}.
+However, issues again of information overload, false positives, dependencies (in developer organizational structure), and scalability 
+come up.
+
+While these issues of information overload, false positives, dependencies, and scalability continue to come up
+in most indirect conflict tools, only a handful of attempts have been made at rectifying these issues or
+finding the root causes~\cite{Holmes:2010:CAR,Kim:2011:ESA}. 
+In order to fully understand the root causes of information overload, false positives, and
+scalability issues in regards to indirect conflicts, I will proceed by taking a step back and determine what events occur to
+cause indirect conflicts, when they occur, and if conditions exist to provoke more of these events. By determining the root
+causes of source code changes in indirect conflicts, we may be able to create indirect conflict tools which have filtered
+monitoring in order to only detect those changes with a high likelihood of causing indirect conflicts.
+I then set out to understand what mitigation strategies developers currently use as opposed to those created
+by academia. Since developers have identified indirect conflicts as a major concern for themselves, but at
+the same time are not using the tools put forth by academia, I wish to find what they use to mitigate indirect
+conflicts. Through these findings, we can create tools which are similar to those already in use by developers in
+the hopes of a higher adoption rate of tools produced by academia.
+Finally, I look to find what can be accomplished moving forward with indirect conflicts
+in both research and industry.
+
+I restate the research goals of this thesis for ease of the reader: 
+
+\begin{description}
+  \item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What events or conditions lead to indirect conflicts?}
+  \item[RQ2\namedlabel{itm:rq2}{RQ2}] \textit{What mitigation techniques are used by developers in regards to indirect conflicts?}
+  \item[RQ3\namedlabel{itm:rq3}{RQ3}] \textit{What do developers want from future indirect conflict tools?}
+\end{description}
 
 \setlength{\unitlength}{\savedunitlength}
