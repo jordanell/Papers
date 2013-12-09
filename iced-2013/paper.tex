@@ -77,14 +77,14 @@ Two types of conflicts have attracted the attention of researchers, \textit{dire
 artifact. Tools have been created and studied for direct conflicts
 ~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
 positive developer feedback. Indirect conflicts involve source code change influences such as making a sour code change 
-which influences behavior negatively in another location in the system. Indirect conflict tools however, have
+which influences behavior negatively in another location in the system (Figure~\ref{fig:ic}). Indirect conflict tools however, have
 not shared the same success as direct conflict 
 tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}.
 
 While indirect conflict tools have shown potential from developer studies, some of the same problems continue
 to arise throughout most, if not all tools. The most prevalent issue is that of false positives and information
 overload. Through case studies, developers have noted that current indirect conflict tools provide too many 
-false positive results leading to information overload and the tool eventually being
+false positive results, leading to information overload and the tool eventually being
 ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of dependency identification and
 tracking. Many different dependencies have been proposed and used in indirect conflict tools such as method 
 invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success, but the 
@@ -119,6 +119,13 @@ context of indirect conflicts.
 
 \section{Methodology}
 \label{sec:meth}
+
+\begin{figure*}[tb!]
+\centering
+\includegraphics[width=0.9\textwidth]{images/indirect_conflict.png}
+\caption{An example of an indirect conflict. Bobby has changed method bar() which has negatively affected method
+func() through the chain of invocations.\label{fig:ic}}
+\end{figure*}
 
 We performed a a mixed method study in three parts. First, a round of semi-structured interviews were conducted which 
 addressed the 3 research questions as mentioned above. Second, a survey was conducted
@@ -529,6 +536,7 @@ has lead to some of the deficiencies of indirect conflict research.
 \subsection{Implication for Research}
 \label{sec:implr}
 
+\textbf{Prevention versus Cure}
 The largest implication for future research found in this paper is the need for continued study of the open question
 ``Which of prevention or cure is more effective for software development and indirect conflicts?''. This simple question will undoubtedly 
 produce extremely complex answers. With software developers focusing their current efforts on curative measures, for
@@ -543,6 +551,7 @@ Tiwana~\cite{Tiwana:2008:ICD} in coordination tools. With these studies, we may 
 of prevention versus cure, thus being able to increase developer productivity as well as identify more gaps in theory 
 versus practice which may lead to improved tools or the abandoning of existing ones as was shown with UML~\cite{Petre:2013:UP}.
 
+\textbf{Awareness Theory to Model Real World}
 A second implication for research more directly related to awareness, is the need to further characterize the
 mismatch between awareness approaches and tools as developed in the research community and awareness needs as perceived
 by industry.
@@ -555,12 +564,14 @@ tool development or theories attempted to be used in practice.
 \subsection{Implication for Tools}
 \label{sec:implt}
 
+\textbf{Give Developers What They Want}
 The direct implication this research has on tool creation is that of current adoption among developers. As was stated,
 developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. That being 
 said, focus at these two stages for tool developer will lead to larger adoption among developers.
 It should be noted here that detection must come with an almost zero rate of false positives as
 current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
 
+\textbf{Stronger Source Code Analysis}
 The more indirect implication of this research on tool creation is that of improving existing tools. While not all existing
 tools are used for indirect conflicts alone (automatic debugging~\cite{Zeller:2005:WPF}, unit tests, etc), most of these tools
 have need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
@@ -696,7 +707,7 @@ current developer work flow surrounding indirect conflicts, and what direction a
 in their work flow with indirect conflicts.
 
 We have shown through the findings of RQ1 why indirect conflicts occur, when indirect conflicts are more likely to
-occur, as well as what types of software objects are susceptible to these conflicts. Results of RQ 2 have shown
+occur, as well as what types of software objects are susceptible to these conflicts. Results of RQ2 have shown
 how developers in industry currently handle the prevention detection and solving of indirect conflicts. And Lastly, findings of RQ3
 have provided a foundation as to why past techniques and tools have had low adoption rates and where
 researchers should focus their current and future efforts in handling indirect conflicts. 
