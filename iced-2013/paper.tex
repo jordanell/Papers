@@ -11,6 +11,9 @@
 \usepackage{hyperref}
 \usepackage{nameref}
 
+\usepackage{array} % for defining a new column type
+\usepackage{varwidth} %for the varwidth minipage environment
+
 
 \floatstyle{plaintop}
 \restylefloat{table}
@@ -160,7 +163,32 @@ Our participants were chosen based on their direct involvement in the actual wri
 their respective companies or projects. These participants' software development experience ranged from 3-25 years of experience
 with an average of 8 years of experience.
 In addition to software development, some participants were also chosen based on their experience with project management
-at some capacity.
+at some capacity. See Table~\ref{tab:demo} for more demographic details.
+
+\begin{table*}[tb!]
+\begin{center}
+\begin{tabular}{| l | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} |}
+\hline
+Company & \# of Participants & Software Development Experience (years) & Development Process & Software Access & Current Language Focuses \\
+\hline
+\hline
+Amazon & 2 & 5, 7 & Agile & Closed source & C++ \\ \hline
+Exporq Oy & 1 & 8 & Agile & Closed source & Ruby, JavaScript \\ \hline
+Fireworks Design & 1 & 6 & Agile & Closed source & JavaScript \\ \hline
+Frost Tree Games & 1 & 4 & Agile & Closed source & C\# \\ \hline
+GNOME & 1 & 13 & Agile & Open source & C \\ \hline
+James Evans and Associates & 5 & 3, 3, 3, 4, 13 & Waterfall & Closed source & Oracle Forms \\ \hline
+Kano Apps & 1 & 10 & Agile & Closed source & JavaScript, PHP \\ \hline
+IBM & 2 & 5, 18 & Agile & Open and closed source & Java, JavaScript \\ \hline
+Microsoft & 2 & 6, 10 & Agile & Closed source & C\# \\ \hline
+Mozilla & 1 & 25 & Agile & Open source & C++, JavaScript \\ \hline
+Ruboss & 1 & 5 & Agile & Closed source & JavaScript \\ \hline 
+Subnet Solutions & 1 & 5 & Agile & Closed source & C++ \\ \hline
+
+\end{tabular}
+\end{center}
+\caption{Demographic information of interview participants.\label{tab:demo}}
+\end{table*}
 
 \subsection{Interview Procedure}
 
