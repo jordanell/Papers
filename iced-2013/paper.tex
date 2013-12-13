@@ -11,8 +11,6 @@
 \usepackage{hyperref}
 \usepackage{nameref}
 
-\usepackage{array} % for defining a new column type
-\usepackage{varwidth} %for the varwidth minipage environment
 
 
 \floatstyle{plaintop}
@@ -40,7 +38,7 @@
 
 \author{\IEEEauthorblockN{Jordan Ell and Daniela Damian}
 \IEEEauthorblockA{University of Victoria,
-Victoria, Canada \\ jell@uvic.ca, danielad@csc.uvic.ca}
+Victoria, Canada \\ jell@uvic.ca, danielad@cs.uvic.ca}
 }
 
 % Make the title area
@@ -56,10 +54,10 @@ from a result of source code changes. While the techniques and tools for direct 
 large success, tools either proposed or studied for indirect conflicts have had common issues of
 information overload, false positives, and scalability. To better understand these issues, 
 we performed a mixed method study involving interviews with 19 developers from 12 commercial and open
-source projects, and a survey with 78 responses. Through grounded theory techniques, 
-we found: events and conditions which indirect conflicts are likely to occur in
-software development, developers prefer to use detection and resolution processes or tools
-over those of prevention, developers do not want awareness mechanisms which provide non actionable results,
+source projects, and a survey with 78 respondents different from our interviewees. Using a grounded theory approach to data analysis, 
+we obtained insights about events and conditions in which indirect conflicts are likely to occur in
+software development, that developers prefer to use detection and resolution processes or tools
+over those of prevention, that they do not want awareness mechanisms which provide non actionable results,
 and that there exists a gap in software evolution analytical tools.
 
 \end{abstract}
@@ -79,15 +77,14 @@ Two types of conflicts have attracted the attention of researchers, \textit{dire
 \textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
 artifact. Tools have been created and studied for direct conflicts
 ~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
-positive developer feedback. Indirect conflicts involve source code change influences such as making a sour code change 
-which influences behavior negatively in another location in the system (Figure~\ref{fig:ic}). Indirect conflict tools however, have
+positive developer feedback. Indirect conflicts involve source code change influences such as making a source code change 
+which influences behavior negatively in another location in the system. Indirect conflict tools however, have
 not shared the same success as direct conflict 
 tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}.
 
-While indirect conflict tools have shown potential from developer studies, some of the same problems continue
+While indirect conflict tools have shown potential from studies of developers, some of the same problems continue
 to arise throughout most, if not all tools. The most prevalent issue is that of false positives and information
-overload. Through case studies, developers have noted that current indirect conflict tools provide too many 
-false positive results, leading to information overload and the tool eventually being
+overload, tools eventually being
 ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of dependency identification and
 tracking. Many different dependencies have been proposed and used in indirect conflict tools such as method 
 invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success, but the 
@@ -100,7 +97,7 @@ However, issues again of information overload, dependencies (in developer organi
 come up.
 
 In order to fully understand the root causes of information overload, false positives, and
-scalability issues in regards to indirect conflicts, we will take a step back and determine what events occur to
+scalability issues in regards to indirect conflicts, we conducted an empirical study to determine what events occur to
 cause indirect conflicts, when they occur, and if conditions exist to provoke more of these events. 
 We then set out to understand what mitigation strategies developers currently use as opposed to those created
 by academia. Through this exploration, we look to find what can be accomplished moving forward with indirect conflicts
@@ -123,46 +120,22 @@ context of indirect conflicts.
 \section{Methodology}
 \label{sec:meth}
 
-\begin{figure*}[tb!]
-\centering
-\includegraphics[width=0.9\textwidth]{images/indirect_conflict.png}
-\caption{An example of an indirect conflict. Bobby has changed method bar() which has negatively affected method
-func() through the chain of invocations.\label{fig:ic}}
-\end{figure*}
-
-We performed a a mixed method study in three parts. First, a round of semi-structured interviews were conducted which 
-addressed the 3 research questions as mentioned above. Second, a survey was conducted
+We performed a mixed method study in three parts. First, a round of semi-structured interviews were conducted which 
+addressed our 3 main research questions. Second, a survey was conducted
 which was used to confirm and test what was theorized from the interviews on a larger sample size as well as obtain
 larger developer opinion of the subject. Third, 5 confirmatory interviews were conducted by re-interviewing original
-interview participants to once again confirm and test what had been learned and the results derived by the paper.
-Grounded theory techniques were used to analyze the information provided from all three data gathering processes.
-
-\subsection{Grounded Theory}
-We approached our study based on grounded theory as described by Corbin and Strauss~\cite{Corbin:1998:SP}.
-Grounded theory is a qualitative research methodology that utilizes \textit{theoretical sampling} and
-\textit{open coding} to create a theory ``grounded'' in the empirical data. For an exploratory study such as
-the ours, grounded theory is well suited because it involves starting from very broad and abstract type questions, and
-making refinements along the way as the study progresses and hypotheses begin to take shape. Grounded theory involves
-realigning the sampling criteria throughout the course of the study to ensure that participants are able to answer new
-questions that have been formulated in regards to forming hypotheses. In our study being presented, data collected from
-both interviews and surveys (when open ended questions were involved) was analyzed using open and axial coding. Open coding involves
-assigning codes to what participants said at a low sentence level or abstractly at a paragraph or full answer level. These
-codes were defined as the study progressed and different hypotheses began to grow. We finally use axial coding it order to
-link our defined codes through categories of grounded theory such as context and consequences. 
-In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
-3 criteria that are commonly used in evaluating grounded theory studies.
+interview participants to once again confirm our insights.
+We used grounded theory techniques to analyze the information provided from all three data gathering stages.
 
 \subsection{Interview Participants}
 
-We selected our interview participants from a large breadth of both open and closed source software development companies
-and projects as well as Agile and Waterfall based projects.
-The population which participated in our interview came from the following software groups: 
-IBM, Mozilla, The GNOME Project, Microsoft Corporation, Subnet Solutions, Ruboss Technology Corporation, 
+Our interview participants came from a large breadth of both open and closed source software development companies
+and projects, using both  agile and waterfall based methodology, and from a wide spectrum of organizations, as shown in Table~\ref{tab:demo}: IBM, Mozilla, The GNOME Project, Microsoft Corporation, Subnet Solutions, Ruboss Technology Corporation, 
 Amazon, Exporq Oy, Kano Apps, Fireworks Design, James Evans and Associates, and Frost Tree Games. 
-Our participants were chosen based on their direct involvement in the actual writing of software for
+Our participants were invited based on their direct involvement in the actual writing of software for
 their respective companies or projects. These participants' software development experience ranged from 3-25 years of experience
 with an average of 8 years of experience.
-In addition to software development, some participants were also chosen based on their experience with project management
+In addition to software development, some participants were also invited based on their experience with project management
 at some capacity. See Table~\ref{tab:demo} for more demographic details.
 
 \begin{table*}[tb!]
@@ -193,35 +166,60 @@ Subnet Solutions & 1 & 5 & Agile & Closed source & C++ \\ \hline
 \subsection{Interview Procedure}
 
 Participants were invited to be interviewed by email and were sent a single reminder email one week
-after the initial invitation if no response was made. We directly emailed 22 participants and ended up conducting
+after the initial invitation if no response was made. We directly emailed 22 participants and  conducted
 19 interviews. Interviews were conducted in person when possible and recorded for audio content only. When in person
 interviews were not possible, one of Skype or Google Hangout was used with audio and video being recorded but only
-audio being stored for future use. We were pleased with the response rate to our initial invitation emails as
-our breadth of participants was rather large, spanning multiple open and closed source, Agile and Waterfall based projects,
-and our interview answer saturation~\cite{Guest:2006:SAP} was quite high.
+audio being stored for future use. 
 
-Interview participants first answered a number of structured demographic items, followed by being  
-asked to describe various software development experiences regarding our three research questions.
-Our three questions were studied by having the interview participants talk about their experiences and opinions in
-\totalCategories{} semi-structured research topics.
+%We were pleased with the response rate to our initial invitation emails as
+%our breadth of participants was rather large, spanning multiple open and closed source, Agile and Waterfall based projects,
+%and our interview answer saturation~\cite{Guest:2006:SAP} was quite high.
 
-While each of the \totalCategories{} question categories had a number of starter questions, interviews 
+Interview participants first answered a number of  demographic questions. We then asked them to describe various software development experiences regarding our three research questions.
+Specifically, ten semi-structured  topics directly related to our research questions guided our interview: 
+
+%Our three questions were studied by having the interview participants talk about their experiences and opinions in
+%\totalCategories{} .
+
+\begin{itemize}
+
+\item Software development tools for dependency tracking and awareness.
+
+\item Software development process for preventing indirect conflicts.
+\item Software artifact dependency levels and where conflicts can arise.
+
+\item How developers find internal or external software dependencies.
+
+\item Examples of indirect conflicts from real world experiences.
+\item How indirect conflicts are detected and found.
+
+\item How indirect conflict issues are solved or dealt with.
+\item Developer opinion of preemptive measures to prevent indirect conflicts.
+
+\item Developer opinion on what types of changes are worth a preemptive action.
+
+\item Developer opinion on who is responsible for fixing or preventing indirect conflicts.
+\end{itemize}
+
+While each of the \totalCategories{} topics had a number of starter questions, interviews 
 largely became discussions of developer experience and opinion as opposed to direct answers to any specific question.
 However, not all participants had strong opinions or any experience on every category mentioned. For these participants, answers 
 to the specific categories were not required or pressed upon. We attribute any non answer by a participant to
 either lack of knowledge in their current project pertaining to the category or lack of experience in terms of
-being apart of any one software project for extended periods of time. We account for these non answers
-in our analysis and results as seen in Section~\ref{sec:results}.
+being apart of any one software project for extended periods of time. 
+
+%We account for these non answers
+%in our analysis and results as seen in Section~\ref{sec:results}.
 
 \subsection{Survey Participants}
 
-We selected our survey participants from a similar breadth of open and closed source software development 
-companies and projects as the interviews participants with two large exceptions. The software organizations
+Our survey respondents were different from our interviewees. We invited our survey participants from a similar breadth of open and closed source software development 
+companies and projects as the interviews participants with two main exceptions. The software organizations
 that remained the same between interview and survey were: Mozilla, The GNOME Project, Microsoft Corporation, 
 Subnet Solutions, and Amazon.
-Participants who took part in the round of interviews were asked to act as a contact point for other 
+Participants who took part in the round of interviews were not invited to the survey but were asked to act as a  point of contact for other 
 developers in their team, project, or organization who may be interested
-in completing the survey. Aside from this aforementioned list, two other groups of developers were asked to
+in completing the survey. Further, two other groups of developers were asked to
 participate as well, these being GitHub users as well as Apache Software Foundation (Apache) developers. The GitHub
 users were selected based on large amounts of development activity on GitHub and the Apache developers
 were selected based on their software development contributions on specific projects known to be used heavily
@@ -238,16 +236,29 @@ and our GitHub and Apache participants could not be verified as to whether or no
 email addresses used in the invitations. In addition, the survey was considered by some to be long and require
 more development experience than may have been typical of some of those invited to participate.
 
-The created survey~\footnote{http://thesegalgroup.org/people/jordan-ell/iced\_survey/}
-was based off of hypotheses created by the round of interviews. The survey
-was designed to test these hypotheses and to acquire a larger sample size of developers who may have similar
+The  survey we designed ~\footnote{http://thesegalgroup.org/people/jordan-ell/iced\_survey/}
+was based on the insights we obtained from the round of interviews, and was intended to confirm some of these insights but also to broaden them to a larger sample size of developers who may have similar
 or different opinions from those already acquired from the interviews. The survey went through two rounds of
 piloting. Each pilot round consisted of five participants, who were previously interviewed, completing the survey
 with feedback given at the end. Not only did this allow us to create a more polished survey, but it also allowed 
-the previously interviewed developers to examine what hypotheses were
-formed and what we would be moving forward with.
-Each non demographic question was made optional as it was shown 
-through the interviews that some questions require more experience from participants than may be provided.
+the previously interviewed developers to examine the insights we developed.
+%Each non demographic question was made optional as it was shown 
+%through the interviews that some questions require more experience from participants than may be provided.
+
+\subsection{Data Analysis}
+To analyze both the interview and survey data we used grounded theory techniques as described by Corbin and Strauss~\cite{Corbin:1998:SP}.
+Grounded theory is a qualitative research methodology that utilizes \textit{theoretical sampling} and
+\textit{open coding} to create a theory ``grounded'' in the empirical data. For an exploratory study such as
+the ours, grounded theory is well suited because it involves starting from very broad and abstract type questions, and
+making refinements along the way as the study progresses and hypotheses begin to take shape. Grounded theory involves
+realigning the sampling criteria throughout the course of the study to ensure that participants are able to answer new
+questions that have been formulated in regards to forming hypotheses. In our study being presented, data collected from
+both interviews and surveys (when open ended questions were involved) was analyzed using open and axial coding. Open coding involves
+assigning codes to what participants said at a low sentence level or abstractly at a paragraph or full answer level. These
+codes were defined as the study progressed and different hypotheses began to grow. We finally use axial coding it order to
+link our defined codes through categories of grounded theory such as context and consequences. 
+In Section~\ref{sec:eval}, we give a brief evaluation of our studying using 
+3 criteria that are commonly used in evaluating grounded theory studies.
 
 \subsection{Validation}
 
@@ -417,7 +428,12 @@ Surveyed developers suggested the following improvements to curative tools:
 \section{Discussion}
 \label{sec:disc}
 
-\textbf{Unwanted Awareness} As we have seen, indirect conflicts are found to be quite a serious problem that occur frequently,
+\textbf{Unwanted Awareness} \textit{Developers tend to only care about the awareness of other's activities, if it causes
+a negative influence on their own work. Developers only want to hear about another developer's actions if it forces them
+to take some action because of it. This limited awareness is quite different that what literature suggests, which is larger
+awareness about most, if not all actions.}
+
+As we have seen, indirect conflicts are found to be quite a serious problem that occur frequently,
 sporadically, and differ greatly from case to case. These conditions pose large issues for the creation of generalizable theories
 or tools in regards to indirect conflicts. These underlying complexities are the probable cause of disinterest of software developers
 to proposed or implemented tools as discussed in Section~\ref{sec:related}. This inability to generalize is what we believe to be the
@@ -461,7 +477,11 @@ producing more output of their own work. This balance between awareness and prod
 however, when given the choice, developers tend to, as previously stated, lean towards less awareness in order to, in their eyes,
 be more productive.
 
-\textbf{Prevention versus Cure} We have seen through the results, that developers posses both tools and practices for the prevention,
+\textbf{Prevention versus Cure}  \textit{Developers would rather spend their time on curative measures (fixing problems after they
+arise) rather than preventative measures (preventing problems from happening). Developers see the task of fixing real problems
+to be less of a burden than preventing potential problems because of available tools and their perceived notions of time management.}
+
+We have seen through the results, that developers posses both tools and practices for the prevention,
 detection, and resolution of indirect conflicts. We have also seen that through unwanted awareness, and the use of developer time,
 that developers tend to prefer working on real issues that have already occurred as opposed to preventing issues of the future which
 may never arise. This is neatly explained by the popular adage ``I work until something breaks'' taken by most developers. This mindset
@@ -516,7 +536,11 @@ approaches to their developers. The prevention versus cure debate may have diffe
 is being viewed in research.
 
 %mature point, static analysis
-\textbf{Gap in Software Evolution Analysis} Indirect conflicts are more likely to occur,
+\textbf{Gap in Software Evolution Analysis} \textit{Due to a lack of productive software analysis tools, caused by project infrastructures
+and unfriendly analysis languages, contextual indications of indirect conflicts are often missed. This lack of analysis also causes
+some software project configurations and software languages to be quite prone to indirect conflicts.}
+
+Indirect conflicts are more likely to occur,
 from developer opinion, before a mature point is reached in the project's evolution. ``Once you get the API stable, people are 
 better at communicating changes in regards to dependency concerns.''(This mature point may stem from a major release,
 end of an iteration, a new feature being released or any point considered stable and reliable) However, this context of a 
@@ -564,10 +588,11 @@ has lead to some of the deficiencies of indirect conflict research.
 \subsection{Implication for Research}
 \label{sec:implr}
 
-\textbf{Prevention versus Cure}
-The largest implication for future research found in this paper is the need for continued study of the open question
+\textbf{Prevention versus Cure} \textit{The largest implication for future research found in this paper is the need for continued study of the open question
 ``Which of prevention or cure is more effective for software development and indirect conflicts?''. This simple question will undoubtedly 
-produce extremely complex answers. With software developers focusing their current efforts on curative measures, for
+produce extremely complex answers.}
+
+With software developers focusing their current efforts on curative measures, for
 indirect conflicts, suggests
 that while it may not be the most effective, it may be the easiest road for developers to take. This may be the path of
 least resistance, but it may not be optimal. Software engineering as a whole should strive to answer this question or
@@ -579,10 +604,11 @@ Tiwana~\cite{Tiwana:2008:ICD} in coordination tools. With these studies, we may 
 of prevention versus cure, thus being able to increase developer productivity as well as identify more gaps in theory 
 versus practice which may lead to improved tools or the abandoning of existing ones as was shown with UML~\cite{Petre:2013:UP}.
 
-\textbf{Awareness Theory to Model Real World}
-A second implication for research more directly related to awareness, is the need to further characterize the
+\textbf{Awareness Theory to Model Real World} \textit{the need to further characterize the
 mismatch between awareness approaches and tools as developed in the research community and awareness needs as perceived
-by industry.
+by industry. We should push our awareness theories to model real development
+environments where interruptions, time management, and full development life cycles are often large factors.}
+
 As was identified in the previous discussion, while current understanding suggests that awareness of all events related to ones work
 produces a more coherent understanding of a person's environment, developers find this to be overly time consuming
 to the point where they only want to be aware of events which require action on their part. This difference, of what 
@@ -592,14 +618,20 @@ tool development or theories attempted to be used in practice.
 \subsection{Implication for Tools}
 \label{sec:implt}
 
-\textbf{Give Developers What They Want}
+\textbf{Give Developers What They Want} \textit{Developers have their own notions of what they want, and how ``good''
+that something is for their productivity. We should pay attention to what they want, but also be mindful that what
+developers want may not always be good for them.}
+
 The direct implication this research has on tool creation is that of current adoption among developers. As was stated,
 developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. That being 
 said, focus at these two stages for tool developer will lead to larger adoption among developers.
 It should be noted here that detection must come with an almost zero rate of false positives as
 current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
 
-\textbf{Stronger Source Code Analysis}
+\textbf{Stronger Source Code Analysis} \textit{With languages like JavaScript becoming popular, having projects with
+multiple languages, and often having a database schema, we should focus on better techniques for static analysis based
+on what industry standards are for languages and project structures.}
+
 The more indirect implication of this research on tool creation is that of improving existing tools. While not all existing
 tools are used for indirect conflicts alone (automatic debugging~\cite{Zeller:2005:WPF}, unit tests, etc), most of these tools
 have need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
