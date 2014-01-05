@@ -1,3 +1,236 @@
 \startchapter{Discussion}
 \label{chapter:discussion}
 
+While each study presented in this dissertation is quite unique, this chapter will focus on the underlying themes and
+results of all 4 studies. This chapter will address the usefulness of the results presented towards academia and
+what those results mean for continued studies in future research as well as discuss how the results can be viewed
+for larger over arching outcomes than those presented in results sections. 
+
+This chapter will proceed in 2 subsections. The first section will address the 2 motivational studies and the lessons
+learned from each as background information for the richer following studies. The second section will address the 2 large
+studies found in Chapter 3 in a combined manner. Since Study 4 was directly associated with developer opinion found in Study
+3, the two discussions will be intertwined to better support each other.
+
+\section{Motivating Studies Discussion}
+
+
+\section{Indirect Conflict Exploration Discussion}
+
+\textbf{Unwanted Awareness} \textit{Developers tend to only care about the awareness of other's activities, if it causes
+a negative influence on their own work. Developers only want to hear about another developer's actions if it forces them
+to take some action because of it. This limited awareness is quite different that what literature suggests, which is larger
+awareness about most, if not all actions.}
+
+As we have seen, indirect conflicts are found to be quite a serious problem that occur frequently,
+sporadically, and differ greatly from case to case. These conditions pose large issues for the creation of generalizable theories
+or tools in regards to indirect conflicts. These underlying complexities are the probable cause of disinterest of software developers
+to proposed or implemented tools as discussed in Section~\ref{sec:review}. This inability to generalize is what we believe to be the
+leading cause of information overload and false positives in the awareness system, causing developers to eventually ignore 
+information being presented to them, rendering the system useless. These false positives are caused by a difference in what
+developers consider to be false positives versus what awareness literature considers they are. This disjoint, as will
+be seen, is caused by developers only considering events which cause some action to be taken on their part, to be true positives,
+where as current awareness understanding would state any event which is related to an individual's 
+work~\cite{Herbsleb06collaborationin}~\cite{Cataldo:2008:SCF}, to be true positives.
+``You need a good understanding of what the code change is or else you will have a lot of false positives'' said one developer,
+showing that not all changes around an object should be reported for awareness.
+
+Developers have been found to have a great understanding of what they need to know about and more importantly what they don't in
+their project awareness. To be able to fully understand a developer's awareness intuition, we can see from the results of this paper that
+developers only want awareness of an event if the event forces the developer to take some action. In a sense, developers
+don't care about what they don't need to account for. ``We would want a high probability of the [reported] change being an issue'', meaning
+that the developer only wants the awareness if the item will require action on their part to resolve the issue.
+This sense of unwanted or limited awareness is crucial to understand why generalized
+awareness techniques of difficult to generalize problems, such as indirect conflicts through generalized changes to 
+classes~\cite{Sarma:2007:TSA}, or methods~\cite{Trainer:2005:BGT,Servant:2010:CPI}, often encounter difficulties of false
+positives and information overload. 
+Developers simply do not want to know about events which effect them, but require no action on their part. 
+
+This unwanted awareness, or limited awareness, seems counter intuitive to current awareness understanding which would state that
+being aware of all events in ones surrounding leads to higher productivity or other quality aspects. In theory this is correct,
+but as it was found in practice, this is an incorrect assumption. 
+In regards to this full awareness, one developer said ``There is no room for this in [our company], as tools are already in place for 
+analysis of change[s] and code review takes care of the rest''. Since software developers have limits on their time, awareness of
+all events surrounding a developer's work or project is not possible. \textit{Developers prefer to spend their limited time dealing with
+the awareness of events which cause them to take some action (changing code, communication, etc) rather than simply being aware
+of events occurring around their work which pose no direct threat to the consumption of their time.}
+
+Of course, whether or not this unwanted awareness is the correct path for developers to take is an open question to consider. When
+developers encounter a problem which could have been solved by having greater awareness of events which did not directly affect
+them initially, we must consider the positive and negative influences of adding this, for now, unwanted awareness. A positive
+influence of total, or near total
+awareness of events at the developer level, would be the full understanding of a developer's work and environment which comes
+with higher quality or understanding of the product. 
+A negative influence would be that valuable developer time is spent understanding events which may not directly apply to themselves as opposed to 
+producing more output of their own work. This balance between awareness and productivity is found to be a fine line in practice,
+however, when given the choice, developers tend to, as previously stated, lean towards less awareness in order to, in their eyes,
+be more productive.
+
+\textbf{Prevention versus Cure}  \textit{Developers would rather spend their time on curative measures (fixing problems after they
+arise) rather than preventative measures (preventing problems from happening). Developers see the task of fixing real problems
+to be less of a burden than preventing potential problems because of available tools and their perceived notions of time management.}
+
+We have seen through the results, that developers posses both tools and practices for the prevention,
+detection, and resolution of indirect conflicts. We have also seen that through unwanted awareness, and the use of developer time,
+that developers tend to prefer working on real issues that have already occurred as opposed to preventing issues of the future which
+may never arise. This is neatly explained by the popular adage ``I work until something breaks'' taken by most developers. This mindset
+is a clear example of developers taking a curative approach to software development opposed to a preventative approach.
+Prevention here refers to taking precautionary steps to stop issues, indirect conflicts, form occurring in the first
+place while cure refers to fixing issues as they arise which includes not attempting, or putting little attempt, into preventing
+them in the first place.
+
+Two out of the three identified prevention methods taken by developers are simple blanket risk mitigation strategies
+accomplished essentially by
+not changing code (design by contract, and add and deprecate), while the third is simply developer experience and knowledge. Clearly,
+developers are spending little to no time in prevention. Developers do however spend a large amount of time in detection and cure through the
+writing of tests and the debugging of issues. In fact, most improvements mentioned by developers in regard to dealing with indirect
+conflicts occurred at either the detection or cure levels. Obviously, developers either prefer to spend their time in curative
+measures, or do not posses the proper tools to take better action in the preventative stages. ``You're reaction time is much more crucial''
+said one developer in that resolution tools are believed to be or larger importance as once issues have occurred, it doesn't
+matter what prevention was taken, the issue must simply be resolves as quick as possible now.
+
+The lack of prevention process and tools being used is believed to be due to 2 factors. The first being the identification of dependencies.
+Even with an experienced system architect, identifying dependencies and notifying those involved is a daunting task 
+which is ignored more than dealt with. The second being the knowledge of when a dependency will fail, also requires vast knowledge
+of the product, more than anyone may have. This is compounded by the unique and sporadic nature of indirect conflicts. These 2 factors
+are what ultimately have led to the amount of false positives and information overload seen in previous tools. The
+abundance of detection and curative process and tools on the other hand shows once again developers willingness to debug
+real issues, that maybe even could have been prevented, rather than prevent the issues in the first place. With
+this lack of prevention and abundance of curative measures, the question ultimately presented in this area is if 
+curative measures are more productive than preventative measures.
+
+Dromey~\cite{Dromey:2003} has raised the debate of prevention versus cure in software development and how difficult a problem it is
+to measure. The pros and cons of prevention versus cure we have identified, are similar to those of unwanted awareness,
+in that they result in a trade off 
+of where time is spent and how productive each side of the argument truly is. If prevention can be shown to be more effective in that
+it reduces the number of indirect conflicts or time spent debugging them compared to the time taken to prevent them, should we then
+not be moving developers into a more preventative mindset. If curative can be shown to be more effective in that it takes less time
+to fix real issues compare to preventing potential ones, should we not be putting more time into automatic debugging, such as
+Zeller's Delta Debugging~\cite{Zeller:2002:ICC} or program slicing techniques~\cite{Weiser:1982:PUS}, or automatic test case creation.
+
+A last interesting observation about current curative measures being taken in industry, is that developers view testing of software 
+as curative, when one could easily make the argument that it is preventative in that most tests are written to pass originally and
+are kept in place to ensure future changes do not cause issues. This mindset may come from the notion that writing tests is originally
+thought of as part of normal code writing, meaning that developers see the extra task of test coverage as part of feature implementation.
+However, if a test never fails, could it not be said that it is preventing changes from causing it to fail rather than detecting
+when failures or indirect conflicts do occur? This may suggest that if, given the write tools, developers may no longer view preventative
+measures as a ``burden'' and may be more inclined to take a more balanced preventative approach rather than mostly curative, as
+``prevention is the goal'' was commonly said by developers.
+
+This prevention versus cure discussion resides purely on the developer level and should be noted that it may not apply to system
+designers, architects, or managerial stakeholders. 
+From the project manager's interviewed it was shown that they are heavily favored towards planning and 
+prevention (even though their prevention may be on more abstract levels than developers actually need) while leaving the curative
+approaches to their developers. The prevention versus cure debate may have different outcomes depending on what level of abstraction
+is being viewed in research.
+
+%mature point, static analysis
+\textbf{Gap in Software Evolution Analysis} \textit{Due to a lack of productive software analysis tools, caused by project infrastructures
+and unfriendly analysis languages, contextual indications of indirect conflicts are often missed. This lack of analysis also causes
+some software project configurations and software languages to be quite prone to indirect conflicts.}
+
+Indirect conflicts are more likely to occur,
+from developer opinion, before a mature point is reached in the project's evolution. ``Once you get the API stable, people are 
+better at communicating changes in regards to dependency concerns.''(This mature point may stem from a major release,
+end of an iteration, a new feature being released or any point considered stable and reliable) However, this context of a 
+mature point, as well as any other
+potential contextual attributes, are rarely identified or accounted for in regards to indirect conflicts. Developers have said
+that different change types may occur at different rates throughout a project's life time and that this
+may drastically effect the outcomes of indirect conflict tools or processes.
+
+A deeper understanding of what context indirect conflicts occur in seems to be more of a success factor to indirect conflict
+research than may have been previously thought. Static analysis may be useful in regards to indirect conflict context in that we
+could identify trends surrounding the mature points of previous projects in order to give a better understanding of what it
+means for a project to be pre or post mature point, which could affect the outcome of indirect conflict understanding.
+Fluri et al.~\cite{Fluri:2007:CDT} uses static analysis and abstract syntax trees to be able to determine what types of source code
+changes occur at a given point in time which could be used for determining such a context of mature points.
+
+This added level of context, through the notion of a mature point, 
+would add to the prevention versus cure debate as previously discussed. Prevention may be a better
+choice once a project has reached a mature point as the code base becomes more stable and source code changes become more dangerous
+to the quality of the project. Curative measures may be a better choice before a mature point as code churn can be higher which
+causes more bugs than can be prevented. These possibilities existing, it may be imperative to discover more of project stability
+and the mature point in order to fully understand the nature of indirect conflicts and their context.
+
+While this added sense of understanding is important to indirect conflicts, contextual attributes of a project's current progress
+or measures of performance are often more synonymous with project management
+rather than software developers themselves. An understanding of a project's evolution, a mature point being reached as an example,
+may pose as a more useful tool for project management rather than developers. This more abstract tendency of indirect
+conflict occurrences may add even more power to project management for evaluation of progress, code stability, and code reviews.
+
+Aside from context, dependency identification and tracking is a key missing component of
+indirect conflict analysis due to the weaknesses of static analysis. The gap in this identification comes from software and 
+organizational structures of software teams. Between increased modularization (multiple sub projects or repositories), 
+cross language dependencies, and languages which do not lend themselves to static analysis, static analysis tools have 
+become quite limited in identifying and tracking dependencies where they were once strong.
+
+Relational database schemas are one of the highest sources of indirect
+conflicts found in their projects, ``it breaks stuff all over the place'',
+yet we know from Maule et al.~\cite{Maule:2008:IAD} that relational database schemas have 
+been scarcely researched in terms of indirect conflicts. This falls in with our previous understanding of cross language
+dependency tracking in that database schemas are independent of languages which may be on the receiving end of their output.
+
+These increases of complexity in software products has left quite a gap in dependency identification and tracking which 
+has lead to some of the deficiencies of indirect conflict research.
+
+
+\subsection{Implication for Research}
+\label{sec:implr}
+
+\textbf{Prevention versus Cure} \textit{The largest implication for future research found in this paper is the need for continued study of the open question
+``Which of prevention or cure is more effective for software development and indirect conflicts?''. This simple question will undoubtedly 
+produce extremely complex answers.}
+
+With software developers focusing their current efforts on curative measures, for
+indirect conflicts, suggests
+that while it may not be the most effective, it may be the easiest road for developers to take. This may be the path of
+least resistance, but it may not be optimal. Software engineering as a whole should strive to answer this question or
+provide more insight into possibilities, as its answer may determine many future actions taken by the research community.
+
+Recommendations towards the study of prevention versus cure involve the examination of formal processes and tools used
+by industry professionals with measurements of efficiency and effectiveness, similar to the work of
+Tiwana~\cite{Tiwana:2008:ICD} in coordination tools. With these studies, we may find insight into the correct balance
+of prevention versus cure, thus being able to increase developer productivity as well as identify more gaps in theory 
+versus practice which may lead to improved tools or the abandoning of existing ones as was shown with UML~\cite{Petre:2013:UP}.
+
+\textbf{Awareness Theory to Model Real World} \textit{the need to further characterize the
+mismatch between awareness approaches and tools as developed in the research community and awareness needs as perceived
+by industry. We should push our awareness theories to model real development
+environments where interruptions, time management, and full development life cycles are often large factors.}
+
+As was identified in the previous discussion, while current understanding suggests that awareness of all events related to ones work
+produces a more coherent understanding of a person's environment, developers find this to be overly time consuming
+to the point where they only want to be aware of events which require action on their part. This difference, of what 
+should be and what is, should be further understood to combat future potential failures in
+tool development or theories attempted to be used in practice.
+
+\subsection{Implication for Tools}
+\label{sec:implt}
+
+\textbf{Give Developers What They Want} \textit{Developers have their own notions of what they want, and how ``good''
+that something is for their productivity. We should pay attention to what they want, but also be mindful that what
+developers want may not always be good for them.}
+
+The direct implication this research has on tool creation is that of current adoption among developers. As was stated,
+developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. That being 
+said, focus at these two stages for tool developer will lead to larger adoption among developers.
+It should be noted here that detection must come with an almost zero rate of false positives as
+current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
+
+\textbf{Stronger Source Code Analysis} \textit{With languages like JavaScript becoming popular, having projects with
+multiple languages, and often having a database schema, we should focus on better techniques for static analysis based
+on what industry standards are for languages and project structures.}
+
+The more indirect implication of this research on tool creation is that of improving existing tools. While not all existing
+tools are used for indirect conflicts alone (automatic debugging~\cite{Zeller:2005:WPF}, unit tests, etc), most of these tools
+have need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
+automatically written for a given software object's contract, the ability to find a change  in an external project
+which has broken a developer's own project, or any automation of the existing detection and resolution stages of indirect
+conflicts are what developers currently seek. But of course, most of these implications rely on the improvement of 
+static analysis tools.
+
+These tool implications themselves imply the need of further development of static analysis tools. Static 
+analysis lays at the heart of most if not all stages of indirect conflict research. We must be able to track and manage
+software dependencies across the new landscape of software development that is multiple projects, repositories, and cross
+language support. These improvements will allow the further development of both current and future indirect conflict
+tools.
+
