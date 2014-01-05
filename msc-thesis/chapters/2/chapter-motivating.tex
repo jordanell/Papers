@@ -1,0 +1,33 @@
+\startchapter{Motivating Studies}
+\label{chapter:motivating}
+
+\newlength{\savedunitlength}
+\setlength{\unitlength}{2em}
+
+While the research problems have been briefly outlined in Chapter~\ref{chapter:introduction}, this chapter
+will focus on the underlying studies which motivated the research of this thesis as well as give a more full
+and rich description of the problem being solved.
+
+In this chapter, two studies will be presented that I conducted which motivated, and gave insights into, 
+the final research goals
+of this thesis. The first study entitled ``Failure Inducing Developer Pairs''
+(Section~\ref{study:pairs}), focuses on the prediction of
+software failures through identifying indirect conflicts of developers linked by their software modules. 
+This study found that certain pairs of developers when linked through indirect code changes are more prone
+to software failures than others. The ideas of developer pairs linked in indirect conflicts will be
+useful for the further development of indirect conflict tools as it shows that a human factor is present
+and may be used to help resolve such issues.
+
+The second study, ``Awareness with Impact'' ((Section~\ref{study:impact})), 
+takes the notion of developer
+pairs in indirect conflicts learned from Study 1, and adds in source code change detection in order to create
+an awareness notification system for developers called \textit{Impact}. \textit{Impact} was designed to a developer
+to any source code changes preformed by another developers when the two are linked in a technical dependency through
+a developer pair. \textit{Impact} utilized a non-obtrusive RSS style feed for notifications for visualization. 
+While \textit{Impact} showed some promise through its user evaluation, it ultimately suffered the fate of information
+overload as was seen in other indirect conflict tools~\cite{Sarma:2007:TSA,Servant:2010:CPI,Trainer:2005:BGT}.
+
+\input chapters/2/sec-developer-pairs
+\input chapters/2/sec-impact
+
+\setlength{\unitlength}{\savedunitlength}

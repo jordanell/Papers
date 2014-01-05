@@ -1,36 +1,5 @@
-\startchapter{The Problem}
-\label{chapter:problem}
-
-\newlength{\savedunitlength}
-\setlength{\unitlength}{2em}
-
-While the research problems have been briefly outlined in Chapter~\ref{chapter:introduction}, this chapter
-will focus on the underlying studies which motivated the research of this thesis as well as give a more full
-and rich description of the problem being solved.
-
-In this chapter, two studies will be presented that I conducted which motivated, and gave insights into, 
-the final research goals
-of this thesis. The first study entitled ``Failure Inducing Developer Pairs''
-(Section~\ref{study:pairs}), focuses on the prediction of
-software failures through identifying indirect conflicts of developers linked by their software modules. 
-This study found that certain pairs of developers when linked through indirect code changes are more prone
-to software failures than others. The ideas of developer pairs linked in indirect conflicts will be
-useful for the further development of indirect conflict tools as it shows that a human factor is present
-and may be used to help resolve such issues.
-
-The second study, ``Awareness with Impact'' ((Section~\ref{study:impact})), 
-takes the notion of developer
-pairs in indirect conflicts learned from Study 1, and adds in source code change detection in order to create
-an awareness notification system for developers called \textit{Impact}. \textit{Impact} was designed to a developer
-to any source code changes preformed by another developers when the two are linked in a technical dependency through
-a developer pair. \textit{Impact} utilized a non-obtrusive RSS style feed for notifications for visualization. 
-While \textit{Impact} showed some promise through its user evaluation, it ultimately suffered the fate of information
-overload as was seen in other indirect conflict tools~\cite{Sarma:2007:TSA,Servant:2010:CPI,Trainer:2005:BGT}.
-
-\input chapters/2/sec-developer-pairs
-\input chapters/2/sec-impact
-
-\section{Problem Description}
+\startchapter{Exploring Indirect Conflicts}
+\label{chapter:exploration}
 
 As Software Configuration Management (SCM) has grown over the years, the maturity and norm of parallel 
 development has become the standard development process instead of the exception. With this parallel development
@@ -80,9 +49,16 @@ in both research and industry.
 I restate the research goals of this thesis for ease of the reader: 
 
 \begin{description}
-  \item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What events or conditions lead to indirect conflicts?}
-  \item[RQ2\namedlabel{itm:rq2}{RQ2}] \textit{What mitigation techniques are used by developers in regards to indirect conflicts?}
-  \item[RQ3\namedlabel{itm:rq3}{RQ3}] \textit{What do developers want from future indirect conflict tools?}
+  \item \textit{What events or conditions lead to indirect conflicts?}
+  \item \textit{What mitigation techniques are used by developers in regards to indirect conflicts?}
+  \item \textit{What do developers want from future indirect conflict tools?}
 \end{description}
 
-\setlength{\unitlength}{\savedunitlength}
+To answer these research questions, I performed a study (Section~\ref{study:exploration}) in which I interviewed 19 developers from across 12 commercial and open source projects, 
+followed by a confirmatory survey of 78 developers, and 5 confirmatory interviews. Based on the findings (to be seen) to the aforementioned research questions, 
+I also performed a secondary complimentary study of software evolutionary trends (Section~\ref{study:apie}) to solidify
+developer opinion and provide a starting point for the future development of indirect conflict tools.
+
+
+\input chapters/3/sec-iced
+\input chapters/3/sec-apie
