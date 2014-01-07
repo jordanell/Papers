@@ -42,9 +42,9 @@
 \contentsline {subsection}{\numberline {3.2.3}Conclusions of Study}{33}
 \contentsline {chapter}{\numberline {4}Discussion}{35}
 \contentsline {section}{\numberline {4.1}Motivating Studies Discussion}{35}
-\contentsline {section}{\numberline {4.2}Indirect Conflict Exploration Discussion}{35}
-\contentsline {subsection}{\numberline {4.2.1}Implication for Research}{40}
-\contentsline {subsection}{\numberline {4.2.2}Implication for Tools}{41}
-\contentsline {chapter}{\numberline {5}Conclusions}{43}
-\contentsline {chapter}{\numberline {A}Additional Information}{44}
-\contentsline {chapter}{Bibliography}{45}
+\contentsline {section}{\numberline {4.2}Indirect Conflict Exploration Discussion}{37}
+\contentsline {subsection}{\numberline {4.2.1}Implication for Research}{43}
+\contentsline {subsection}{\numberline {4.2.2}Implication for Tools}{44}
+\contentsline {chapter}{\numberline {5}Conclusions}{45}
+\contentsline {chapter}{\numberline {A}Additional Information}{46}
+\contentsline {chapter}{Bibliography}{47}

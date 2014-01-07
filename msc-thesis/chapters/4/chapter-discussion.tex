@@ -13,8 +13,67 @@ studies found in Chapter 3 in a combined manner. Since Study 4 was directly asso
 
 \section{Motivating Studies Discussion}
 
+\textbf{The Human Factor of Indirect Conflicts} \textit{An important component of indirect conflicts are the developers
+themselves and how their notions of other's work is perceived across a project.}
+
+As we have seen through Study 1, developers which are tied to source code objects can become a focal point of
+indirect conflicts through the life of a project. For instance we can see from Table~\ref{tab:ratio} that
+developers Daniel and Anne on Hibernate-ORM are always linked indirect conflicts when dependencies between
+their source code objects change. This is an important observation to make when moving forward with indirect
+conflicts.
+
+What is really happening between these two developers is the real issue to consider. Daniel could have an
+assumption about the way Anne's code works which causes Anne's changes to have negative impacts on Daniel's
+own work. For instance, Daniel may expect a method of Anne's to have a special return case, which may be correct,
+however when Anne changes that special case or removes it, Daniel's code can be negatively affected. In this extreme
+result found in Study 1, further analysis showed that one central method in the software project was being changed
+frequently and causing Daniel's code to be negatively affected in some way.
+
+The question of how to prevent this type of negative impact is ultimately the goal of indirect conflicts. Study 1 has
+shown that pairs of developers can often be a large component to that goal as well. (Impact from Study 2 was
+created the address just this issue.) 
+
+\textbf{Information Overload} \textit{My tool Impact, as well as many other indirect conflict tools, suffer from
+information overload in their delivery to developers which is a key issue in preventing adopting and acceptance
+of indirect conflict tools.}
+
+As was previously stated, many indirect conflict tools end up suffering from information overload to developers
+and other end users. Impact was initially created to take the knowledge learned from Study 1 and attempt to create
+a new indirect conflict system based on developer interactions inside the code base which would potentially address
+information overload. However, we now know from the results of Study 2, that Impact once again suffered defeat to information
+overload based on the case study evaluation. Ultimately, this sense of information overload ends up causing
+adoption of indirect conflict tools to fail which in turn causes some research components to have failed as
+well.
+
+From previous works, as well as from Study 2, we know that information overload is a large issue in indirect
+conflicts. It has been found that a large number of dependencies in software caused by the nature large software
+projects is a root issue in information overload~\cite{Sarma:2007:TSA,Servant:2010:CPI}. These large sizes in
+dependencies are ultimately what cause information overload as dependencies cannot be evaluated as to their
+relevance in a certain source code change with ease. In other words, we cannot determine which of the numerous
+dependencies will fail (outside of compilation and testing failures) when source code is changed.
+
+A potential solution derived from the evaluation of Impact comes from the ideas of Meyer~\cite{Meyer:1988} on 
+``design by contract''. In this methodology, changes to method preconditions and postconditions are considered 
+to be the most harmful. This includes adding conditions that must be met by both input and output parameters 
+such as limitations to input and expected output. To achieve this level of source code analysis, the ideas of 
+Fluri et al.~\cite{Fluri:2007:CDT} can be used on the previously generated ASTs for high granularity source code 
+change extraction when determining if preconditions or postconditions have changed. While this solution does not 
+wholly address the problems of information overload as previously stated through failures in dependencies, it does 
+reduce the number of source code changes to  be analyzed which in turn will reduce the amount of information on 
+the whole which is put forth by the indirect
+conflict system. This solution however does also run the risk of missing more indirect conflicts as many conflicts
+can occur outside of changes to method contracts. This solution represents my first ideas of fixing information overload in regards to
+indirect conflicts and is again found in the later discussion of root causes of indirect conflicts found in
+the next section.
 
 \section{Indirect Conflict Exploration Discussion}
+
+While the previous section discussed the main motivations for taking a step back on indirect conflicts in order to understand
+better what can be done to improve developer work flow, this section will discuss exactly those steps back. From Studies 3 and
+4 we will notice 3 main trends that have been discovered for indirect conflicts in both industry and in academia. These 3 major
+trends to now be discussed are: unwanted awareness, prevention versus cure, and the gap in software evolution analysis. This
+section will also include a brief discussion regarding the implications, learned from studies 3 and 4, for both academia and
+for industry through tools.
 
 \textbf{Unwanted Awareness} \textit{Developers tend to only care about the awareness of other's activities, if it causes
 a negative influence on their own work. Developers only want to hear about another developer's actions if it forces them
@@ -24,7 +83,7 @@ awareness about most, if not all actions.}
 As we have seen, indirect conflicts are found to be quite a serious problem that occur frequently,
 sporadically, and differ greatly from case to case. These conditions pose large issues for the creation of generalizable theories
 or tools in regards to indirect conflicts. These underlying complexities are the probable cause of disinterest of software developers
-to proposed or implemented tools as discussed in Section~\ref{sec:review}. This inability to generalize is what we believe to be the
+to proposed or implemented tools as discussed in Section~\ref{sec:review}. This inability to generalize is what I believe to be the
 leading cause of information overload and false positives in the awareness system, causing developers to eventually ignore 
 information being presented to them, rendering the system useless. These false positives are caused by a difference in what
 developers consider to be false positives versus what awareness literature considers they are. This disjoint, as will
@@ -99,7 +158,7 @@ this lack of prevention and abundance of curative measures, the question ultimat
 curative measures are more productive than preventative measures.
 
 Dromey~\cite{Dromey:2003} has raised the debate of prevention versus cure in software development and how difficult a problem it is
-to measure. The pros and cons of prevention versus cure we have identified, are similar to those of unwanted awareness,
+to measure. The pros and cons of prevention versus cure I have identified, are similar to those of unwanted awareness,
 in that they result in a trade off 
 of where time is spent and how productive each side of the argument truly is. If prevention can be shown to be more effective in that
 it reduces the number of indirect conflicts or time spent debugging them compared to the time taken to prevent them, should we then
@@ -125,7 +184,7 @@ is being viewed in research.
 
 %mature point, static analysis
 \textbf{Gap in Software Evolution Analysis} \textit{Due to a lack of productive software analysis tools, caused by project infrastructures
-and unfriendly analysis languages, contextual indications of indirect conflicts are often missed. This lack of analysis also causes
+and analysis unfriendly languages, contextual indications of indirect conflicts are often missed. This lack of analysis also causes
 some software project configurations and software languages to be quite prone to indirect conflicts.}
 
 Indirect conflicts are more likely to occur,
@@ -141,11 +200,24 @@ A deeper understanding of what context indirect conflicts occur in seems to be m
 research than may have been previously thought. Static analysis may be useful in regards to indirect conflict context in that we
 could identify trends surrounding the mature points of previous projects in order to give a better understanding of what it
 means for a project to be pre or post mature point, which could affect the outcome of indirect conflict understanding.
-Fluri et al.~\cite{Fluri:2007:CDT} uses static analysis and abstract syntax trees to be able to determine what types of source code
-changes occur at a given point in time which could be used for determining such a context of mature points.
+These change trends are exactly what Study 4 set out to address.
+
+Through Study 4, I showed that 9 critical change trends exist at a major release of a variety of open source projects. This
+knowledge could help identify, as was previously stated, when indirect conflicts are more likely to occur in a project or not.
+For example, the trend of adding test methods was found to occur more after a major release than before. This trend along with
+the knowledge that indirect conflicts occur more at the start of a new development cycle can be used to predict times in development
+where indirect conflicts are likely to occur automatically. An automated system may see that more test methods are being added than
+before in the past 4 weeks or so and be able to alert developers to an instability in the code which in turn means an elevated
+risk of indirect conflicts.
+
+Similarly, the trend of adding private classes is seen to occur more so before a major release than after. This knowledge again
+can be used in an automated system along with the fact that indirect conflicts are less likely to occur towards the end of a development
+cycle. The automated system will be able to identify a stability in the project through private classes being added and alert developers
+that the code is stabilizing and that large changes to the project should be avoided until the start of the next development cycle
+in order to further reduce the risk of indirect conflicts.
 
 This added level of context, through the notion of a mature point, 
-would add to the prevention versus cure debate as previously discussed. Prevention may be a better
+would add to the prevention versus cure debate as previously discussed as well. Prevention may be a better
 choice once a project has reached a mature point as the code base becomes more stable and source code changes become more dangerous
 to the quality of the project. Curative measures may be a better choice before a mature point as code churn can be higher which
 causes more bugs than can be prevented. These possibilities existing, it may be imperative to discover more of project stability
@@ -157,16 +229,20 @@ rather than software developers themselves. An understanding of a project's evol
 may pose as a more useful tool for project management rather than developers. This more abstract tendency of indirect
 conflict occurrences may add even more power to project management for evaluation of progress, code stability, and code reviews.
 
-Aside from context, dependency identification and tracking is a key missing component of
+In regards to these contextual identifications in software projects, dependency identification and tracking is a key missing component of
 indirect conflict analysis due to the weaknesses of static analysis. The gap in this identification comes from software and 
 organizational structures of software teams. Between increased modularization (multiple sub projects or repositories), 
 cross language dependencies, and languages which do not lend themselves to static analysis, static analysis tools have 
-become quite limited in identifying and tracking dependencies where they were once strong.
+become quite limited in identifying and tracking dependencies where they were once strong. As software has become more
+sophisticated over time, static analysis tools have gone from extremely useful to only occasionally useful. Since many
+projects involve several languages, sub projects, and database schemas, static analysis has become cripplingly obsolete
+in the industry of today. In order to move indirect conflicts and many other research areas forward, this gap of cross domain
+static analysis must be filled.
 
-Relational database schemas are one of the highest sources of indirect
+As an example, relational database schemas are one of the highest sources of indirect
 conflicts found in their projects, ``it breaks stuff all over the place'',
 yet we know from Maule et al.~\cite{Maule:2008:IAD} that relational database schemas have 
-been scarcely researched in terms of indirect conflicts. This falls in with our previous understanding of cross language
+been scarcely researched in terms of indirect conflicts. This falls in with my previous understanding of cross language
 dependency tracking in that database schemas are independent of languages which may be on the receiving end of their output.
 
 These increases of complexity in software products has left quite a gap in dependency identification and tracking which 
