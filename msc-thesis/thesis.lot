@@ -2,13 +2,12 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {2.1}{\ignorespaces Top 3 failure inducing developer pairs found.\relax }}{6}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Demographic information of interview participants.\relax }}{16}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Results of survey questions to how often indirect conflicts occur, in terms of percentage of developers surveyed.\relax }}{21}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Results of survey questions to development environments in which indirect conflicts are likely to occur, in terms of percentage of developers surveyed.\relax }}{22}
-\contentsline {table}{\numberline {3.4}{\ignorespaces Results of survey questions to source code changes that developers deem notification worthy, in terms of percentage of developers surveyed.\relax }}{24}
-\contentsline {table}{\numberline {3.5}{\ignorespaces Implementation oriented change types and their normalized average change ratios at 60 days on each side of releases. \relax }}{32}
-\contentsline {table}{\numberline {3.6}{\ignorespaces Qualitative graph analysis results. \relax }}{33}
-\contentsline {table}{\numberline {3.7}{\ignorespaces Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \relax }}{33}
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Demographic information of interview participants.\relax }}{17}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Results of survey questions to how often indirect conflicts occur, in terms of percentage of developers surveyed.\relax }}{22}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Results of survey questions to development environments in which indirect conflicts are likely to occur, in terms of percentage of developers surveyed.\relax }}{23}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Results of survey questions to source code changes that developers deem notification worthy, in terms of percentage of developers surveyed.\relax }}{25}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Implementation oriented change types and their normalized average change ratios at 60 days on each side of releases. \relax }}{36}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Qualitative graph analysis results. \relax }}{37}
+\contentsline {table}{\numberline {3.7}{\ignorespaces Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \relax }}{37}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

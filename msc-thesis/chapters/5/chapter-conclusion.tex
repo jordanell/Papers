@@ -1,2 +1,130 @@
 \startchapter{Conclusions}
 \label{concl}
+
+Awareness techniques have been proposed and studied to aid developer
+understanding, efficiency, and quality of software produced. Some of these techniques have focused 
+on either \textit{direct} or \textit{indirect conflicts} in order to prevent, detect, or resolve these conflicts as 
+they arise from a result of source code changes. 
+
+While the techniques and tools for direct conflicts have had large success, tools either proposed or studied for 
+indirect conflicts have had common issues of information overload, false positives, scalability, information distribution 
+and many others. These issues has ultimately lead to poor developer interest in indirect conflict tools as well
+as a failed adoption rate and partial failures of research.
+
+To better understand these issues, this dissertation has focused on exploring the world of indirect 
+conflicts through 4 studies. The first two studies focused on motivational circumstances which occur during 
+the software development life cycle and cause indirect conflicts. Developers interactions were studied in order to create 
+a tool which can aid in the work-flows around indirect conflicts. The second two studies presented a deeper investigation 
+as to why most indirect conflict tools fail to attract developer interest through exploring the root causes of indirect conflicts 
+and how tools should be properly built to support developer work flows.
+
+\section{Study 1}
+
+Technical dependencies are often used to predict software failures
+in large software system~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU, Kim:2006:AIB}. However, human interactions as tied
+to software objects can also be used to predict software failures.
+Study 1 presented a method for detecting failure inducing pairs of developers inside
+of technical networks based on code changes. The methodology used was to assigned developers to the source code artifacts
+which they authored. Next, dependencies were identified between source code artifacts, implying dependencies between
+developers. Lastly, failure inducing dependencies between developers were identified through using methods to identify
+bugs in source code throughout the lifetime of a project. These developer pairs were used in the prediction
+of future bugs as well as provide coordination recommendations for developers within a project. These bugs being predicted
+directly correlate to indirect conflicts. Since the human dependencies being measured in Study 1 are directly tied to
+software objects, we can say that the indirect conflicts being studied here are between developers themselves, while
+the dependencies between the developers are found in the source code.
+
+Study 1 however, did not consider the technical dependencies themselves to be the root cause of
+the software failures. This study focused purely on developer ownership of software methods and
+the dependencies between developers as the possible root cause of the failures.
+
+Through the analysis of Study 1 as seen in Chapter 4, an important component of indirect conflicts are the developers
+themselves and how their notions of other's work is perceived across a project. We can see from Study 1 results that
+a developer Daniel may believe a source code artifact behaves in a particular way (from documentation or other forms
+of communication for the artifact) so when that artifact changes its behavior, Daniel can become negatively impacted.
+A human factor is present here as the person who makes the artifact change, say Anne, may not have communicated the
+change to all other developers affected by the change. This is an important understanding that lead directly into the
+creation of Impact (Study 2) as a way to mitigate the negative affects across human developers as a result of 
+source code changes.
+
+\section{Study 2}
+
+As a direct response to the findings and analysis of Study 1, Study 2 set out to address the human factors presented
+through an indirect conflict tool. In Study 2, I proposed a generic design for the development of an awareness tool 
+in regards to handling indirect conflicts through human factors. I presented a prototype awareness tool, \textit{Impact}, 
+which was designed around the generic technical object approach. Impact could track which developers were responsible
+for which artifacts of code as well as their dependencies to other developer's code artifacts. When a dependency to
+another developer's code was changed, the developer was notified of the change in order to avoid any bugs that
+may arise from the change. The delivery system used for Impact was that of an RSS type feed where developers could view
+their notifications in a stream of messages through a web application. However, \textit{Impact} suffered from information 
+overload, in that it had too many notifications sent to developers.
+
+This failure from information overload was ultimately equivalent to the various other indirect conflict tools from
+previous research (even those not addressing human developer factors). This issue of information overload is the key issue 
+in preventing adopting and acceptance of indirect conflict tools from developers and ultimately leads to some research
+component failures to understand what developers truly want from indirect conflict tools.As a proposed solution to information overload, 
+the ideas of Meyer~\cite{Meyer:1988} on ``design by contract'' were presented. This methodology looks at using the 
+post and pre conditions of software objects in order to reduce the number of source code changes that are analyzed by 
+Impact in order to reduce information overload.
+
+While the previous proposed solution was designed to fix information overload in Impact and potentially other indirect
+conflict tools, it was decided that further investigation into indirect conflicts was needed to truly attempt a solution.
+The results of Study 2, combined with the knowledge of previous research having similar issues of information overload
+in indirect conflict tools, sparked an interest in studying indirect conflicts at a deeper level (Study 3) which could
+be used to better understand causes and developer strategies in solving indirect conflicts.
+
+\section{Study 3}
+
+Indirect conflicts are a significant issue with real world development, however, many proposed techniques and tools to mitigate
+losses in this realm have been unsuccessful in attracting major support from developers (as was seen in Study 2). 
+In Study 3, I conducted a qualitative study involving
+19 interviewed developers from 12 organizations as well as 78 surveyed developers. Through these qualitative measures,
+I provided characterization of indirect conflicts,
+current developer work flow surrounding indirect conflicts, and what direction any future tools should follow in order to aid developers
+in their work flow with indirect conflicts.
+
+For the root causes of indirect conflicts, I found that indirect conflicts occur due to changing of a software object's 
+contract and the lack of understanding of
+the far reaching implications (through dependencies) of that change. I also found that indirect conflicts are more likely
+to occur at the beginning of a development cycle when the code is quite unstable and that these scenarios can become
+compounded in difficulty when more developers are present on a project. 
+
+As per current developer work-flows regarding indirect conflicts, I found that developers have 3 major mitigation strategies
+to avoid indirect conflicts: ``Design by Contract'', add and deprecate, and personal experience. For catching indirect conflicts,
+I found that use case coverage through proper testings (both unit and integration) are currently thought to be the best
+developers can achieve. And finally, for the future of indirect conflict tools, developers made it clear that they would
+prefer an improvement to resolution methods for indirect conflicts such as automatic or aided development techniques.
+
+As per the analysis of Study 3, I have shown the disjoint of current awareness understanding versus the practical
+awareness needs found in industry. This disjoint, caused by the difference of academic and practical understanding in awareness needs,
+ultimately lead to tools with information overload and false positive issues. The debate of prevention versus cure was presented along with
+the industrial tendency towards curative measures. While a curative approach may be favored by developers, further research is needed
+to fully asses the positive and negative influences of prevention versus cure for productivity and quality concerns. Finally, I have shown
+the gap of analytical evolution tools needed for dependency identification and indirect conflicts. This gap, unless addressed, may prevent
+future industrial adoption of tools produced by academia for lack of fit in industrial needs. This gap directly resulted in the final
+study of this Dissertation to be completed (Study 4).
+
+\section{Study 4}
+
+As a result of the gap in software evolution analysis shown in Study 3, I conducted a case study of 10 open source Java software 
+projects in order to study their change trends surrounding
+major releases as Study 3 had shown that indirect conflicts occur less at a major release and more so after a major release
+or at the beginning of a development cycle. 
+
+Through Study 4, I presented 9 major change trends which surround major releases in the open source
+projects studied. The 4 change trends found in this study occurring before major releases are: added private classes, 
+changed test method signatures, changed documentation, and removed test classes.
+The 5 change trends found in this paper occurring after major release are: added test methods, changed test classes, removed public methods, removed
+private classes, and removed private methods.
+
+These 9 change trends can be used in indirect conflict tools in order to identify a context for indirect conflicts.
+For example, the trend of adding test methods was found to occur more after a major release than before. This trend along with
+the knowledge that indirect conflicts occur more at the start of a new development cycle can be used to predict times in development
+where indirect conflicts are likely to occur automatically. An automated system may see that more test methods are being added than
+before in the past 4 weeks or so and be able to alert developers to an instability in the code which in turn means an elevated
+risk of indirect conflicts.
+
+The results of Study 4 directly supplemented those from Study 3 in that it addressed the gap of software evolution techniques
+needed for indirect conflicts. However, this study was also quite limited and the issues of cross domain analysis techniques
+presented in Study 3 are still cause for future research.
+
+\section{Final Conclusions}

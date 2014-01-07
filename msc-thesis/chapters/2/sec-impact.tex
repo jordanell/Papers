@@ -57,6 +57,66 @@ overload by using design by contract~\cite{Meyer:1988} solutions to method desig
 outlines \textit{Impact's} specific implementation, its design is rather
 generic and can be implemented in similar indirect conflict awareness tools.
 
+\section{Related Work}
+Although there is an abundance of awareness tools developed in research
+today, only a handful have made an attempt to examine indirect conflicts.
+Here, I will outline four of the forefront projects in indirect conflicts
+and how these projects have influenced the decision making process in
+the design and implementation of \textit{Impact}.
+
+I first start with both Codebook~\cite{Begel:2010:CDE} and 
+Ariadne~\cite{Trainer:2005:BGT}. These projects produce an exploratory
+environment for developers to handle indirect conflicts. Exploratory
+pertains to the ability to solve self determined conflicts, meaning that
+once a developer discovers a conflict, they can use the tool as a type of
+lookup table to solve their issue. Codebook is a type of social developer
+network that relates developers to source code, issue repositories and
+other social media while Ariadne only looks at source code for developer
+to source code association. Through Codebook, developers become
+owners of source code artifacts. Both projects also use program 
+dependency graphs~\cite{Horwitz:1992:UPD}
+in order to relate technical artifacts to each other. These projects make 
+use of method call graphs in order to 
+determine which methods invoke others which forms the basis for 
+linking source code artifacts creating a directed graph. While these 
+projects can be great tools 
+for solving indirect conflicts which may arise, by querying such directed
+graphs to view impacts of conflict creating code, they lack the ability to
+detect potential conflicts on their own.
+
+A serious attempt at both detecting and informing developers of
+indirect conflicts is the tool Palantir~\cite{Sarma:2007:TSA}. Palantir
+monitors developers activities in files with regards to class signatures.
+Once a developer changes the signature of a class, such as by modifying changes
+in name, parameters, or return values of public methods, any workspace
+of other developers which are using that class will be notified. Palantir utilizes
+a push-based event model~\cite{Fitzpatrick:2002:SPA} which seems to be
+a favored collection system among awareness tools. Sarma et al.
+~\cite{Sarma:2007:TSA} also
+developed a generic design for future indirect conflict awareness tools. 
+However, Palantir falls short in its collection and distribution
+mechanisms. First, Palantir only considers ``outside'' appearance of technical
+objects, being their return types, parameters, etc. Secondly, Palantir 
+only delivers
+detected conflicts to developers who are presently viewing or editing
+the indirect object while other developers who have used the modified 
+class previously are not notified.
+
+I will lastly examine the tool CASI~\cite{Servant:2010:CPI} which uses
+a sphere of influence for each developer to determine how source code
+changes are indirectly related to other components of a software project.
+CASI uses dependency slicing~\cite{Bajracharya:2009:SIS} instead of the 
+call graphs in Ariadne~\cite{Trainer:2005:BGT} which gives dependencies among
+all source code entities. This provides a verbose output of dependencies when
+source code is changed. CASI also implements a visualization where
+a developer can see what parts of a software projects he or she may be effecting
+with the source code change. This allows the developer themselves to go and fix
+potential issues elsewhere in the project before the code change is committed
+to the software repository. While CASI covers great ground in its approach,
+it still leaves the issue of information overload, although attempts were made
+to solve this by having severity levels of indirect conflicts presented to
+the user.
+
 \subsection{Impact}
 This section will proceed to give an outlined detail of \textit{Impact} in both its
 design and implementation. The design of \textit{Impact} was created to be

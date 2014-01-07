@@ -35,6 +35,33 @@ to occur based on the findings from Study 3 as I found that indirect conflicts t
 frequent after a release or at the start of a new development cycle. The findings of this study can be applied over the lifetime of a project
 to determine the proneness of indirect conflicts and thus aiding developers in dealing with indirect conflicts in their projects.
 
+\section{Related Work}
+\label{sec:rel}
+While very little has been published about release quality studies and stability (especially in regards to
+indirect conflicts), there have been a few studies which attempt to address the issues directly
+or indirectly. Wu et al.~\cite{Wu:2008:QAF} performed a case study of SoftPM, a widely adopted project management tool, to explore the relationships of
+pre-release and post-release failures at major releases. Wu et al. found that the ratio of post-release failures to pre-release failures is significantly low
+and can be used to show reliability and stability. Hindle et al.~\cite{Hindle:2007:RPD} performed a case study on MySQL which observed a project's behavior
+around major and minor release by monitoring artifact check-ins and changes. They found that there are temporary stoppages for source revisions around releases,
+indicating that a temporary freeze is taking place for developers and that last minute fixes and manual testing may be performed.
+Zaidman et al.~\cite{Zaidman:2011:SCP}, in comparison, studied the co-evolution of production and test code with inspections and analysis
+at major and minor releases, showing how test and production code can evolve at different rates and times. These results show that production
+and test code should be handled as different cases for a stability measure around major releases. 
+
+The study of open source projects revolving around release points has become more accessible by the work of Tsay et al~\cite{Tsay:2011:EMO}. Tsay et al. created
+a resource of historical release dates for open source software projects to be used for future studies by other researchers.
+
+In terms of software stability, development techniques have been proposed to increase software stability. 
+Fayad~\cite{Fayad:2001:TOI}~\cite{Fayad:2002:ASS} suggests that ``business objects'' (BOs) do not change in nature and that they are inherently stable. These
+objects only need to change to accommodate external modules at the interface. Some studies such as Chow et al.~\cite{Chow:2011:SJI} have investigated
+the stability of changes to interfaces which are considered a good indication of stability.
+Mockus et al.~\cite{Mockus:2008:IQR} used major and minor release points to compare industry process quality to customer-perceived quality of the software
+project. Mockus et al. found that defect density is lowest at major releases but at the same time software quality is at its lowest all when compared to minor
+releases. The low software quality here relates to end-user errors of installations and configurations. Wermelinger et al.~\cite{Wermelinger:2008:AEE}
+showed that stable core architectures can be detected by using source code changes. Finally, Fayad et al.~\cite{Fayad:2010:SSM} have
+investigated the Software Stability Model (SSM) for Software Product Lines to show that the SSM's impact on architecture and design of a software product
+can help improve the life of the product line and make it more adaptable and applicable.
+
 \subsection{Methodology}
 \label{sec:apie-meth}
 In order to answer my research question, I decided to use the tool ChangeDistiller created by Fluri et al.~\cite{Fluri:2007:CDT}. This tool allows me to detect fine grained
@@ -193,7 +220,7 @@ change trends in these results as a suggestion for future focus.
 
 In this study, I have conducted a case study of 10 open source Java software projects in order to study their change trends surrounding
 major releases as previous studies have shown that indirect conflicts occur less at a major release and more so after a major release
-or as the beginning of a development cycle. I have presented here 9 major change trends which surround major releases in the open source
+or at the beginning of a development cycle. I have presented here 9 major change trends which surround major releases in the open source
 projects studied. The 4 change trends found in this study occurring before major releases are: added private classes, 
 changed test method signatures, changed documentation, and removed test classes.
 The 5 change trends found in this paper occurring after major release are: added test methods, changed test classes, removed public methods, removed
