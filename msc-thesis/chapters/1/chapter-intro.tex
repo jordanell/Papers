@@ -1,6 +1,142 @@
 \startfirstchapter{Introduction}
 \label{chapter:introduction}
 
-\input chapters/1/sec-intro
+\section{Introduction}
 
+% Introduce awareness
+As Software Configuration Management (SCM) has grown over the years, the maturity and norm of parallel 
+development has become the standard development process instead of the exception. With this parallel development
+comes the need for larger awareness among developers to have ``an understanding of the activities of others
+which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness
+mitigates some downsides of parallel development which include the cost of conflict prevention and resolution. However,
+empirical evidence shows that these mitigated losses continue to appear quite frequently and can prove to be a significant
+and time-consuming chore for developers~\cite{Perry:2001:PCL}.
 
+% Introduce dependencies
+Large software projects are created using highly modular and reusable code. This creates technical dependencies between
+methods or functions that can be used in a wide variety of locations throughout the project. This causes changes to any 
+given software object to have a rippling effect across the rest of the project~\cite{Acharya:2011:PCI}. The larger these 
+effects are, the more likely they are to cause a software failure inside the system during the project's life 
+span~\cite{Zimmermann:2008:PDU}. These observations of technical dependencies open the door to types of analysis on the 
+developer networks they infer and preventing software failures by improving coordination amongst dependent developers.
+
+% What has been done with technical dependencies
+Technical dependencies in a project can be used to predict success or failure in builds or code 
+changes~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU}. However, most research in this area is based on identifying central 
+modules inside a large code base which are likely to cause software failures or detecting frequently changed code that 
+can be associated with previous failures~\cite{Kim:2006:AIB}. This module-based method also results in predictions at 
+the file or binary level of software development as opposed to a code change level and often lack the ability to provide 
+recommendations for improved coordination other than test focus.
+
+% Using technical dependencies for awareness tools
+With the power of technical dependencies in tracking unintended consequences from source code changes, several tools 
+have been created to attempt to solve task awareness related issues with some 
+success~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC}. However, these tools have been designed 
+to solve task awareness related issues at the direct conflict level. 
+
+%Describe difference between direct and indirect
+Two types of conflicts have attracted the attention of researchers, \textit{direct} and 
+\textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
+artifact. Tools have been created and studied for direct conflicts
+~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
+positive developer feedback. Indirect conflicts involve source code change influences such as making a source code change 
+which influences behavior negatively in another location in the system. Indirect conflict tools however, have
+not shared the same success as direct conflict 
+tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}. However,
+previous interviews and surveys conducted with software developers have shown a pattern that developers 
+of a software project view indirect conflict awareness  as a high priority issue in their 
+development~\cite{Damian:2007:GSE, Halverson:2006:DTV, Begel:2010:CDE, Schroter:2012:TTF}, meaning that future research
+is required to address this developer concern.
+
+% Limitations of IC tools for indirect conflicts compared to Impact
+Indirect conflicts arising in source code are inherently difficult to resolve as most of the time, source code analysis must 
+be performed in order to find relationships between technical objects which are harmed by changes. While some awareness 
+tools have been created with these indirect conflicts primarily in mind~\cite{Begel:2010:CDE, Trainer:2005:BGT}, most have only 
+created an exploratory environment which is used by developers to solve conflicts which may arise. These tools were not designed 
+to detect indirect conflicts that arise and alert developers to their presence  inside the software system. 
+Sarma et al.~\cite{Sarma:2007:TSA} has started to work directly on solving indirect conflicts, however, these products are not 
+designed to handle internal structures of technical objects.
+
+% Issues with IC tools of information overload etc.
+While indirect conflict tools have shown potential from studies of developers, some of the same problems continue
+to arise throughout most, if not all tools. The most prevalent issue is that of false positives and information
+overload, tools eventually being
+ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of dependency identification and
+tracking. Many different dependencies have been proposed and used in indirect conflict tools such as method 
+invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success, but the 
+identification of failure inducing changes, other than those which are already identifiable by other means such
+as compilers, and unit tests, to these dependencies still remains an issue. Dependency tracking issues are
+also compounded by the scale of many software development projects leading to further information overload.
+Lastly, social factors such as Cataldo et al.~\cite{Cataldo:2006:ICR} notion of socio-technical
+congruence have been leveraged in indirect conflict tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA}.
+However, issues again of information overload, dependencies (in developer organizational structure), and scalability 
+come up.
+
+% There are 4 studies
+Clearly, indirect conflicts and its subsequent research areas have a large breadth of limitations, some of which
+will be explored in this dissertation. In order to fully understand indirect conflicts, this dissertation is composed
+of 4 studies of which explore different components of indirect conflicts. 
+
+% Study 1 introduction
+Study 1 focuses on the power of technical dependencies in software projects. The question I
+investigated was : ``\textit{Is it possible to identify pairs of developers whose technical dependencies in 
+code changes statistically relate to bugs?}''. This study explains the approach used to locate these pairs of developers 
+in developer networks.The process utilizes code changes and the call hierarchies effected to find patterns of developer 
+relationships in successful and failed code changes. These developers pairs can be seen as indirect conflicts occurring
+as one developer's code change has negatively affects another developer's work. As it will be seen, I found 27 statistically significant failure 
+inducing developer pairs. These developer relationships can be used to promote the idea of leveraging socio-technical 
+congruence, a measure of coordination compared to technical dependencies amongst stakeholders, to provide coordination recommendations.
+This notion of socio-technical congruence is my initial proposed solution to indirect conflicts. By identifying these failure
+inducing pair of developers over indirect conflicts, I hoped that recommended communication would be the correct fix. The 
+results of Study 1 directly influence Study 2.
+
+% Study 2 introduction
+Study 2 attempts to take the failure inducing pairs of developers from Study 1 and create an awareness tool.
+In this study, I report on my research into supporting indirect conflicts and present the design, implementation, and 
+evaluation of the tool \textit{Impact}, a web based tool that aims at detecting indirect conflicts among developers and 
+notifying the appropriate members involved in these conflicts. By leveraging technical relationships inherent of software 
+projects with method call graphs~\cite{Lakhotia:1993:CCM} as well as detecting changes to these technical relationship 
+through software configuration management (SCM) systems, \textit{Impact} is able to detect indirect conflicts as well as 
+alert developers involved in such conflicts in task awareness. While this study outlines \textit{Impact's} specific 
+implementation, its design is rather generic and can be implemented in similar indirect conflict awareness tools. 
+\textit{Impact} represents a first step towards the design and implementation of awareness tools which address indirect 
+conflicts in software development. After a brief evaluation of \textit{Impact} with two student software teams, it was
+found that \textit{Impact} suffers from information overload and a high false positive rate which turn out to be quite
+large problems found in many other indirect conflict
+tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}. In order to full understand 
+the causes of these indirect conflict tool issues, a third study was conducted.
+
+% Study 3 introduction
+
+In order to fully understand the root causes of information overload, false positives, and
+scalability issues in regards to indirect conflicts, Study 3 was an empirical study to determine what events occur to
+cause indirect conflicts, when they occur, and if conditions exist to provoke more of these events. 
+I also set out to understand what mitigation strategies developers currently use as opposed to those created
+by academia. Through this exploration, I looked to find what can be accomplished moving forward with indirect conflicts
+in both research and industry. I interviewed 19 developers from across 12 commercial and open source projects, followed by a confirmatory survey of 78 
+developers, and 5 confirmatory interviews, in order to answer the aforementioned questions. My findings indicate that: 
+indirect conflicts occur frequently and are likely caused by software contract changes and a lack of understanding of those changes,
+developers tend to prefer to use detection and resolution processes or tools
+over those of prevention, developers do not want awareness mechanisms which provide non actionable results, 
+and there exists a gap in software evolution analytical tools from the reliance on static analysis resulting in missed
+context of indirect conflicts. As a result of the final finding (the gap in software evolution analytical tools), I conducted
+a fourth and final study.
+
+% Study 4 introduction
+In order to begin to address the gap in software evolution analytical tools discovered in study 3, I turn my analysis to the notions 
+of software change trends, specifically those trends around major releases. Change trends are trends which indicate
+a likelihood for a change type to occur around a certain event. Change trends have been used to detect
+stability in core architecture~\cite{Wermelinger:2008:AEE} as well as evolving dependencies~\cite{Businge:2010:ESE}.
+With the power of major release points in open source projects as a starting point for project stability and the understanding that change trends can
+be leveraged to detect stability and the proneness of indirect conflicts (as will be seen in Study 3), this study investigates the question:
+``\textit{What trends exist in source code changes surrounding major releases of open source projects as a notion towards a project
+stability measure?}''. I perform a case study of 10 open source projects in order to study their source code change trends surrounding major release points
+throughout their history. I studied 26 quantitative and 16 qualitative change trends and identified a core group of 9 change trends which occur
+prominently at major release points of the projects studied.
+
+% The rest of the thesis 
+The remainder of this dissertation is laid out as follows. Chapter two includes Study 1 and Study 2 as the motivational studies which
+ultimately led to the larger research en devours found in Study 3 and Study 4. Chapter 3 includes Study 3 and Study 4 which ultimately
+press upon indirect conflicts in a more in depth fashion than has been previously seen in research. Chapter 4 contains a lengthy discussion
+of what has been learned from all four studies of this dissertation as well as implications for further research and tool development
+in the field of indirect conflicts. Finally, Chapter 5 concludes this dissertation.
