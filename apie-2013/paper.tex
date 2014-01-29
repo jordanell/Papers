@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass{sig-alternate}
 
 % Use of outside images
 \usepackage{graphicx} 
@@ -7,8 +7,6 @@
 
 %\usepackage{balance}
 \usepackage{float}
-\floatstyle{plaintop}
-\restylefloat{table}
 
 % Correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -18,21 +16,31 @@
 
 % Paper title
 % Can use linebreaks \\ within to get better formatting as desired
-\title{API Evolution: A Study of Software Releases and Change Trends Leading to Stability}
+\title{API Evolution: A Study of Software Releases and Change Trends}
 
-% Authors names
-\author{\IEEEauthorblockN{Jordan Ell}
-\IEEEauthorblockA{University of Victoria\\
-British Columbia, Canada \\ jell@uvic.ca}
-\and
-\IEEEauthorblockN{Braden Simpson}
-\IEEEauthorblockA{University of Victoria\\
-British Columbia, Canada \\ braden@uvic.ca}
-\and
-\IEEEauthorblockN{Daniela Damian}
-\IEEEauthorblockA{University of Victoria\\
-British Columbia, Canada \\ danielad@csc.uvic.ca}
+\numberofauthors{3}
+\author{
+\alignauthor
+Jordan Ell\\
+       \affaddr{University of Victoria}\\
+       \affaddr{3800 Finnerty Rd}\\
+       \affaddr{Victoria, Canada}\\
+       \email{jell@uvic.ca}
+\alignauthor
+Braden Simpson\\
+       \affaddr{University of Victoria}\\
+       \affaddr{3800 Finnerty Rd}\\
+       \affaddr{Victoria, Canada}\\
+       \email{braden@uvic.ca}
+\alignauthor
+Daniela Damian\\
+       \affaddr{University of Victoria}\\
+       \affaddr{3800 Finnerty Rd}\\
+       \affaddr{Victoria, Canada}\\
+       \email{danielad@csc.uvic.ca}
 }
+
+\date{07 February 2014}
 
 % Make the title area
 \maketitle
@@ -45,6 +53,9 @@ and how processes change, but can it shed light on what causes a project to be r
 source code change trends surrounding 109 major release points of 10 open source projects. We found 9 large source code change trends at these release
 points that can be used to determine if a project is likely near a major release point and thus deemed stable. 
 \end{abstract}
+
+\keywords{Change trends, software repositories, software releases}
+
 
 \section{Introduction}
 Release points are a vital milestone of software projects. From major releases of a Waterfall based project to minor iterations of an Agile development,
@@ -76,11 +87,6 @@ In this paper, we perform a case study of 10 open source projects in order to st
 throughout their history. We studied 26 quantitative and 16 qualitative change trends and identified a core group of 9 change trends which occur
 prominently at major release points of the projects studied.
 
-The remainder of this paper is laid out as follows. Section~\ref{sec:rel} goes over the related work, Sections~\ref{sec:meth}
-explains our methodology and tools used in solving our research problem,
-Section \ref{sec:results} gives a full representation of the results and trends found, and Sections~\ref{sec:fut} and~\ref{sec:con} give 
-our future work to follow this study and final conclusions respectively.
-
 \section{Related Work}
 \label{sec:rel}
 While very little has been published about release quality studies and stability, there have been a few studies which attempt to address the issues directly
@@ -109,14 +115,12 @@ can help improve the life of the product line and make it more adaptable and app
 
 \section{Methodology}
 \label{sec:meth}
-In order to answer our research question, we decided to use the tool ChangeDistiller created by Fluri et al.~\cite{Fluri:2007:CDT}. This tool allows us to detect fine grained
+To answer our research question, we used the tool ChangeDistiller created by Fluri et al.~\cite{Fluri:2007:CDT}. This tool allows us to detect fine grained
 source code changes in Java projects. This tool works by building an abstract syntax tree of a file before and after a code change, then it tries to determine
 the smallest possible edit distance between the trees. This results in the source code change at a fine grained level performed in the commit.
 
-We took ChangeDistiller and applied it across 10 open source Java projects. Java projects were nesissary because ChangeDistiller only works for Java source code.
-For each of the projects, we obtained the software configuration management (SCM) system
-which is used to store all source code changes of a project. When it was necessary, we converted some forms of SCM system to Git in order to reduce implementation
-burdens of using multiple SCMs. Once the SCM was obtained, we used ChangeDistiller and iterated over every commit found in a project's git master branch. We stored
+We took ChangeDistiller and applied it across 10 open source Java projects. Java projects were necessary because ChangeDistiller only works for Java source code.
+For each of the projects, we obtained the software repository and used ChangeDistiller to iterate over every commit found in a project's master branch. We stored
 34 of ChangeDistiller's built in source code change types for each commit. We noted how many of each change type was performed in each commit and stored that information
 in a PostgreSQL database. In order to filter and protect our results, we manually inspected the 10 Java projects studied in order to identify code built for test
 purposes.
@@ -150,12 +154,12 @@ formed much of the basis for the results to come in Section~\ref{sec:results}
 \label{eq:norm}
 \end{equation}
 
-Aside from generating quantitative data, we also created a web application for the visualization of the data called API Evolution (APIE). This visualizer allowed
+We also created a web application for the visualization of the data called API Evolution (APIE). This visualizer allowed
 us to inspect a single project and a single change type metric at a time (see Figure~\ref{fig:apie}) for qualitative analysis of software evolution trends. We
 used this tool to manually inspect 4 specific change type trends surround release dates. To do this, we aggregated change types across 50 commits, meaning that
 each point in the graph represented the date of a commit and the sum of the particular change type's occurrences over the last 50 commits. This was used to smooth
 out the curves presented by the tool to allow easier manual inspection. This method however does not take activity into account as seen in
-Equation~\ref{eq:norm}, so it represents the true activity and change types occuring. Manual inspections were labeled into 4 categories: upward trending, local maximum, downward
+Equation~\ref{eq:norm}, so it represents the true activity and change types occurring. Manual inspections were labeled into 4 categories: upward trending, local maximum, downward
 trending, and local minimum. Since the graphs were quite turbulent, best estimations were conducted by two judges at each release point to fit the graph into the aforementioned
 4 slope categories. The two judges used 1.5 months before and after the release date as start and end points for the graph trend line.
 
@@ -174,15 +178,16 @@ Quantitative data was used to compliment the quantitative ratios found from the 
 \label{sec:results}
 
 To answer our research question, we conducted a case study of 10 open source Java projects. These projects are: eclipse.jdt.core, eclipse.jdt.ui, eclipse.jetty.project, 
-eclipse.mylyn.commons, eclipse.mylyn.context, hibernate-orm, hibernate-ogm, hibernate-search, eclipse.maven.core, and eclipse.maven.surefire. These project were chosen
+\\eclipse.mylyn.commons, eclipse.mylyn.context, hibernate-orm, hibernate-ogm, hibernate-search, eclipse.maven.core, and \\eclipse.maven.surefire. These project were chosen
 because of their high use amongst other Java projects and to study specific ecosystems of projects and their evolution trends.
 
-Due to space requirements of this paper, we focus our results on major releases of the 10 case study projects and select few of the calculated change ratios. 
+We focus our results on major releases of the 10 case study projects and select few of the calculated change ratios. 
 There were 109 major releases across the 10 studied projects. All of the major findings as per values computed from Equation~\ref{eq:norm} for non test metrics
 can be seen in Table~\ref{tab:ratio}.
 
 \begin{table}[h]
 \begin{center}
+\caption{Implementation oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:ratio}}
 \tabcolsep=0.11cm
 \begin{tabular}{| l | c | c | c |}
 \hline
@@ -199,7 +204,6 @@ Documentation & - & 0.99 & - \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Implementation oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:ratio}}
 \end{table}
 
 To study the most prevalent change trends, we set a ratio threshold of greater than 1.2, or less than 0.83 (20\% greater trend of after the release date
@@ -222,7 +226,8 @@ and bodies of, and removing public methods tend to all be at a local minimum of 
 account. These results confirm previous results of low code churn as an indication of stability.
 
 \begin{table*}[tb!]
-\begin{center}
+\centering
+\caption{Qualitative graph analysis results. \label{tab:qual}}
 \begin{tabular}{| l | c | c | c | c |}
 \hline
 Change Type & Upward Trend & Local Maximum & Downward Trend & Local Minimum\\
@@ -233,17 +238,16 @@ Changed Public Methods (Bodies) & 9.2\% & 16.5\% & 26.6\% & 37.6\% \\
 Removed Public Methods & 7.8\% & 16.4\% & 12.9\% & 41.4\% \\
 \hline
 \end{tabular}
-\end{center}
-\caption{Qualitative graph analysis results. \label{tab:qual}}
 \end{table*}
 
-Lastly we found that software changes related to testing can be an indicator of a major release points within the projects studied. The change
+Lastly, we found that software changes related to testing can be an indicator of a major release points within the projects studied. The change
 ratios found can be seen in Table~\ref{tab:test}. As it can be seen, the four ratios which meet our threshold and are indicators of stability with regards to test based
 changes are: the changing of test classes, the removal of test classes, the adding of methods, and the changing of method signatures, and test classes being changed.
 Changes to documentation also meets our threshold and occurs more before a major release.
 
 \begin{table}[h]
-\begin{center}
+\centering
+\caption{Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:test}}
 \begin{tabular}{| l | c | c | c |}
 \hline
 Object & Added & Changed & Removed\\
@@ -254,8 +258,6 @@ Methods (Bodies) & - & 0.90 & - \\
 Documentation & - & 0.72 & - \\
 \hline
 \end{tabular}
-\end{center}
-\caption{Test oriented change types and their normalized average change ratios at 60 days on each side of releases. \label{tab:test}}
 \end{table}
 
 While all change ratios may need to be considered for continued analysis or a taxonomy of change trends, we have offered the strongest
@@ -264,11 +266,11 @@ change trends in these results as a suggestion for future focus.
 \section{Future Work}
 \label{sec:fut}
 
-In future work of change trend analysis, we have planned further statistical tests of the change trends identified in this paper. We would like to
-be able to determine if these patterns are unique to major releases versus other types of releases (minor, alpha, beta, release candidate) and to
-be able to determine if these pattern are unique to releases alone or can be spotted throughout the history of a project.
+In future work, we have planned further statistical tests of the change trends identified in this paper. We would like to
+determine if these patterns are unique to major releases versus other types of releases (minor, alpha, beta, release candidate) and to
+determine if these pattern are unique to releases alone or can be spotted throughout the history of a project.
 
-If it is deemed that these change trends are present in no other releases, some, all, or in non release history of the project, we will
+If change trends are present in no other releases, some, all, or in non release history of the project, we will
 compare the history of the projects as to where these trends are found against preexisting software stability and quality metrics. We will use this data to
 create a new method of discovering when software can be considered stable in reference to the types of software changes being made. 
 
@@ -285,11 +287,9 @@ The 5 change trends found in this paper occurring after major release are: added
 private classes, and removed private methods.
 
 The source code change trends found in this paper, in combination with future work and analysis, will allow for the detection of stable code
-points throughout a software projects life time. This paper has also shown the beginnings of a visualization for source code change trends which may
-be used as a visual cue towards project stability and potential areas of instability where action may need to be taken.
+points throughout a software projects life time. 
 
-\bibliographystyle{IEEEtran}
-%\balance
+\bibliographystyle{abbrv}
 \bibliography{paper}
 
 % End of the paper
