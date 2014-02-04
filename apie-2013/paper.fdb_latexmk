@@ -1,13 +1,13 @@
 # Fdb version 3
 ["bibtex paper"] 1391034981 "paper.aux" "paper.bbl" "paper" 
   "/usr/share/texmf-texlive/bibtex/bst/base/abbrv.bst" 1136766823 20285 80a4cd697aa25f551be22e1a27ee1109 ""
-  "paper.aux" 1391035208 2765 d1d3163a6bb10e16a918e1996ff2781f ""
+  "paper.aux" 1391550925 2765 d1d3163a6bb10e16a918e1996ff2781f ""
   "paper.bcf" 0 -1 0 ""
   "paper.bib" 1384793758 9882 9aca96c23dca015766a2621874f0f8fa ""
   (generated)
   "paper.blg"
   "paper.bbl"
-["pdflatex"] 1391035208 "paper.tex" "paper.pdf" "paper" 
+["pdflatex"] 1391550924 "paper.tex" "paper.pdf" "paper" 
   "/etc/texmf/tex/latex/config/graphics.cfg" 1255993321 3328 2584cfe577535f0a08f3a9717b5152ab ""
   "/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii" 1251025892 71625 fad1c4b52151c234b6873a255b0ad6b3 ""
   "/usr/share/texmf-texlive/tex/latex/ae/t1aer.fd" 1191308783 1844 da911cbbb4e7e5dc2776545b8b9cbc06 ""
@@ -32,9 +32,9 @@
   "/usr/share/texmf-texlive/tex/latex/graphics/trig.sty" 1156702488 3153 c50e6bd54d2dd3933fc52bcf369bec4a ""
   "/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def" 1322143080 40817 59149cdca908875781bb2f74014004ed ""
   "images/apie.png" 1384793758 67037 71fae4f2df8a856e71241c5aad49ad96 ""
-  "paper.aux" 1391035208 2765 d1d3163a6bb10e16a918e1996ff2781f ""
+  "paper.aux" 1391550925 2765 d1d3163a6bb10e16a918e1996ff2781f ""
   "paper.bbl" 1391034981 4552 179727dc932f43ab7d60e25c158142f4 "bibtex paper"
-  "paper.tex" 1391035207 20637 99b22276eef865af94c05cad5e6a87f9 ""
+  "paper.tex" 1391550924 20822 c1c610a6d9ddc3c8a49746c8fa662510 ""
   "sig-alternate.cls" 1391032616 59744 8230a5fbf2c386a55d2f105c064c7f85 ""
   (generated)
   "paper.pdf"
