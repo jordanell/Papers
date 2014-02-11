@@ -51,10 +51,10 @@
 \contentsline {section}{\numberline {4.2}Indirect Conflict Exploration Discussion}{47}
 \contentsline {subsection}{\numberline {4.2.1}Implication for Research}{53}
 \contentsline {subsection}{\numberline {4.2.2}Implication for Tools}{54}
-\contentsline {chapter}{\numberline {5}Conclusions}{55}
-\contentsline {section}{\numberline {5.1}Study 1}{55}
-\contentsline {section}{\numberline {5.2}Study 2}{56}
-\contentsline {section}{\numberline {5.3}Study 3}{57}
-\contentsline {section}{\numberline {5.4}Study 4}{58}
-\contentsline {section}{\numberline {5.5}Final Conclusions}{59}
-\contentsline {chapter}{Bibliography}{61}
+\contentsline {chapter}{\numberline {5}Conclusions}{56}
+\contentsline {section}{\numberline {5.1}Study 1}{56}
+\contentsline {section}{\numberline {5.2}Study 2}{57}
+\contentsline {section}{\numberline {5.3}Study 3}{58}
+\contentsline {section}{\numberline {5.4}Study 4}{59}
+\contentsline {section}{\numberline {5.5}Final Conclusions}{60}
+\contentsline {chapter}{Bibliography}{62}
