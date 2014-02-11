@@ -39,8 +39,9 @@ Two types of conflicts have attracted the attention of researchers, \textit{dire
 \textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
 artifact. Tools have been created and studied for direct conflicts
 ~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
-positive developer feedback. Indirect conflicts involve source code change influences such as making a source code change 
-which influences behavior negatively in another location in the system. Indirect conflict tools however, have
+positive developer feedback. Indirect conflicts are caused by source code changes that negatively impact another
+location in the software system such as when libraries are upgraded or when a method is changed
+and invoking methods are influence negatively. Indirect conflict tools however, have
 not shared the same success as direct conflict 
 tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}. However,
 previous interviews and surveys conducted with software developers have shown a pattern that developers 
@@ -67,19 +68,28 @@ invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} w
 identification of failure inducing changes, other than those which are already identifiable by other means such
 as compilers, and unit tests, to these dependencies still remains an issue. Dependency tracking issues are
 also compounded by the scale of many software development projects leading to further information overload.
-Lastly, social factors such as Cataldo et al.~\cite{Cataldo:2006:ICR} notion of socio-technical
+Lastly, social factors such as Cataldo et al's.~\cite{Cataldo:2006:ICR} notion of socio-technical
 congruence have been leveraged in indirect conflict tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA}.
 However, issues again of information overload, dependencies (in developer organizational structure), and scalability 
 come up.
 
 % What is being addressed in this thesis
 Clearly, indirect conflicts and its subsequent research areas have a large breadth of limitations, some of which
-will be explored in this dissertation. I will look to explore: technical dependencies, how developers are involved,
+will be explored in this dissertation. The research goal of this dissertation is to explore the limitations which exist
+with supporting indirect conflicts through awareness techniques as well as to explore possible solution for industry practice 
+in the are of indirect conflicts. To accomplish this goal, I have researcher the following sub topics of indirect
+conflicts: technical dependencies, how developers are involved in said dependencies,
 socio-technical congruence as a mitigation strategy to indirect conflicts, what the root causes of indirect conflicts are,
 what compounding factors exist for indirect conflicts, what current industry mitigation strategies of indirect conflicts
 are being used, what future steps should be taken in academia to better industry regarding indirect conflicts, and finally,
-how software evolution analysis can be used to better tools for indirect conflicts. I will address these issues by
+how software evolution analysis can be used to better tools for indirect conflicts. I have addressed these issues by
 conducting the following four studies.
+
+\section{Research Methodology}
+
+In order to address the research goal as laid out in the previous section, I have conducted 4 studies which will
+now be briefly outlined. Each study builds off the previous one and has research questions informed from the
+findings of the previous study.
 
 % Study 1 introduction
 Study 1 focuses on the power of technical dependencies in software projects. The question I
@@ -95,7 +105,9 @@ inducing pair of developers over indirect conflicts, I hoped that recommended co
 results of Study 1 directly influence Study 2.
 
 % Study 2 introduction
-Study 2 attempts to take the failure inducing pairs of developers from Study 1 and create an awareness tool.
+Study 2 attempts to take the failure inducing pairs of developers from Study 1 and create an awareness tool while
+answering: ``\textit{Can indirect conflicts be supported through an awareness mechanism which leverages pairs of
+developers who's changing technical dependencies statistically relate to bugs?}''.
 In this study, I report on my research into supporting indirect conflicts and present the design, implementation, and 
 evaluation of the tool \textit{Impact}, a web based tool that aims at detecting indirect conflicts among developers and 
 notifying the appropriate members involved in these conflicts. By leveraging technical relationships inherent of software 
@@ -107,7 +119,7 @@ implementation, its design is rather generic and can be implemented in similar i
 conflicts in software development. After a brief evaluation of \textit{Impact} with two student software teams, it was
 found that \textit{Impact} suffers from information overload and a high false positive rate which turn out to be quite
 large problems found in many other indirect conflict
-tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}. In order to full understand 
+tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}. In order to fully understand 
 the causes of these indirect conflict tool issues, a third study was conducted.
 
 % Study 3 introduction
@@ -116,14 +128,14 @@ In order to fully understand the root causes of information overload, false posi
 scalability issues in regards to indirect conflicts, Study 3 was an empirical study to determine what events occur to
 cause indirect conflicts, when they occur, and if conditions exist to provoke more of these events. 
 I also set out to understand what mitigation strategies developers currently use as opposed to those created
-by academia. Through this exploration, I looked to find what can be accomplished moving forward with indirect conflicts
+by academia. Through this exploration, I examined what can be accomplished moving forward with indirect conflicts
 in both research and industry. This study asked the following 3 research questions: 
 \textit{What events or conditions lead to indirect conflicts?}
 \textit{What mitigation techniques are used by developers in regards to indirect conflicts?}
 \textit{What do developers want from future indirect conflict tools?}
 
- I interviewed 19 developers from across 12 commercial and open source projects, followed by a confirmatory survey of 78 
-developers, and 5 confirmatory interviews, in order to answer the aforementioned questions. My findings indicate that: 
+I interviewed 19 developers from across 12 commercial and open source projects, followed by a confirmatory survey of 78 
+developers, and 5 confirmatory interviews, in order to answer the aforementioned questions. The study findings indicate that: 
 indirect conflicts occur frequently and are likely caused by software contract changes and a lack of understanding of those changes,
 developers tend to prefer to use detection and resolution processes or tools
 over those of prevention, developers do not want awareness mechanisms which provide non actionable results, 
@@ -140,7 +152,7 @@ With the power of major release points in open source projects as a starting poi
 be leveraged to detect stability and the proneness of indirect conflicts (as will be seen in Study 3), this study investigates the question:
 ``\textit{What trends exist in source code changes surrounding major releases of open source projects as a notion towards a project
 stability measure?}''. I perform a case study of 10 open source projects in order to study their source code change trends surrounding major release points
-throughout their history. I studied 26 quantitative and 16 qualitative change trends and identified a core group of 9 change trends which occur
+throughout their history. I studied 26 change trends quantitatively and 4 change trends qualitatively, and identified a core group of 9 change trends which occur
 prominently at major release points of the projects studied.
 
 % The rest of the thesis 

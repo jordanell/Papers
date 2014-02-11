@@ -2,7 +2,8 @@
 \label{chapter:discussion}
 
 While each study presented in this dissertation is quite unique, this chapter will focus on the underlying themes and
-results of all 4 studies. This chapter will address the usefulness of the results presented towards academia and
+results of all 4 studies. This chapter will address the usefulness of the results presented towards the
+research community and
 what those results mean for continued studies in future research as well as discuss how the results can be viewed
 for larger over arching outcomes than those presented in results sections. 
 
@@ -16,7 +17,7 @@ studies found in Chapter 3 in a combined manner. Since Study 4 was directly asso
 \textbf{The Human Factor of Indirect Conflicts} \textit{An important component of indirect conflicts are the developers
 themselves and how their notions of other's work is perceived across a project.}
 
-As we have seen through Study 1, developers which are tied to source code objects can become a focal point of
+As we have seen in Study 1, developers which are tied to source code objects can become a focal point of
 indirect conflicts through the life of a project. For instance we can see from Table~\ref{tab:ratio} that
 developers Daniel and Anne on Hibernate-ORM are always linked indirect conflicts when dependencies between
 their source code objects change. This is an important observation to make when moving forward with indirect
@@ -31,14 +32,14 @@ frequently and causing Daniel's code to be negatively affected in some way.
 
 The question of how to prevent this type of negative impact is ultimately the goal of indirect conflicts. Study 1 has
 shown that pairs of developers can often be a large component to that goal as well. (Impact from Study 2 was
-created the address just this issue.) 
+created to use these pairs of developers in addressing the issue of indirect conflicts.) 
 
 \textbf{Information Overload} \textit{My tool Impact, as well as many other indirect conflict tools, suffer from
-information overload in their delivery to developers which is a key issue in preventing adopting and acceptance
+information overload in their delivery to developers which is a key issue in preventing adoption and acceptance
 of indirect conflict tools.}
 
 As was previously stated, many indirect conflict tools end up suffering from information overload to developers
-and other end users. Impact was initially created to take the knowledge learned from Study 1 and attempt to create
+and other end users. Impact was initially created to take the insights from Study 1 and attempt to create
 a new indirect conflict system based on developer interactions inside the code base which would potentially address
 information overload. However, we now know from the results of Study 2, that Impact once again suffered defeat to information
 overload based on the case study evaluation. Ultimately, this sense of information overload ends up causing
@@ -71,7 +72,7 @@ the next section.
 While the previous section discussed the main motivations for taking a step back on indirect conflicts in order to understand
 better what can be done to improve developer work flow, this section will discuss exactly those steps back. From Studies 3 and
 4 we will notice 3 main trends that have been discovered for indirect conflicts in both industry and in academia. These 3 major
-trends to now be discussed are: unwanted awareness, prevention versus cure, and the gap in software evolution analysis. This
+trends are: unwanted awareness, prevention versus cure, and the gap in software evolution analysis. This
 section will also include a brief discussion regarding the implications, learned from studies 3 and 4, for both academia and
 for industry through tools.
 
@@ -252,7 +253,7 @@ has lead to some of the deficiencies of indirect conflict research.
 \subsection{Implication for Research}
 \label{sec:implr}
 
-\textbf{Prevention versus Cure} \textit{The largest implication for future research found in this paper is the need for continued study of the open question
+\textbf{Prevention versus Cure} \textit{The largest implication for future research found in this dissertation is the need for continued study of the open question
 ``Which of prevention or cure is more effective for software development and indirect conflicts?''. This simple question will undoubtedly 
 produce extremely complex answers.}
 
@@ -269,7 +270,7 @@ of prevention versus cure, thus being able to increase developer productivity as
 versus practice which may lead to improved tools or the abandoning of existing ones as was shown with UML~\cite{Petre:2013:UP}.
 
 \textbf{Awareness Theory to Model Real World} \textit{the need to further characterize the
-mismatch between awareness approaches and tools as developed in the research community and awareness needs as perceived
+mismatch between awareness approaches and tools as developed in the research community, compared to awareness needs as perceived
 by industry. We should push our awareness theories to model real development
 environments where interruptions, time management, and full development life cycles are often large factors.}
 
@@ -298,7 +299,7 @@ on what industry standards are for languages and project structures.}
 
 The more indirect implication of this research on tool creation is that of improving existing tools. While not all existing
 tools are used for indirect conflicts alone (automatic debugging~\cite{Zeller:2005:WPF}, unit tests, etc), most of these tools
-have need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
+have a need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
 automatically written for a given software object's contract, the ability to find a change  in an external project
 which has broken a developer's own project, or any automation of the existing detection and resolution stages of indirect
 conflicts are what developers currently seek. But of course, most of these implications rely on the improvement of 

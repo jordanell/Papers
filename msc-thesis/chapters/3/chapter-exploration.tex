@@ -1,14 +1,6 @@
 \startchapter{Exploring Indirect Conflicts}
 \label{chapter:exploration}
 
-As Software Configuration Management (SCM) has grown over the years, the maturity and norm of parallel 
-development has become the standard development process instead of the exception. With this parallel development
-comes the need for larger awareness among developers to have ``an understanding of the activities of others
-which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness
-mitigates some downsides of parallel development which include the cost of conflict prevention and resolution. However,
-empirical evidence shows that these mitigated losses continue to appear quite frequently and can prove to be a significant
-and time-consuming chore for developers~\cite{Perry:2001:PCL}.
-
 Through the two previous studies, I have shown that developers linked indirectly in source code changes can statistically
 related to software failures. In the attempts of mitigating these loses through added awareness, I implemented
 an indirect conflict tool called \textit{Impact}. However, \textit{Impact} ultimately suffered from information
@@ -25,7 +17,7 @@ identification of failure inducing changes, other than those which are already i
 as compilers, and unit tests, to these dependencies still remains an issue. Dependency tracking issues are
 also compounded by the scale of many software development projects leading to further information overload.
 
-Social factors such as Cataldo et al.~\cite{Cataldo:2006:ICR} notion of socio-technical
+Social factors such as Cataldo et al's.~\cite{Cataldo:2006:ICR} notion of socio-technical
 congruence, have also been leveraged in indirect conflict tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA}.
 However, issues again of information overload, false positives, dependencies (in developer organizational structure), and scalability 
 come up.
@@ -34,30 +26,34 @@ While these issues of information overload, false positives, dependencies, and s
 in most indirect conflict tools, only a handful of attempts have been made at rectifying these issues or
 finding the root causes~\cite{Holmes:2010:CAR,Kim:2011:ESA}. 
 In order to fully understand the root causes of information overload, false positives, and
-scalability issues in regards to indirect conflicts, I will proceed by taking a step back and determine what events occur to
+scalability issues in regards to indirect conflicts in this study, I examine and determine what events occur to
 cause indirect conflicts, when they occur, and if conditions exist to provoke more of these events. By determining the root
 causes of source code changes in indirect conflicts, we may be able to create indirect conflict tools which have filtered
 monitoring in order to only detect those changes with a high likelihood of causing indirect conflicts.
-I then set out to understand what mitigation strategies developers currently use as opposed to those created
+I then determine what mitigation strategies developers currently use as opposed to those created
 by academia. Since developers have identified indirect conflicts as a major concern for themselves, but at
 the same time are not using the tools put forth by academia, I wish to find what they use to mitigate indirect
 conflicts. Through these findings, we can create tools which are similar to those already in use by developers in
 the hopes of a higher adoption rate of tools produced by academia.
-Finally, I look to find what can be accomplished moving forward with indirect conflicts
+Finally, I examine what can be accomplished moving forward with indirect conflicts
 in both research and industry.
 
-I restate the research goals of this thesis for ease of the reader: 
+To explore and answer the research goals listed above, I performed a study (Section~\ref{study:exploration}) in which I 
+interviewed 19 developers from across 12 commercial and open source projects, 
+followed by a confirmatory questionnaire of 78 developers, and 5 confirmatory interviews.
 
-\begin{description}
-  \item \textit{What events or conditions lead to indirect conflicts?}
-  \item \textit{What mitigation techniques are used by developers in regards to indirect conflicts?}
-  \item \textit{What do developers want from future indirect conflict tools?}
-\end{description}
-
-To answer these research questions, I performed a study (Section~\ref{study:exploration}) in which I interviewed 19 developers from across 12 commercial and open source projects, 
-followed by a confirmatory survey of 78 developers, and 5 confirmatory interviews. Based on the findings (to be seen) to the aforementioned research questions, 
-I also performed a secondary complimentary study of software evolutionary trends (Section~\ref{study:apie}) to solidify
-developer opinion and provide a starting point for the future development of indirect conflict tools.
+Based on some of the findings (to be seen in details in Section~\ref{study:exploration}) I performed a follow up study
+which did not relate directly to the themes of this dissertation but helped strengthen the results found in Study 3.
+Some results of Study 3 showed that indirect conflict tools should take into account a contextual setting of development
+progression in software projects to better inform developers of potential indirect conflicts. In other words, an indirect
+conflict tool should be able to tell what phase of development inside the development life cycle a project is currently
+active in. In order to better explore and support this finding, I performed a complimentary study of software evolutionary trends (Section~\ref{study:apie}).
+In Study 4, I perform a case study of 10 open source projects in order to study their source code change trends surrounding major release points
+throughout their history. I studied 26 change trends quantitatively and 4 change trends qualitatively, and identified a core group of 9 change trends which occur
+prominently at major release points of the projects studied. These change trends can provide context as to when indirect conflicts are more likely
+to occur based on the findings from Study 3 as I found that indirect conflicts tend to be become less frequent near major release and more
+frequent after a release or at the start of a new development cycle. The findings of this study can be applied over the lifetime of a project
+to determine the proneness of indirect conflicts and thus aiding developers in dealing with indirect conflicts in their projects.
 
 
 \input chapters/3/sec-iced

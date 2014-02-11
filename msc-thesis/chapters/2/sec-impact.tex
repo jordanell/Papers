@@ -46,7 +46,15 @@ internal structures of technical objects.
 In this study, I report on research into supporting developer pairs in indirect conflicts
 and present the design, implementation, and future evaluation of the tool \textit{Impact},
 a web based tool that aims at detecting indirect conflicts among developers
-and notifying the appropriate members involved in these conflicts.
+and notifying the appropriate members involved in these conflicts. Through Impact and
+its evaluation I ask:
+
+\begin{description}
+        \item[RQ\namedlabel{itm:rq1-impact}{RQ1-Impact}] \textit{Can indirect conflicts be supported 
+        through an awareness mechanism which leverages pairs of developers who's changing technical 
+        dependencies statistically relate to bugs?}
+\end{description}
+
 By leveraging technical relationships inherent of 
 software projects with method call graphs~\cite{Lakhotia:1993:CCM}
 as well as detecting changes
@@ -57,7 +65,12 @@ overload by using design by contract~\cite{Meyer:1988} solutions to method desig
 outlines \textit{Impact's} specific implementation, its design is rather
 generic and can be implemented in similar indirect conflict awareness tools.
 
-\section{Related Work}
+After a brief evaluation of \textit{Impact} with two student software teams, it was
+found that \textit{Impact} suffers from information overload and a high false positive rate which turn out to be quite
+large problems found in many other indirect conflict
+tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}.
+
+\subsection{Related Work}
 Although there is an abundance of awareness tools developed in research
 today, only a handful have made an attempt to examine indirect conflicts.
 Here, I will outline four of the forefront projects in indirect conflicts
@@ -282,6 +295,9 @@ to be on the correct path. However, \textit{Impact} has clearly shown
 the achilles heel of indirect conflict tools, which is information
 overload because of an inability to detect ``notification worthy''
 changes.
+
+\subsection{Threats to Validity}
+% TODO
 
 \subsection{Conclusions of Study}
 \label{sec:ns}

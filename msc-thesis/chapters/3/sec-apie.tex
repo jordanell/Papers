@@ -1,7 +1,7 @@
 \section{Study 4: Investigating Indirect Conflict Contextual Patterns}
 \label{study:apie}
 
-Release points are a vital milestone of software projects. From major releases of a Waterfall based project to minor iterations of an Agile development,
+Release points are a vital milestone of software projects. From major releases of a Waterfall based project to iterations of an Agile development,
 releases form an interesting single point of a project's development history.
 Third party users (outside developers) of a system often only see a product at a release point either major or minor,
 and expect the system to come with a sense of reliability and stability at this point. Developers often expect to be able to upgrade a library to
@@ -20,22 +20,25 @@ both internally and externally to third party applications.
 Creating an approach to determining software stability, release preparedness, and the proneness of indirect conflicts is still a large open area of
 interest in software engineering research.
 
-I turn my analysis to the notions of software change trends, specifically those trends around major releases. Change trends are trends which indicate
+In this study, I examine the notions of software change trends, specifically those trends around major releases. Change trends are trends which indicate
 a likelihood for a change type to occur around a certain event. Change trends have been used to detect
 stability in core architecture~\cite{Wermelinger:2008:AEE} as well as evolving dependencies~\cite{Businge:2010:ESE}.
 With the power of major release points in open source projects as a starting point for project stability and the understanding that change trends can
 be leveraged to detect stability and the proneness of indirect conflicts, this study investigates the question:
-``\textit{What trends exist in source code changes surrounding major releases of open source projects as a notion towards a project
-stability measure?}''.
+
+\begin{description}
+        \item[RQ\namedlabel{itm:rq1-apie}{RQ1-APIE}] \textit{What trends exist in source code changes surrounding major releases of open 
+        source projects as a notion towards a project stability measure?}
+\end{description}
 
 In this study, I perform a case study of 10 open source projects in order to study their source code change trends surrounding major release points
-throughout their history. I studied 26 quantitative and 16 qualitative change trends and identified a core group of 9 change trends which occur
+throughout their history. I studied 26 change trends quantitatively and 4 change trends qualitatively, and identified a core group of 9 change trends which occur
 prominently at major release points of the projects studied. These change trends can provide context as to when indirect conflicts are more likely
-to occur based on the findings from Study 3 as I found that indirect conflicts tend to be become less frequent near and major release and more
+to occur based on the findings from Study 3 as I found that indirect conflicts tend to be become less frequent near major release and more
 frequent after a release or at the start of a new development cycle. The findings of this study can be applied over the lifetime of a project
 to determine the proneness of indirect conflicts and thus aiding developers in dealing with indirect conflicts in their projects.
 
-\section{Related Work}
+\subsection{Related Work}
 \label{sec:rel}
 While very little has been published about release quality studies and stability (especially in regards to
 indirect conflicts), there have been a few studies which attempt to address the issues directly
@@ -68,7 +71,11 @@ In order to answer my research question, I decided to use the tool ChangeDistill
 source code changes in Java projects. This tool works by building an abstract syntax tree of a file before and after a code change, then it tries to determine
 the smallest possible edit distance between the trees. This results in the source code change at a fine grained level performed in the commit.
 
-I took ChangeDistiller and applied it across 10 open source Java projects. Java projects were necessary because ChangeDistiller only works for Java source code.
+I conducted a case study of 10 open source Java projects. These projects are: eclipse.jdt.core, eclipse.jdt.ui, eclipse.jetty.project, 
+eclipse.mylyn.commons, eclipse.mylyn.context, hibernate-orm, hibernate-ogm, hibernate-search, eclipse.maven.core, and eclipse.maven.surefire. These project were chosen
+because ChangeDistiller only works for Java source code and because of their high use amongst other Java projects and to study specific ecosystems 
+of projects and their evolution trends.
+
 For each of the projects, I obtained the software configuration management (SCM) system
 which is used to store all source code changes of a project. When it was necessary, I converted some forms of SCM system to Git in order to reduce implementation
 burdens of using multiple SCMs. Once the SCM was obtained, I used ChangeDistiller and iterated over every commit found in a project's git master branch. I stored
@@ -129,10 +136,6 @@ Quantitative data was used to compliment the quantitative ratios found from the 
 \subsection{Results}
 \label{sec:apie-results}
 
-To answer my research question, I conducted a case study of 10 open source Java projects. These projects are: eclipse.jdt.core, eclipse.jdt.ui, eclipse.jetty.project, 
-eclipse.mylyn.commons, eclipse.mylyn.context, hibernate-orm, hibernate-ogm, hibernate-search, eclipse.maven.core, and eclipse.maven.surefire. These project were chosen
-because of their high use amongst other Java projects and to study specific ecosystems of projects and their evolution trends.
-
 Due to time requirements, I focus my results on major releases of the 10 case study projects and select few of the calculated change ratios. 
 There were 109 major releases across the 10 studied projects. All of the major findings as per values computed from Equation~\ref{eq:norm} for non test metrics
 can be seen in Table~\ref{tab:apie-ratio}.
@@ -160,6 +163,12 @@ Documentation & - & 0.99 & - \\
 
 To study the most prevalent change trends, I set a ratio threshold of greater than 1.2, or less than 0.83 (20\% greater trend of after the release date
 or 20\% greater trend of before the release date) to indicate the greatest trends.
+
+I found 9 major change trends which surround major releases in the open source
+projects studied. 4 change trends found that occur before major releases are: added private classes, 
+changed test method signatures, changed documentation, and removed test classes.
+5 change trends found that occur after major release are: added test methods, changed test classes, removed public methods, removed
+private classes, and removed private methods.
 
 As it can be seen in Table~\ref{tab:apie-ratio}, there are few change type trends around major releases which pass my threshold. We can see that both public
 and private methods
