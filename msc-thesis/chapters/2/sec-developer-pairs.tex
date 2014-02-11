@@ -3,7 +3,7 @@
 
 % Explain technical network research that already exists
 Technical dependencies in a project can be used to predict success or failure in
- builds or code changes~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU}. However, most 
+builds or code changes~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU}. However, most 
 research in this area is based on identifying
 central modules inside a large code base which are likely to cause software failures or
 detecting frequently changed code that can be associated with previous failures
@@ -29,6 +29,32 @@ relationships in successful and failed code changes. As it will be seen, I found
 significant failure inducing developer pairs. These developer relationships can also be used
 to promote the idea of leveraging socio-technical congruence, a measure of coordination compared
 to technical dependencies amongst stakeholders, to provide coordination recommendations.
+
+\subsection{Related Work}
+
+Research has shown multiple reasons for software failures in both technical dependencies as well
+as human or social dependencies in software development. On the technical side, studies have shown that
+technical dependencies in software are often powerful predictors or errors in software as well as
+in builds~\cite{Pinzger:2008:DNP, Zimmermann:2008:PDU, Hassan:4019574}. These technical dependencies
+are often accompanied by data mining algorithms in order to set apart failure inducing dependencies
+from non failing dependencies.
+
+On the other side with the human factor, researchers have examined predicting build outcomes of software
+using communication patterns from developers. Wolf et al.~\cite{5070503} used patterns of communication from between
+pre-existing build in order to predict later build outcomes. Naggappan et al.~\cite{nagappan08} showed that having a large
+communication organization difference between developers who worked on the same software module had
+a negative influence on the quality of the software.
+
+Studies have also combined both technical and social dependencies into a notion of socio-technical congruence.
+Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that this notion of socio-technical congruence can be leveraged to predict
+and improve task completion times in a software projects.
+
+These studies have mostly focused at a very high and abstract level of software development (builds and task completion).
+Where they have fallen short is in fine grained analysis of software changes. This study is used to take the
+pre existing knowledge of both technical and social dependencies and apply it to a source code change level of
+granularity. Instead of large scale failures like long completion times or build failures, this study examines failures
+at the bug level induced by each code change.
+
 
 \subsection{Technical Approach}
 

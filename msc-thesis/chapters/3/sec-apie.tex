@@ -88,7 +88,7 @@ test based code separately.
 Once the ChangeDistiller information was collected, I decided to examine software change trends surrounding releases of the project's I had selected. Since releases
 have preconceived notions of software stability and a lack of proneness to indirect conflicts, 
 I decided that by studying the change types surrounding these releases, I could get a better understanding of
-what types of source code changes or trends constitute software stability or maturity. In order to study the release points, I went to each of our 10 project's 
+what types of source code changes or trends constitute software stability or maturity. In order to study the release points, I went to each of my 10 project's 
 web pages and looked through their release histories for major, minor, alpha, beta, and release candidate type releases. In total I identified 472 releases
 across my 10 studied projects.  
 
@@ -104,7 +104,7 @@ is created by summing across all release of a given release type
 a sum of that same particular change type in commits ($T_c$) from a given number of days ($d$) before the release date ($r$) to
 the release date divided by the number of commits in this date range ($|c|$). This numerator and denominator form the final change ratio.
 This equation gives us a ratio of a particular change type happening before and after a particular release. If the ratio is above 1 then that particular change
-type occurs more frequently after the release and if it is below 1 then it occurs more frequently before the release. For the purposes of our study, we set the
+type occurs more frequently after the release and if it is below 1 then it occurs more frequently before the release. For the purposes of my study, I set the
 number of days before and after the release ($d$) to 60 as the projects studies had many months in between their major releases. This quantitative data
 formed much of the basis for the results to come in Section~\ref{sec:apie-results}
 
@@ -202,7 +202,7 @@ Removed Public Methods & 7.8\% & 16.4\% & 12.9\% & 41.4\% \\ \hline
 \end{table*}
 
 Lastly, I found that software changes related to testing can be an indicator of a major release points within the projects studied. The change
-ratios found can be seen in Table~\ref{tab:test}. As it can be seen, the four ratios which meet our threshold and are indicators of stability with regards to test based
+ratios found can be seen in Table~\ref{tab:test}. As it can be seen, the four ratios which meet my threshold and are indicators of stability with regards to test based
 changes are: the changing of test classes, the removal of test classes, the adding of methods, and the changing of method signatures, and test classes being changed.
 Changes to documentation also meets my threshold and occurs more before a major release.
 
@@ -232,7 +232,7 @@ major releases as previous studies have shown that indirect conflicts occur less
 or at the beginning of a development cycle. I have presented here 9 major change trends which surround major releases in the open source
 projects studied. The 4 change trends found in this study occurring before major releases are: added private classes, 
 changed test method signatures, changed documentation, and removed test classes.
-The 5 change trends found in this paper occurring after major release are: added test methods, changed test classes, removed public methods, removed
+The 5 change trends found in this study occurring after major release are: added test methods, changed test classes, removed public methods, removed
 private classes, and removed private methods.
 
 These 9 change trends can be used in future indirect conflict tools in order to identify a context for indirect conflicts.

@@ -1,16 +1,16 @@
 \section{Study 3: An Exploration of Indirect Conflicts}
 \label{study:exploration}
 
-In order to fully understand the root causes of information overload, false positives, and
-scalability issues in regards to indirect conflicts, I conducted a large scale empirical study involving industrial
-participants in order to determine: what events occur to
-cause indirect conflicts, when they occur, if compounding conditions exist, and what mitigation strategies developers currently
-use. Through this large exploration, what can be accomplished moving forward with indirect conflicts
-in both research and industry and how we can get over the road block of these information overload related
-issues. My research questions for this particular study are as follows:
+I want to understand why it is so hard to tackle indirect conflicts, specifically through tool based solutions.
+To do so, I take a step back and intend to obtain a broader view of indirect conflicts
+with a large field study of practitioners. I investigate the root causes of information overload, false positives, and
+scalability issues in regards to indirect conflicts to better understand why indirect conflict tools fail to achieve
+the success of other domain tools. I determine: general events which 
+cause indirect conflicts, when they occur, if compounding conditions exist, mitigation strategies developers
+use, and what practitioners want from new tools. My research questions for this particular study are as follows:
 
 \begin{description}
-        \item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What events or conditions lead to indirect conflicts?}
+        \item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What are the types, factors, and frequencies of indirect conflicts?}
         \item[RQ2\namedlabel{itm:rq2}{RQ2}] \textit{What mitigation techniques are used by developers in regards to indirect conflicts?}
         \item[RQ3\namedlabel{itm:rq3}{RQ3}] \textit{What do developers want from future indirect conflict tools?}
 \end{description}
@@ -39,8 +39,8 @@ been used often in the visualization of indirect conflict tools, allowing develo
 needs. Another indirect conflict tool, CASI~\cite{Servant:2010:CPI}, utilizes dependency slicing~\cite{Bajracharya:2009:SIS}
 instead of method call graphs to provide an environment to see what areas of a project are being affected by a source code change.
 Most of these tools have all shown to have the same common difficulties of scalability, false positives, and information overload,
-which were explored in this paper. Our own tool
-Impact!~\footnote{University of Victoria Computer Science Technical Paper: DCS-351-IR} also suffered these same fates.
+which were explored in this study. My own tool
+Impact!~\cite{Ell:2013} also suffered these same fates.
 
 Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
 times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
@@ -53,17 +53,19 @@ software quality~\cite{Kwan:2011:SCE} and again the problems of scalability and 
 
 For developer interest in regards to software modifications, Kim~\cite{Kim:2011:ESA} found that developers wanted to know whose
 recent code changes semantically interfere with their own code changes, and whether their code is impacted by a code change.
-Kim conducted several focus groups as well as web questionnaires to determine these results. These areas of interest resonate with what was
-found in this paper. Developers want to know when a code change is going to interfere with their work in a potentially negative way and
-require action on the developer's half.  Kim
-also found that developers are concerned with interfaces of objects and when those interfaces change, similar to the object contracts that
-were found in this paper. Finally, Kim also identified the same issues towards information overload through false positives with developers
-noting ``I get a big laundry list... I see the email and I delete it''.
+Kim found that developers are concerned with interfaces of objects and when those interfaces change. Kim also identified the same 
+issues towards information overload through false positives with developers noting ``I get a big laundry list... I see the email and I delete it''.
+Kim's field study does however fall short in actually creating a resolution for indirect conflicts, or finding new concerns of
+developers which are not already detected by compilation or other static analysis tools. 
+For impact awareness, DeSouza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
+code base to determine the impact of their code changes on fellow developers, teams, and projects. However, DeSouza does not
+study which types of changes (types, frequencies, compounding factors) developers should concern themselves with more in terms of using their personal knowledge
+to stop indirect conflicts. DeSouza also does not study formal mitigation strategies, or resolutions of indirect conflicts directly.
 
-In a case study of impact awareness, de Souza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
-code base to determine the impact of their code changes on fellow developers, teams, and projects. This corresponds with the findings of
-preventative measures I have found in that some human interaction or knowledge is required in preventing indirect conflicts along with
-development processes.
+This study is intended to fill the gap which has been left by aforementioned tools papers as well as the field study paper.
+I will not only study why information overload, false positives, and scalability are such difficult problems to tackle
+in indirect conflict tools, but I will also study how developers currently deal with indirect conflicts in practice through
+their mitigation strategies, their largest concerns, and their ideas for future suggestions in regards to indirect conflicts.
 
 \subsection{Methodology}
 \label{sec:exp-meth}
@@ -117,8 +119,8 @@ after the initial invitation if no response was made. I directly emailed 22 part
 interviews were not possible, one of Skype or Google Hangout was used with audio and video being recorded but only
 audio being stored for future use. 
 
-Interview participants first answered a number of demographic questions. I then asked them to describe various software development experiences regarding our three research questions.
-Specifically, ten semi-structured  topics directly related to our research questions guided our interview: 
+Interview participants first answered a number of demographic questions. I then asked them to describe various software development experiences regarding my three research questions.
+Specifically, ten semi-structured topics directly related to my research questions guided my interview: 
 
 
 \begin{itemize}
@@ -143,7 +145,7 @@ being apart of any one software project for extended periods of time.
 
 \subsubsection{Questionnaire Participants}
 
-My questionnaire respondents were different from my interviewees. I invited our questionnaire participants from a similar breadth of open and closed source software development 
+My questionnaire respondents were different from my interviewees. I invited my questionnaire participants from a similar breadth of open and closed source software development 
 companies and projects as the interviews participants with two main exceptions. The software organizations
 that remained the same between interview and questionnaire were: Mozilla, The GNOME Project, Microsoft Corporation, 
 Subnet Solutions, and Amazon.
@@ -220,7 +222,13 @@ outlined in this chapter and Chapter 1. I restate each research question, follow
 results from which I draw my discussion to be seen in Chapter~\ref{chapter:discussion}. In each subsection, quantitative data
 given refers to interviews conducted unless explicitly said otherwise.
 
-\subsubsection{What events or conditions lead to indirect conflicts?}
+\subsubsection{What are the types, factors, and frequencies of indirect conflicts?}
+
+\bf{The most common occurrence of indirect conflict is when a software object's contract changes. The frequency of
+indirect conflicts, while usually high, decreases as a stable point is reached in the development cycle. The frequency
+of indirect conflicts is compounded by the number of developers working on a project.}
+
+\normalfont{}
 
 12 developers believe that a large contributing factor to the cause
 of indirect conflicts comes from the changing of a software object's contract. Object contracts are, in a sense,
@@ -245,8 +253,9 @@ base game architecture.
 
 11 developers explained that indirect conflicts occur ``all the time'' in
 their development life cycle with a minimum occurrence of once a week, with more serious issues tending
-to occur once a month. To confirm this, 64\% of questionnaire participants answered that indirect conflicts occur on minimum bi-weekly,
-with the 25\% saying that weekly occurrences are most common (seen in ~\ref{tab:often}). 5 questionnaire participants
+to occur once a month. To confirm this, 64\% of questionnaire participants answered that indirect conflicts occur bi-weekly or more
+frequent,
+with the 25\% saying that weekly occurrences are most common (seen in Table~\ref{tab:often}). 5 questionnaire participants
 also stated that the stage of the development cycle can greatly cause the frequency of indirect conflicts to
 differ.
 
@@ -257,7 +266,7 @@ than once a stable point is reached. Developers said ``At a stable point we deci
 changes a lot, especially with agile''. Questionnaire participants also added ``indirect conflicts after a release
 depend on how well the project was built at first'', ``[indirect conflicts] tend to slow down a bit after a
 major release, unless the next release is a major rework.'', and ``[indirect conflicts have] spikes during
-large revamps or the implementation of cross-cutting new features.'' in order to confirm our interview results.
+large revamps or the implementation of cross-cutting new features.'' in order to confirm mu interview results.
 Questionnaire participants also answered that
 indirect conflicts are more likely to occur before the first major release rather than after at the daily
 and weekly occurrence intervals as seen in Table~\ref{tab:often}.
@@ -302,6 +311,13 @@ of questionnaire participants.\label{tab:env}}
 \end{table*}
 
 \subsubsection{What mitigation techniques are used by developers in regards to indirect conflicts?}
+
+\bf{Three preventative techniques are used to mitigate indirect conflicts: design by contract, add and deprecate, and personal
+experience. For catching indirect conflicts, developers use: testing (unit and integration) with proper use case coverage,
+scheduled build processes, and static analysis tools built into IDEs. For resolving indirect conflicts, developers use: historical
+error and information logs, compiler and debugger tools, as well as static analysis tools built into IDEs.}
+
+\normalfont{}
 
 In terms of preventative processes used for indirect conflicts, 3 major components were found.
 First, design by contract is heavily used by interviewed developers as a means to avoid indirect conflicts or understand
@@ -353,6 +369,12 @@ at the detection and resolutions stages. One developer noted that preventative p
 while a project manager said ``[with preventative process] you will spend all you time reviewing instead of implementing''.
 
 \subsubsection{What do developers want from future indirect conflict tools?}
+
+\bf{Being that developers believe ``good enough'' solutions exist for preventing and detecting indirect conflicts
+developers would rather see improvement to debugging processes. Developers are looking for automated debugging tools,
+and better source code analysis tool for impact management and supporting cross team and cross sub-project projects.}
+
+\normalfont{}
 
 When asked about preventative tools, developers had major concerns that the amount of false positives
 provided by the tool which may render the tool useless. Developers said ``this would
@@ -411,7 +433,7 @@ Interview and questionnaire participants suggested the following improvements to
 \label{sec:exp-eval}
 
 From the re-interviewed participants, I found extremely positive feedback regarding both my results and major discussion
-points. Participants often had new stories and experiences to share once they had heard the results of this paper which
+points. Participants often had new stories and experiences to share once they had heard the results of this study which
 confirmed the findings and often were quite shocked to hear the results as they did not usually think about their actions
 as such but then realized the results held true to their daily actions for better or worse.
 
@@ -437,11 +459,11 @@ the disjoint between theoretical awareness and practical awareness regarding ind
 insight into the debate of prevention versus cure in software development (as to be seen in Chapter~\ref{chapter:discussion}). 
 Given how many indirect conflict tools are left with the same common
 issues, I believe that these findings will help researchers focus on what developers want and need moving into the future more than has
-been possible in the past. These finding set a course of action for where effort should be spent in academia to better benefit industry.
+been possible in the past. These finding set a course of action for where effort should be spent in research to better benefit industry.
 
 10 of the 78 questionnaire participants sent direct responses to me asking for any results of the research to be sent directly to
 them in order to improve their indirect conflict work flows. 7 of the 19 participants interviewed expressed interest concerning any possible
-tools or plans for tools inspired by this research as well. The combination of academia relatability and direct industry interest 
+tools or plans for tools inspired by this research as well. The combination of research relatability and direct industry interest 
 in my results help us fulfill this criterion.
 
 {\bfseries Variation.} ``Has variation been built into the findings?'' Variation shows that an event is complex and that any findings
@@ -454,7 +476,18 @@ to show how the complexity of the situation also resides in a significant number
 in the generalized theories and findings.
 
 \subsection{Threats to Validity}
-% TODO
+Because of the exploratory nature of this work, I chose Grounded Theory as my research method, which has some implications regarding the
+limitations and threats to validity of this study. While I achieved high saturation regarding the topics focused on in this study, other
+populations studied from outside of this studies participants may add new insights into the pool of findings. As a result of this, findings
+from this study may not relate to everyone or generalize to outside of the group of participants involved in this study.
+
+As per my interview participants, I attempted to cover as great a breadth as possible of software developers in their practices, companies,
+project, languages, etc. However, it would be extremely difficult to conduct a completely thorough study of indirect conflicts in practice
+as there exist too many demographic options for participants. This same applies for questionnaire participants. This being said, questionnaire 
+or interview results could become heavily biased towards a developers good or bad experiences with any given project.
+
+To counter act this, my confirmatory interviews found high agreement for several of my findings. Therefore, I believe that
+I have uncovered valuable insight regarding indirect conflicts in practice.
 
 \subsection{Conclusions of Study}
 
@@ -462,9 +495,12 @@ In this study, I have explored indirect conflicts by examining their root causes
 wish to handle indirect conflicts in the present in future. To achieve these results, I interviewed 19 developers from across 12 commercial 
 and open source projects, followed by a confirmatory questionnaire of 78 developers, and 5 confirmatory interviews.
 
-My findings indicate that: 
-indirect conflicts occur frequently and are likely caused by software contract changes and a lack of understanding of change impacts,
-indirect conflicts occur quite frequently with a tendency to be more prevalent at the beginning of a development cycle, indirect conflicts
-occur more often as a software project grows in developer numbers, developers use design by contract, add and deprecate, and experience
-to mitigate indirect conflicts, and finally, developer prefer to have tools which help them debug quicker once a conflict has occurred rather
-than tools which help prevent possible conflicts for the future.
+My findings have indicated that:
+indirect conflicts occur frequently and are likely caused by software contract changes;
+while design by contract, add and deprecate, and personal experience help prevent indirect conflicts,
+developers tend to prefer to use detection and resolution processes or tools
+over those of prevention, and developers want indirect conflict tools to focus on automatic debugging and better source code analysis.
+
+My result analysis has indicated that: developers do not want awareness mechanisms which provide non actionable results; developers
+would rather focus on curing existing problems rather than preventing potential issues;
+and that there exists a gap in software evolution analytical tools between what is available and what practitioners need.
