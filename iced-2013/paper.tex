@@ -543,10 +543,8 @@ to proposed or implemented tools as discussed in Section~\ref{sec:related}. This
 leading cause of information overload and false positives in the awareness system, causing developers to eventually ignore
 information being presented to them, rendering the system useless.
 
-\begin{itemize}
-	\item These false positives are caused by a difference in what
-				developers consider to be false positives versus what awareness literature considers they are.
-\end{itemize}
+\textbf{These false positives are caused by a difference in what
+developers consider to be false positives versus what awareness literature considers they are.}
 
 This disjoint, as will
 be seen, is caused by developers only considering events which cause some action to be taken on their part, to be true positives,
@@ -559,9 +557,7 @@ Developers have been found to have a great understanding of what they need to kn
 their project awareness. To be able to fully understand a developer's awareness intuition, we can see from the results of this paper that
 developers only want awareness of an event if the event forces the developer to take some action. 
 
-\begin{itemize}
-	\item Developers don't care about what they don't need to account for
-\end{itemize}
+\textbf{Developers don't care about what they don't need to account for}
 
 ``We would want a high probability of the [reported] change being an issue''.
 This sense of unwanted or limited awareness is crucial to understand why generalized
@@ -579,7 +575,7 @@ all events surrounding a developer's work or project is not possible.
 In terms of developer communication, Hattori et. al.~\cite{Hattori:2012:ICG} found through qualitative user studies, that developers
 tend to use the bare amount of communication
 towards other developers in order to solve direct conflicts, and take the same approach of only communicating once a conflict has arose.
-\textit{Developers prefer to spend their limited time dealing with
+\textbf{Developers prefer to spend their limited time dealing with
 the awareness of events which cause them to take some action (changing code, communication, etc) rather than simply being aware
 of events occurring around their work which pose no direct threat to the consumption of their time.}
 
@@ -604,11 +600,9 @@ is too large a problem to handle, while curing existing conflicts is manageable 
 We have seen through the results, that developers possess both tools and practices for the prevention,
 detection, and resolution of indirect conflicts. 
 
-\begin{itemize}
-	\item Through unwanted awareness, and the use of developer time,
+\textbf{Through unwanted awareness, and the use of developer time,
 				developers tend to prefer working on real issues that have already occurred as opposed to preventing issues of the future which
-				may never arise.
-\end{itemize}
+				may never arise.}
 
 This is neatly explained by the popular adage ``I work until something breaks'' taken by most developers. This mindset
 is a clear example of developers taking a curative approach to software development opposed to a preventative approach.
@@ -635,10 +629,10 @@ of the product, more than anyone may have. This is compounded by the unique and 
 Hattori et. al.~\cite{Hattori:2012:ICG} show that with direct conflicts, the
 sooner preemptive information if available to developers the more they will communicate and either avoid or easily solve their code merges,
 which is the situation many indirect conflict tools have strived for, however the 2 factors of dependencies and knowledge of failure
-are what ultimately have led to the amount of false positives and information overload seen in previous tools. The
-abundance of detection and curative process and tools on the other hand shows once again developers willingness to debug
+are what ultimately have led to the amount of false positives and information overload seen in previous tools. \textbf{The
+abundance of detection and curative process and tools shows once again developers willingness to debug
 real issues, that maybe even could have been prevented, rather than prevent the issues in the first place. The question ultimately
-presented in this area is if curative measures are more productive than preventative measures.
+presented in this area is if curative measures are more productive than preventative measures.}
 
 Dromey~\cite{Dromey:2003} has raised the debate of prevention versus cure in software development and how difficult a problem it is
 to measure. The pros and cons of prevention versus cure we have identified, are similar to those of unwanted awareness,
@@ -679,8 +673,8 @@ potential contextual attributes, are rarely identified or accounted for in regar
 that different change types may occur at different rates throughout a project's life time and that this
 may drastically effect the outcomes of indirect conflict tools or processes.
 
-A deeper understanding of what context indirect conflicts occur in seems to be more of a success factor to indirect conflict
-research than may have been previously thought. Static analysis may be useful in regards to indirect conflict context in that we
+\textbf{A deeper understanding of what context indirect conflicts occur in seems to be more of a success factor to indirect conflict
+research than may have been previously thought.} Static analysis may be useful in regards to indirect conflict context in that we
 could identify trends surrounding the mature points of previous projects in order to give a better understanding of what it
 means for a project to be pre or post mature point, which could affect the outcome of indirect conflict understanding.
 Fluri et al.~\cite{Fluri:2007:CDT} uses static analysis and abstract syntax trees to be able to determine what types of source code
@@ -700,9 +694,9 @@ conflict occurrences may add even more power to project management for evaluatio
 
 Aside from context, dependency identification and tracking is a key missing component of
 indirect conflict analysis due to the weaknesses of static analysis. The gap in this identification comes from software and
-organizational structures of software teams. Between increased modularization (multiple sub projects or repositories),
+organizational structures of software teams. \textbf{Between increased modularization (multiple sub projects or repositories),
 cross language dependencies, and languages which do not lend themselves to static analysis~\cite{Jensen:2011:MHD}, static analysis tools have
-become quite limited in identifying and tracking dependencies where they were once strong.
+become quite limited in identifying and tracking dependencies where they were once strong.}
 In a study regarding static analysis tools, Johnson et. al~\cite{Johnson:2013:WDS} found similar conclusions towards the
 ill fit of current static analysis to current development practices..
 
