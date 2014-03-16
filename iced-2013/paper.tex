@@ -129,10 +129,9 @@ method level, using method call graphs, showing where indirect conflicts may occ
 been used often in the visualization of indirect conflict tools, allowing developers a type of search area for their development
 needs. Another indirect conflict tool, CASI~\cite{Servant:2010:CPI}, utilizes dependency slicing~\cite{Bajracharya:2009:SIS}
 instead of method call graphs to provide an environment to see what areas of a project are being affected by a source code change.
-The evaluations of these tools indicate that they have the same common difficulties of scalability, false positives, and information overload. Our own tool
-Impact!~\cite{Ell:2013} also suffered these same fates.
+The evaluations of these tools (including our own prototype Impact! ~\cite{Ell:2013}) indicate that they have the same common difficulties of scalability, false positives, and information overload.
 
-Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
+Following Cataldo et al.~\cite{Cataldo:2006:ICR}'s work that indicated that socio-technical congruence can be leveraged to improve task completion
 times, many indirect conflict tools support the idea of a socio-technical congruence~\cite{Kwan:2011:ESC} in order to help
 developers solve their indirect conflict issues through social means~\cite{Begel:2010:CDE}~\cite{Borici:2012:CHA}.
 Begel et al.~\cite{Begel:2010:CDE} created Codebook, a type of social developer network related directly to source code
@@ -240,11 +239,10 @@ utilized by other organizations and projects.
 \subsection{Questionnaire Procedure}
 
 Questionnaire participants were invited to participate in the questionnaire by email. We directly emailed 1300 participants and obtained 78 responses
-giving a response rate of 6\%. We attribute the low response rate with: the questionnaires
-were conducted during the months of July and August while many participants may be away from their regular positions.
+giving a response rate of 6\%. We attribute the low response rate with the questionnaires
+being sent out during the months of July and August when many participants may be away from their regular positions.
 
-The questionnaire we designed ~\footnote{http://thesegalgroup.org/projects/indirect-conflicts/}
-was based on the insights we obtained from the round of interviews, and was intended to confirm these insights but also to broaden them to a larger sample size of developers who may have similar or different opinions from those already acquired from the interviews. The question topics asked in the questionnaire were:
+We designed the questionnaire~\footnote{http://thesegalgroup.org/projects/indirect-conflicts/} to follow the interviews. We intended to confirm some of the insights we obtained from the interviews with a larger sample size of developers who may have similar or different opinions from those already acquired from the interviews. The question topics asked in the questionnaire were:
 
 \begin{itemize}
 \item What frequency do ICs occur at around different project milestones?
@@ -721,10 +719,11 @@ something is for their productivity. We should pay attention to what they want, 
 models and better address their needs.}
 
 The direct implication this research has on tool development is that of current adoption among developers. As was stated,
-developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. That being
-said, focus at these two stages for tool developer will lead to larger adoption among developers.
-It should be noted here that detection must come with an almost zero rate of false positives as
-current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
+developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. We believe that focus at these two stages for tool developer will lead to larger adoption among developers.
+Similarly, detection must come with an almost zero rate of false positives as current tools (such as unit and integration tests) only report real problems with almost 100\% precision (even though their recall may not be 100\%).
+
+%It should be noted here that detection must come with an almost zero rate of false positives as
+%current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
 
 \textbf{Stronger Source Code Analysis} \textit{With languages like JavaScript becoming popular, having projects with
 multiple languages, and more modular structures, we should focus on better techniques for static analysis based
