@@ -34,7 +34,7 @@
 
 % Paper title
 % Can use linebreaks \\ within to get better formatting as desired
-\title{State of The Practice in Indirect Conflicts: Work Flows, Tools, and Future Direction}
+\title{State of The Practice in Indirect Conflicts: Causes, Mitigation Strategies, and Future Directions}
 
 \author{\IEEEauthorblockN{Jordan Ell and Daniela Damian}
 \IEEEauthorblockA{University of Victoria,
@@ -70,8 +70,8 @@ development has become the standard development process instead of the exception
 comes the need for larger awareness among developers to have ``an understanding of the activities of others
 which provides a context for one's own activities''~\cite{Dourish:1992:ACS}. This added awareness
 mitigates some downsides of parallel development which include the cost of conflict prevention and resolution. However,
-empirical evidence shows that these mitigated losses continue to appear quite frequently and can prove to be a significant
-and time-consuming chore for developers~\cite{Perry:2001:PCL}.
+empirical evidence shows that despite of recent research has proposed mitigation strategies, these losses continue to appear quite frequently and can prove to be a significant
+and time-consuming chore for developers~\cite{Perry:2001:PCL, Sarma:2009:TIV}.
 
 Two types of conflicts have attracted the attention of researchers, \textit{direct} and
 \textit{indirect conflicts}. Direct conflicts involve immediate workspace concerns such as developers editing the same
@@ -86,26 +86,17 @@ tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI,
 While indirect conflict tools have shown potential from studies of developers, some of the same problems continue
 to arise throughout most, if not all tools. The most prevalent issue is that of false positives and information
 overload, which causes tools to eventually be
-ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of dependency identification and
+ignored~\cite{Sarma:2007:TSA, Servant:2010:CPI}. A second primary issue is that of code dependency identification and
 tracking. Many different dependencies have been proposed and used in indirect conflict tools such as method
-invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success, but the
+invocation~\cite{Trainer:2005:BGT}, and class signatures~\cite{Sarma:2007:TSA} with varying success; however, the
 identification of failure inducing changes, other than those which are already identifiable by other means such
-as compilers, and unit tests, to these dependencies still remains an issue.
-Some tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA} have also incorporated social factors 
-such as Cataldo et al.'s~\cite{Cataldo:2006:ICR} notion of socio-technical
-congruence.
-However, the same aforementioned problems still arise. These mentioned tools have not been able to study their own 
-problems as their evaluations have
-been small scale, involving a limited number of industrial participants or student evaluators.
+as compilers or unit tests, to these dependencies still remains an issue.
+Some tools~\cite{Kwan:2011:ESC, Begel:2010:CDE, Borici:2012:CHA} have also leveraged the notion of socio-technical congruence ~\cite{Cataldo:2006:ICR} to help developers pursue dependencies through social means.
+However, the same aforementioned problems still arise. Evaluations of these tools or approaches have largely been small in scale, and involved a limited number of industrial participants or student evaluators. As a result, the problems of scalability, information overload and false positives in tackling indirect conflicts remains an outstanding research problem.
 
-We want to understand why it is so hard to tackle indirect conflicts, specifically through tool based solutions.
-To do so, step back and intend to obtain a broader view of indirect conflicts
-with a large field study of practitioners. We investigate the root causes of information overload, false positives, and
-scalability issues to better understand why indirect conflict tools fail to achieve
-the success of other domain tools. We determine: general events which 
-cause indirect conflicts, when they occur, if compounding conditions exist, mitigation strategies developers
-use, and what practitioners want from new tools.
-We ask:
+In this paper we report from a field study of software practitioners that sought to characterize the state-of-the-practice in indirect conflicts, particularly their causes and mitigation strategies. Our intention has been to uncover the root causes of information overload, false positives, and
+scalability issues, in order to better understand why indirect conflict tools and methods fail to fully achieve
+their intended success. Three research questions that guided our study:
 
 \begin{description}
 	\item[RQ1\namedlabel{itm:rq1}{RQ1}] \textit{What are the types, factors, and frequencies of indirect conflicts?}
@@ -113,12 +104,12 @@ We ask:
 	\item[RQ3\namedlabel{itm:rq3}{RQ3}] \textit{What do developers want from future indirect conflict tools?}
 \end{description}
 
-We interviewed 19 developers from across 12 commercial and open source projects, followed by a confirmatory questionnaire of 78
-developers, and 5 confirmatory interviews, in order to answer the aforementioned questions. Our findings indicate that:
+To answer these questions, we interviewed 19 developers from across 12 commercial and open source projects, sought confirmation of the themes we identified in our interviews through a questionnaire with 78
+developers, as well as 5 follow-up interviews. Our findings indicate that:
 \begin{itemize}
-	\item Indirect conflicts occur frequently and are likely caused by software contract changes and a lack of understanding
+	\item Indirect conflicts occur frequently and are likely caused by software contract changes and a lack of understanding of such changes
 	\item Developers tend to prefer to use detection and resolution processes or tools over those of prevention
-	\item developers do not want awareness mechanisms which provide non actionable results
+	\item Developers do not want awareness mechanisms which provide non actionable results
 	\item There exists a gap in software evolution analytical tools from the reliance on static analysis resulting in missed
 				context of indirect conflicts
 \end{itemize}
@@ -126,7 +117,7 @@ developers, and 5 confirmatory interviews, in order to answer the aforementioned
 \section{Related Work}
 \label{sec:related}
 
-Many indirect conflict tools have been created, tested, and published. Sarma et al.~\cite{Sarma:2007:TSA} created Palantir,
+Many indirect conflict tools have been developed, tested, and published. Sarma et al.~\cite{Sarma:2007:TSA} created Palantir,
 which can both detect potential indirect conflicts, at the class signature level, and alert developers to these conflicts.
 Palantir represented one of the first serious attempts at aiding developers towards indirect conflicts. Holmes et
 al.~\cite{Holmes:2010:CAR} take it one step further with their tool YooHoo, by detecting fine grained source code changes,
@@ -138,8 +129,7 @@ method level, using method call graphs, showing where indirect conflicts may occ
 been used often in the visualization of indirect conflict tools, allowing developers a type of search area for their development
 needs. Another indirect conflict tool, CASI~\cite{Servant:2010:CPI}, utilizes dependency slicing~\cite{Bajracharya:2009:SIS}
 instead of method call graphs to provide an environment to see what areas of a project are being affected by a source code change.
-Most of these tools have all shown to have the same common difficulties of scalability, false positives, and information overload,
-which were explored in this paper. Our own tool
+The evaluations of these tools indicate that they have the same common difficulties of scalability, false positives, and information overload. Our own tool
 Impact!~\cite{Ell:2013} also suffered these same fates.
 
 Since Cataldo et al.~\cite{Cataldo:2006:ICR} have shown that socio-technical congruence can be leveraged to improve task completion
@@ -152,20 +142,17 @@ However, again the problems of scalability and information overload become a fac
 
 For developer interest in regards to software modifications, Kim~\cite{Kim:2011:ESA} found that developers wanted to know whose
 recent code changes semantically interfere with their own code changes, and whether their code is impacted by a code change.
-Kim found that developers are concerned with interfaces of objects and when those interfaces change. Kim also identified the same 
+Kim found that developers are concerned with interfaces of objects and when those interfaces change. Kim also identified the same
 issues towards information overload through false positives with developers noting ``I get a big laundry list... I see the email and I delete it''.
 Kim's field study does however fall short in actually creating a resolution for indirect conflicts, or finding new concerns of
-developers which are not already detected by compilation or other static analysis tools. 
-For impact awareness, DeSouza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
-code base to determine the impact of their code changes on fellow developers, teams, and projects. However, DeSouza does not
-study which types of changes (types, frequencies, compounding factors) developers should concern themselves with more in terms of using their personal knowledge
-to stop indirect conflicts. DeSouza also does not study formal mitigation strategies, or resolutions of indirect conflicts directly.
+developers which are not already detected by compilation or other static analysis tools.
+In studying awareness of change impact, deSouza et. al.~\cite{deSouza:2008:ESS} found that developers use their personal knowledge of the
+code base to determine the impact of their code changes on fellow developers, teams, and projects. However, their work does not
+study which types of changes (types, frequencies, compounding factors) developers encounter in their work, nor provides concrete information on formal mitigation strategies or resolutions of indirect conflicts.
 
-
-This paper is intended to fill the gap which has been left by aforementioned tools papers as well as the field study paper.
-We will not only study why information overload, false positives, and scalability are such difficult problems to tackle
-in indirect conflict tools, but we will also study how developers currently deal with indirect conflicts in practice through
-their mitigation strategies, their largest concerns, and their ideas for future suggestions in regards to indirect conflicts.
+The insights of our study intends to fill the gap. In our field study we seek to understand not only  why information overload, false positives, and scalability are such difficult problems to tackle
+in indirect conflict tools, but also how developers currently deal with indirect conflicts in practice through
+their mitigation strategies, what are their major concerns as well as suggestions for future research and tools to tackle these concerns.
 
 \section{Methodology}
 \label{sec:meth}
@@ -179,12 +166,9 @@ We used grounded theory techniques to analyze the information provided from all 
 
 \subsection{Interview Participants}
 
-Our interview participants came from a large breadth of both open and closed source software development companies
-and projects, using both  agile and waterfall based methodology, and from a wide spectrum of organizations, as shown in Table~\ref{tab:demo}.
-Our participants were invited based on their direct involvement in the actual writing of software for
-their respective companies or projects. These participants' software development experience had an average of 8 years of experience.
-In addition to software development, some participants were also invited based on their experience with project management
-at some capacity.
+Our interview participants came from a wide range of both open and closed source software development companies
+and projects, using both  agile and waterfall based methodologies, and from a wide spectrum of organizations, as shown in Table~\ref{tab:demo}.
+The participants had software development experience in average of 8 years, as well as some project management experience.
 
 \begin{table*}[tb!]
 \begin{center}
@@ -213,7 +197,7 @@ Subnet Solutions & 1 & 5 & Agile & Closed source & C++ \\ \hline
 
 \subsection{Interview Procedure}
 
-Participants were invited to be interviewed by email and were sent a single reminder email one week
+Participants were invited based on their software engineering and project management experience. We recruited participants through an email message to a number of software organizations in our working business network, and followed up in a single reminder email one week
 after the initial invitation if no response was made. We directly emailed 22 participants and  conducted
 19 interviews. Interviews were conducted in person when possible, or over video chat when not possible, and recorded for audio content only.
 
@@ -221,7 +205,7 @@ after the initial invitation if no response was made. We directly emailed 22 par
 %our breadth of participants was rather large, spanning multiple open and closed source, Agile and Waterfall based projects,
 %and our interview answer saturation~\cite{Guest:2006:SAP} was quite high.
 
-Interview participants first answered a number of demographic questions and were then asked to describe various software development experiences regarding our three research questions.
+Interview participants first answered a number of demographic questions and were then asked to describe various software development experiences and practices.
 Specifically, ten semi-structured questions related to our research questions where ask and guided our interview:
 
 \begin{itemize}
@@ -244,9 +228,9 @@ being part of any one software project for extended periods of time.
 
 \subsection{Questionnaire Participants}
 
-Our questionnaire respondents were different from our interviewees. We invited our questionnaire participants from a similar
+Our questionnaire respondents were different from our interviewees. We recruited the respondents to our questionnaire from a similar
 breadth of open and closed source software development
-companies and projects as the interviews participants with two main exceptions, the addition of GitHub users as well as Apache Software Foundation (Apache) developers.
+companies and projects as the interviews participants with two main exceptions. The GitHub users were recruited from the Google BigQuery database; the Apache respondents were recruited from the list of tops contributors to the Apache Software Foundation.
 The software organizations that remained the same between interview and questionnaire were: Mozilla, The GNOME Project, Microsoft Corporation,
 Subnet Solutions, and Amazon. The GitHub
 users were selected based on large amounts of development activity on GitHub and the Apache developers
@@ -255,12 +239,12 @@ utilized by other organizations and projects.
 
 \subsection{Questionnaire Procedure}
 
-Questionnaire participants were invited to participate in the questionnaire by email. We directly emailed 1300 participants and ended with 78 responses
+Questionnaire participants were invited to participate in the questionnaire by email. We directly emailed 1300 participants and obtained 78 responses
 giving a response rate of 6\%. We attribute the low response rate with: the questionnaires
 were conducted during the months of July and August while many participants may be away from their regular positions.
 
-The questionnaire we designed ~\footnote{http://thesegalgroup.org/people/jordan-ell/iced\_survey/}
-was based on the insights we obtained from the round of interviews, and was intended to confirm some of these insights but also to broaden them to a larger sample size of developers who may have similar or different opinions from those already acquired from the interviews. The question topics asked in the questionnaire were:
+The questionnaire we designed ~\footnote{http://thesegalgroup.org/projects/indirect-conflicts/}
+was based on the insights we obtained from the round of interviews, and was intended to confirm these insights but also to broaden them to a larger sample size of developers who may have similar or different opinions from those already acquired from the interviews. The question topics asked in the questionnaire were:
 
 \begin{itemize}
 \item What frequency do ICs occur at around different project milestones?
@@ -274,9 +258,8 @@ was based on the insights we obtained from the round of interviews, and was inte
 \subsection{Data Analysis}
 To analyze both the interview and questionnaire data we used grounded theory techniques as described by Corbin and Strauss~\cite{Corbin:1998:SP}.
 Grounded theory is a qualitative research methodology that utilizes \textit{theoretical sampling} and
-\textit{open coding} to create a theory ``grounded'' in the empirical data (although this paper only uses grounded
-theory techniques for analysis and not for a final theory). For an exploratory study such as
-the ours, grounded theory is well suited because it involves starting from very broad and abstract type questions, and
+\textit{open coding} to create a theory ``grounded'' in the empirical data. In this study we used grounded
+theory techniques for analysis and not to develop a theory per say. For an exploratory study such as ours, grounded theory is well suited because it involves starting from very broad and abstract type questions, and
 making refinements along the way as the study progresses and hypotheses begin to take shape. Grounded theory involves
 realigning the sampling criteria throughout the course of the study to ensure that participants are able to answer new
 questions that have been formulated in regards to forming hypotheses. In our study being presented, data collected from
@@ -295,14 +278,14 @@ five participants. Those that were re-interviewed came from the range of 5-10 ye
 experience. Re-interviewed participants were given our 3 research questions along with results and main
 discussion points, and asked open ended questions regarding their opinions and experiences to validate our
 findings. We also evaluated our grounded theory approach as per Corbin and Strauss'~\cite{Corbin:1998:SP}
-list of criteria to evaluate quality and credibility. This evaluation can be seen in Section~\ref{sec:eval}
+list of criteria to evaluate quality and credibility, described in Section~\ref{sec:eval}.
 
 \section{Results}
 \label{sec:results}
 
-We now present our results of both the interviews and questionnaires conducted in regards to our 3 research questions
-outlined in Section~\ref{sec:intro}. We restate each research question, followed by our quantitative and qualitative
-results from which we draw our discussion to be seen in Section~\ref{sec:disc}. In each subsection, quantitative data
+In this section we present our results of both the interviews and questionnaires conducted in regards to our 3 research questions
+outlined in Section~\ref{sec:intro}. For each research question we summarize the quantitative and qualitative
+evidence we obtained. In each subsection, quantitative data
 given refers to interviews conducted unless explicitly said otherwise.
 
 \phantomsection
@@ -315,11 +298,10 @@ of indirect conflicts is compounded by the number of developers working on a pro
 
 \normalfont{}
 
-A large contributing factor to the cause
-of indirect conflicts comes from the changing of a software object's contract said 12 developers. Object contracts are, in a sense,
-what a software object guarantees, meaning how the input, output, or how any aspect of the object is guaranteed
-to work; made famous by Eiffel Software's~\footnote{http://www.eiffel.com/} ``Design by Contract''\texttrademark.
-In light of object contracts, 14 developers gave examples of indirect conflicts they had experienced
+We found that a large contributing factor to the cause
+of indirect conflicts comes from the changing of a software object's contract (reported by 12 developers directly). Object contracts, or ``Design by Contract''\texttrademark, a concept made well-known through the work on Eiffel Software's~\footnote{http://www.eiffel.com/} are, in a sense,
+what a software object guarantees, meaning how the input, output, or how any aspect of the object is guaranteed.
+In our interviews, 14 developers gave examples of indirect conflicts they had experienced
 which stemmed from not understanding the far reaching ramifications of a change being made to an object contract
 towards the rest of the project. Of those 14, 3 dealt
 with the changing of legacy code, with one developer saying ``legacy code does not change because developers
@@ -332,7 +314,7 @@ In regards to object contract changes, 9 developers currently working with large
 schemas as a large source of indirect conflicts while 5 developers that work on either software
 library projects or are in test said that methods or functions were the root of their indirect conflict issues.
 7 developers mentioned that indirect conflicts occur when a major update to an external project,
-library, or service occurs with one developer noting ``their build never breaks, but it breaks ours''. Some
+library, or service occurs with one developer noting that ``their build never breaks, but it breaks ours''. Some
 other notable indirect conflict artifacts were user interfaces in web development and full components in component
 base game architecture.
 
@@ -344,11 +326,11 @@ with 25\% saying that weekly occurrences are most common (seen in Table~\ref{tab
 also stated that the stage of the development cycle can greatly cause the frequency of indirect conflicts to
 differ.
 
-12 developers said that
+12 developers reported that
 when a project is in the early stages of development, indirect conflicts tend to occur far more frequently
-than once a stable point is reached. Developers said ``At a stable point we decided we are not going to change
+than once a stable point is reached. For example, ``At a stable point we decided we are not going to change
 [this feature] anymore. We will only add new code instead of changing it.'' and ``the beginning of a project
-changes a lot, especially with agile''. Questionnaire data also added ``indirect conflicts after a release
+changes a lot, especially with agile''. From the survey respondents we also learned that ``indirect conflicts after a release
 depend on how well the project was built at first'', ``[indirect conflicts] tend to slow down a bit after a
 major release, unless the next release is a major rework.'', and ``[indirect conflicts have] spikes during
 large revamps or the implementation of cross-cutting new features.'' which corroborate our interview results.
@@ -376,8 +358,8 @@ of questionnaire participants.\label{tab:often}}
 
 In terms of organizational structure, questionnaire data shows that as a project becomes larger and more
 developers are added, even to the point that multiple teams are formed, indirect conflicts become more likely to
-occur. However, indirect conflicts still occur at a lower number of developers as well with even 43\% of developers
-saying they are like to occur in single developer projects. This can be seen in Table~\ref{tab:env}.
+occur. However, as shown in Table~\ref{tab:env}, indirect conflicts still occur in small teams, with  43\% of respondents indicating
+ they are likely to occur in single developer projects.
 
 \begin{table*}[tb!]
 \begin{center}
@@ -406,8 +388,8 @@ error and information logs, compiler and debugger tools, as well as static analy
 
 \normalfont{}
 
-In terms of preventative processes used for indirect conflicts, 3 major components were found.
-First, design by contract is heavily used by interviewed developers as a means to avoid indirect conflicts or understand
+Our analysis indicates indicates three major preventative processes used for indirect conflicts.
+First, design by contract is heavily used by interviewed developers as a means to avoid indirect conflicts or to understand
 when they are likely to occur. The use of design by contract here means that developers tend not to change an object's
 contract when possible, and that an object's contract is used as a type of documentation towards awareness of the
 software object. One developer stated that ``design by contract was invented to solve this problem and it does it
@@ -452,7 +434,7 @@ In regards to catching indirect conflicts, 13 developers mentioned forms of test
 as the major component of catching indirect conflict issues, subscribing to the idea of ``run the regression and integration
 tests and just see if anything breaks''. The words ``use case coverage'' were constantly being used by developers
 when expressing how proper unit and integration tests should be written. Developers expressed that with proper use case coverage, most if
-not all indirect conflicts should be caught. In corroboration, 
+not all indirect conflicts should be caught. In corroboration,
 questionnaire participants corroborated these results with 49\% mentioning forms of testing as the major tool used to
 catch indirect conflicts, 33\% said build processes, while 31\% used work their IDE or IDE plug-ins to catch indirect conflicts.
 Questionnaire participants also mentioned review process and personal expertise as factors of catching indirect conflicts.
@@ -477,8 +459,7 @@ while a project manager said ``[with preventative process] you will spend all yo
 \addcontentsline{toc}{subsection}{RQ3}
 \subsection*{\normalfont{RQ3.} \it{What do developers want from future indirect conflict tools?}}
 
-\bf{Being that developers believe ``good enough'' solutions exist for preventing and detecting indirect conflicts
-developers would rather see improvement to debugging processes. Developers are looking for automated debugging tools,
+\bf{Because developers believe ``good enough'' solutions exist for preventing and detecting indirect conflicts, we identified a strong preference for improvements to debugging processes. Developers prefer automated debugging tools
 and better source code analysis tool for impact management and supporting cross team and cross sub-project projects.}
 
 \normalfont{}
@@ -520,12 +501,11 @@ Interview and questionnaire participants suggested the following improvements to
 \section{Discussion}
 \label{sec:disc}
 
-We now discuss the aforementioned
-results in relation to the outstanding issues of tool based solutions regarding indirect conflicts which are information overload,
+We now discuss these results in relation to the outstanding issues of tool-based solutions regarding indirect conflicts and which are information overload,
 false positives, and scalability.
-As per our results, three main discussion points have arisen. What developers really want, and don't want from indirect
-conflict awareness tools, if indirect conflicts are better handled by extensively trying to prevent them or by simply
-fixing them as they occur with less prevention, and a gap in analytical tools for software dependencies found in current
+As per our findings, three main discussion points emerge: (1) What developers really want and don't want from indirect
+conflict awareness tools, (2) Whether indirect conflicts are better handled by extensively trying to prevent them or by simply
+fixing them as they occur with less prevention, and (3) A gap in analytical tools for software dependencies found in current
 industry settings.
 
 \subsection{Unwanted Awareness}
@@ -536,18 +516,15 @@ to take some action because of it. This limited awareness is quite different tha
 awareness about most, if not all actions, and it also suggests why developers see a high amount of what they believe to be
 false positives, as the changes being reported are not causing them to take action.}
 
-As we have seen, indirect conflicts are found to be quite a serious problem that occur frequently,
+According to our study participants, indirect conflicts represent a serious problem that occur frequently,
 sporadically, and differ greatly from case to case. These conditions pose large issues for the creation of generalizable theories
 or tools in regards to indirect conflicts. These underlying complexities are the probable cause of disinterest of software developers
 to proposed or implemented tools as discussed in Section~\ref{sec:related}. This inability to generalize is what we believe to be the
-leading cause of information overload and false positives in the awareness system, causing developers to eventually ignore
+leading cause of information overload and false positives  awareness systems, causing developers to eventually ignore
 information being presented to them, rendering the system useless.
 
 \textbf{These false positives are caused by a difference in what
-developers consider to be false positives versus what awareness literature considers they are.}
-
-This disjoint, as will
-be seen, is caused by developers only considering events which cause some action to be taken on their part, to be true positives,
+developers consider to be false positives versus what awareness literature considers they are.} This disjoint, we argue, is caused by developers only considering events which cause some action to be taken on their part, to be true positives,
 where as current awareness understanding would state any event which is related to an individual's
 work~\cite{Herbsleb06collaborationin}~\cite{Cataldo:2008:SCF}, to be true positives.
 ``You need a good understanding of what the code change is or else you will have a lot of false positives'' said one developer,
@@ -555,11 +532,9 @@ showing that not all changes around an object should be reported for awareness.
 
 Developers have been found to have a great understanding of what they need to know about and more importantly what they don't in
 their project awareness. To be able to fully understand a developer's awareness intuition, we can see from the results of this paper that
-developers only want awareness of an event if the event forces the developer to take some action. 
+developers only want awareness of an event if the event forces the developer to take some action.
 
-\textbf{Developers don't care about what they don't need to account for}
-
-``We would want a high probability of the [reported] change being an issue''.
+\textbf{Developers don't care about what they don't need to account for}. ``We would want a high probability of the [reported] change being an issue''.
 This sense of unwanted or limited awareness is crucial to understand why generalized
 awareness techniques of difficult to generalize problems, such as indirect conflicts through generalized changes to
 classes~\cite{Sarma:2007:TSA}, or methods~\cite{Trainer:2005:BGT,Servant:2010:CPI}, often encounter difficulties of false
@@ -594,17 +569,15 @@ however, when given the choice, developers tend to lean towards less awareness i
 \textit{Developers would rather spend their time on curative measures (fixing problems after they
 arise) than preventative measures (preventing problems from happening). Developers see the task of fixing real problems
 to be less of a burden than preventing potential problems because of available tools and their perceived notions of time management.
-Focusing on cure is a direct response to the issue of scalability found in indirect conflict tools. Trying to prevent all conflicts 
+Focusing on cure is a direct response to the issue of scalability found in indirect conflict tools. Trying to prevent all conflicts
 is too large a problem to handle, while curing existing conflicts is manageable by a developer.}
 
-We have seen through the results, that developers possess both tools and practices for the prevention,
-detection, and resolution of indirect conflicts. 
+Our findings suggest that developers possess both tools and practices for the prevention,
+detection, and resolution of indirect conflicts.
 
 \textbf{Through unwanted awareness, and the use of developer time,
 				developers tend to prefer working on real issues that have already occurred as opposed to preventing issues of the future which
-				may never arise.}
-
-This is neatly explained by the popular adage ``I work until something breaks'' taken by most developers. This mindset
+				may never arise.} Related to the popular adage ``I work until something breaks'' taken by most developers, this mindset
 is a clear example of developers taking a curative approach to software development opposed to a preventative approach.
 Prevention here refers to taking precautionary steps to stop potential or some probability of issues, or indirect conflicts, form occurring in the first
 place, while cure refers to fixing non probable (have happened) issues as they arise which includes not attempting, or putting little attempt, into preventing
@@ -613,15 +586,15 @@ them in the first place.
 Two out of the three identified prevention methods taken by developers are simple blanket risk mitigation strategies
 accomplished essentially by
 not changing code (design by contract, and add and deprecate), while the third is simply developer experience and knowledge. Clearly,
-developers are spending little to no time in prevention (or what the perceive as prevention). Developers do however spend a 
+developers are spending little to no time in prevention (or what the perceive as prevention). Developers do however spend a
 large amount of time in detection and cure through the
-writing of tests and the debugging of issues (although writing tests can be viewed as prevention while their utility is only see at detection). 
+writing of tests and the debugging of issues (although writing tests can be viewed as prevention while their utility is only see at detection).
 In fact, most improvements mentioned by developers in regard to dealing with indirect
 conflicts occurred at either the detection or cure levels. ``You're reaction time is much more crucial''
 said one developer in that resolution tools are believed to be or larger importance as once issues have occurred, it doesn't
 matter what prevention was taken, the issue must simply be resolves as quick as possible now.
 
-The lack of prevention process and tools being used is believed to be due to 2 factors as discovered in the interview process. 
+The lack of prevention process and tools being used is believed to be due to 2 factors as discovered in the interview process.
 The first being the identification of dependencies.
 Even with an experienced system architect, identifying dependencies and notifying those involved is a daunting task
 which is ignored more than dealt with. The second being the knowledge of when a dependency will fail, also requires vast knowledge
@@ -687,7 +660,7 @@ to the quality of the project. Curative measures may be a better choice before a
 causes more bugs than can be prevented. It may be imperative to discover more on project stability
 and the mature point in order to fully understand the nature of indirect conflicts and their context.
 
-While this added sense of understanding is important to indirect conflicts, an understanding of a project's evolution, 
+While this added sense of understanding is important to indirect conflicts, an understanding of a project's evolution,
 a mature point being reached as an example,
 may pose as a more useful tool for project management rather than developers. This more abstract tendency of indirect
 conflict occurrences may add even more power to project management for evaluation of progress, code stability, and code reviews.
@@ -712,11 +685,12 @@ has lead to some of the deficiencies of indirect conflict research.
 \subsection{Implications for Future Research Work}
 \label{sec:implr}
 
-\textbf{Prevention versus Cure} \textit{The need for continued study of the open question
-``Which of prevention or cure is more effective for software development and indirect conflicts?''. This simple question will undoubtedly
-produce extremely complex answers.}
+\textbf{Prevention versus Cure} \textit{There is a need for continued study of the open question
+``Which of prevention or cure is more effective for software development and indirect conflicts?''. We believe that this simple question will undoubtedly
+produce extremely complex answers. Developers are currently favoring cure, but we should be mindful that what developers want
+may not always be the best choice.}
 
-With software developers focusing their current efforts on curative measures, for
+The fact that software developers focus their current efforts on curative measures, for
 indirect conflicts, suggests
 that while it may not be the most effective, it may be the easiest road for developers to take. This may be the path of
 least resistance, but it may not be optimal. Software engineering as a whole should strive to answer this question or
@@ -728,9 +702,9 @@ Tiwana~\cite{Tiwana:2008:ICD} in coordination tools. With these studies, we may 
 of prevention versus cure, thus being able to increase developer productivity as well as identify more gaps in theory
 versus practice which may lead to improved tools or the abandoning of existing ones as was shown with UML~\cite{Petre:2013:UP}.
 
-\textbf{Awareness Theory to Model Real World} \textit{the need to further characterize the
+\textbf{Theories of Awareness to Model Real World} \textit{There is a need to further characterize the
 mismatch between awareness approaches and tools as developed in the research community and awareness needs as perceived
-by industry. We should push our awareness theories to model real development
+by industry. Theories of awareness should consider modeling real development
 environments where interruptions, time management, and full development life cycles are often large factors.}
 
 As was identified in the previous discussion, while current understanding suggests that awareness of all events related to ones work
@@ -742,11 +716,11 @@ tool development or theories attempted to be used in practice.
 \subsection{Implications for Future Tool Work}
 \label{sec:implt}
 
-\textbf{Give Developers What They Want} \textit{Developers have their own notions of ``good''
-that something is for their productivity. We should pay attention to what they want, but also be mindful that what
-developers want may not always be good for them.}
+\textbf{Give Developers What They Want} \textit{Developers have their own notions of how ``good''
+something is for their productivity. We should pay attention to what they want, in order to shape our
+models and better address their needs.}
 
-The direct implication this research has on tool creation is that of current adoption among developers. As was stated,
+The direct implication this research has on tool development is that of current adoption among developers. As was stated,
 developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. That being
 said, focus at these two stages for tool developer will lead to larger adoption among developers.
 It should be noted here that detection must come with an almost zero rate of false positives as
@@ -758,7 +732,7 @@ on what industry standards.}
 
 The more indirect implication of this research on tool creation is that of improving existing tools. While not all existing
 tools are used for indirect conflicts alone (automatic debugging~\cite{Zeller:2005:WPF}, unit tests, etc), most of these tools
-have need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
+have a need for rapid expansion, according to developers, for dealing with indirect conflicts. The ability to have unit tests
 automatically written for a given software object's contract, the ability to find a change  in an external project
 which has broken a developer's own project, or any automation of the existing detection and resolution stages of indirect
 conflicts are what developers currently seek. But of course, most of these implications rely on the improvement of
@@ -787,26 +761,26 @@ be viewed as the threats to validity of this paper.
 criterion is used to verify the correctness of our finding and to ensure they resonate and fit with participant opinion. It is also
 required that the results are generalizable to all participants but not so much as to dilute meaning. To ensure fit, during interviews
 after participants gave their own opinions on a topic, we presented them with previous participant opinions and asked them to comment
-on and potentially agree with what the majority has been on the topic. Often the developers own opinions already matched those of
+on and potentially agree with what the majority has been on the topic. Often the developers' own opinions already matched those of
 the majority before them and did not necessarily have to directly verify it themselves.
 
-As added insurance, we conducted 5 post results interviews with developers to once again confirm our results, and discussions. These
-procedures can be seen in Section~\ref{sec:meth}.
+As added insurance, we conducted 5 confirmatory interviews after we analyzed our data and drafted themes in our findings. We describe this
+procedure in Section~\ref{sec:meth}.
 
 To ensure the correctness of the results, we also linked all findings in Section~\ref{sec:results} to either a majority of agreeing
 responses on a topic or to a large amount of direct quotes presented by participants.
 
 {\bfseries Applicability or Usefulness.} ``Do the findings offer new insights? Can they be used to develop policy or change practice?''
-Although our results may not be entirely novel or even surprising, the combination of said results allowed us to discover the
-the disjoint between theoretical awareness and practical awareness regarding indirect conflict tools as well as provide more
-insight into the debate of prevention versus cure in software development. Given how many indirect conflict tools are left with the same common
+Although our results may not be entirely novel or even surprising, our findings do (1) suggest
+a disjoint between the current research understanding of developers' awareness needs and the these awareness needs related to indirect conflict tools in practice, and (2) provide some
+insight into the debate of prevention versus cure in software development. Given that many indirect conflict tools still suffer from these same common
 issues, we believe that these findings will help researchers focus on what developers want and need moving into the future more than has
 been possible in the past. These finding set a course of action for where effort should be spent in academia to better benefit industry.
 
-10 of the 78 questionnaire participants sent direct responses to us asking for any results of the research to be sent directly to
-them in order to improve their indirect conflict work flows. 7 of the 19 participants interviewed expressed interest concerning any possible
-tools or plans for tools inspired by this research as well. The combination of academia relatability and direct industry interest
-in our results help us fulfill this criterion.
+%10 of the 78 questionnaire participants sent direct responses to us asking for any results of the research to be sent directly to
+%them in order to improve their indirect conflict work flows. 7 of the 19 participants interviewed expressed interest concerning any possible
+%tools or plans for tools inspired by this research as well. The combination of academia relatability and direct industry interest
+%in our results help us fulfill this criterion.
 
 {\bfseries Variation.} ``Has variation been built into the findings?'' Variation shows that an event is complex and that any findings
 made accurately demonstrate that complexity. Since interviewed participants came from such a diverse set of organizations,
@@ -820,21 +794,19 @@ in the generalized theories and findings.
 \section{Conclusions}
 \label{sec:conc}
 
-Indirect conflicts are a significant issue with real world development, however, many proposed techniques and tools to mitigate
-losses in this realm have been unsuccessful in attracting major support from developers. Based on our qualitative study involving
-19 interviewed developers from 12 organizations as well as 78 developers completing questionnaires, we have provided characterization of indirect conflicts,
-current developer work flow surrounding indirect conflicts, and what direction any future tools should follow in order to aid developers
-in their work flow with indirect conflicts.
+Indirect conflicts are a significant issue with real world development, however, many of our research proposed techniques and tools have been unsuccessful in attracting major support from developers. Based on our qualitative study involving
+19 interviewed developers from 12 organizations as well as 78 questionnaires respondents, we sought to characterize indirect conflicts,
+current developer work flows surrounding indirect conflicts, and frame directions for future tool development that support developers
+in their tackling of indirect conflicts.
 
-Our findings have indicated that:
-indirect conflicts occur frequently and are likely caused by software contract changes;
+Our findings  indicate that indirect conflicts occur frequently and are likely caused by software contract changes;
 while design by contract, add and deprecate, and personal experience help prevent indirect conflicts,
 developers tend to prefer to use detection and resolution processes or tools
 over those of prevention, and developers want indirect conflict tools to focus on automatic debugging and better source code analysis.
 
-Our result analysis has indicated that: developers do not want awareness mechanisms which provide non actionable results; developers
+Our study of practitioners intends to fill a gap in the software engineering research with respect to the outstanding problems in current tool-based solutions to indirect conflicts, namely the issues of information overload, false positives and scalability. Overall, we described a disjoint between the current research understanding of developers' awareness needs and these awareness needs related to indirect conflict tools in practice. More specifically, our findings suggest that developers do not want awareness mechanisms which provide non actionable results; developers
 would rather focus on curing existing problems rather than preventing potential issues;
-and that there exists a gap in software evolution analytical tools between what is available and what practitioners need.
+and that there exists a gap in software evolution analytical tools between what is available and what practitioners need. We hope that these insights will be found valuable in future research endeavours and development of tools to assist developers in tackling indirect conflicts.
 
 \bibliographystyle{IEEEtran}
 %\balance
