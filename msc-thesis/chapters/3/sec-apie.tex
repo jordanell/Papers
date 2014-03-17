@@ -11,7 +11,7 @@ a third party application as indirect conflicts may occur. The knowledge as to w
 as to its reliability, quality, stability, and thus indirect conflict proneness can be a difficult decision to make for most project owners or maintainers.
 
 While measuring software quality has had a major focus in software engineering research for many years~\cite{Bowen:1978:CAS}~\cite{Grady:1993:PRM}~\cite{ISOIEC9126},
-the sub study of software stability and its implications on reliability and indirect conflict proneness remains a difficult subject to understand. 
+the study of software stability and its implications on reliability and indirect conflict proneness remains a difficult subject to understand. 
 The decision of what makes a project stable and ready
 for a release often comes down to the release manager or maintainer of a project and is often a reflection of the open source community which surrounds 
 the project~\cite{Conway:1968}. Code churn is an often looked to statistically for stability but can be grossly misleading
@@ -85,7 +85,7 @@ purposes.
 I separated changes to this test code from all other code to ensure my results only focused on real implementation while allowing us to study changes to
 test based code separately.
 
-Once the ChangeDistiller information was collected, I decided to examine software change trends surrounding releases of the project's I had selected. Since releases
+Once the ChangeDistiller information was collected, I decided to examine software change trends surrounding releases of the projects I had selected. Since releases
 have preconceived notions of software stability and a lack of proneness to indirect conflicts, 
 I decided that by studying the change types surrounding these releases, I could get a better understanding of
 what types of source code changes or trends constitute software stability or maturity. In order to study the release points, I went to each of my 10 project's 
@@ -172,7 +172,7 @@ private classes, and removed private methods.
 
 As it can be seen in Table~\ref{tab:apie-ratio}, there are few change type trends around major releases which pass my threshold. We can see that both public
 and private methods
-being removed from a project is more likely to occur after a major release than after. Table~\ref{tab:apie-ratio} also shows significance in the changes to private
+being removed from a project is more likely to occur after a major release than before. Table~\ref{tab:apie-ratio} also shows significance in the changes to private
 classes. We see that private classes are added more (24\%) before a major release and removed more after (44\%) the release. 
 All results in Table~\ref{tab:apie-ratio} could be used as identified trends of major software releases, while I have just highlighted the larger ratios
 which meet my threshold criteria.
@@ -238,7 +238,7 @@ private classes, and removed private methods.
 These 9 change trends can be used in future indirect conflict tools in order to identify a context for indirect conflicts.
 For example. Any of the 9 change trends which occur more so after a major release may be used as a sign of high indirect conflict proneness
 since after a major release a new development cycle is likely to begin. As per change trends which occur more so before a major release, indirect
-conflicts may use this context in order to identify a low proneness to indirect conflicts in their results. These two contextual patterns
+conflict tools may use this context in order to identify a low proneness to indirect conflicts in their results. These two contextual patterns
 can be used throughout the life of a software project in order to help better inform indirect conflict tools as to the processes of developers
 and provide better feedback to said developers of indirect conflicts.
 

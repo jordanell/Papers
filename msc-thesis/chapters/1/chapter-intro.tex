@@ -41,7 +41,7 @@ artifact. Tools have been created and studied for direct conflicts
 ~\cite{Xiang:2008:ERT, Biehl:2007:FVD, Sarma:2009:TIV, Khurana:2009:PFC} with relatively good success and 
 positive developer feedback. Indirect conflicts are caused by source code changes that negatively impact another
 location in the software system such as when libraries are upgraded or when a method is changed
-and invoking methods are influence negatively. Indirect conflict tools however, have
+and invoking methods are influenced negatively. Indirect conflict tools however, have
 not shared the same success as direct conflict 
 tools~\cite{Sarma:2007:TSA, Holmes:2010:CAR, Trainer:2005:BGT, Servant:2010:CPI, Borici:2012:CHA}. However,
 previous interviews and surveys conducted with software developers have shown a pattern that developers 
@@ -76,14 +76,14 @@ come up.
 % What is being addressed in this thesis
 Clearly, indirect conflicts and its subsequent research areas have a large breadth of limitations, some of which
 will be explored in this dissertation. The research goal of this dissertation is to explore the limitations which exist
-with supporting indirect conflicts through awareness techniques as well as to explore possible solution for industry practice 
-in the are of indirect conflicts. To accomplish this goal, I have researched the following sub topics of indirect
+with supporting indirect conflicts through awareness techniques as well as to explore possible solutions for industry practice 
+in the area of indirect conflicts. To accomplish this goal, I have researched the following sub topics of indirect
 conflicts: technical dependencies, how developers are involved in said dependencies,
 socio-technical congruence as a mitigation strategy to indirect conflicts, what the root causes of indirect conflicts are,
 what compounding factors exist for indirect conflicts, what current industry mitigation strategies of indirect conflicts
 are being used, what future steps should be taken by researchers to better industry regarding indirect conflicts, and finally,
 how software evolution analysis can be used to better tools for indirect conflicts. I have addressed these issues by
-conducting the following four studies.
+conducting four studies.
 
 \section{Research Methodology}
 
@@ -96,7 +96,7 @@ Study 1 focuses on the power of technical dependencies in software projects. The
 investigated were : ``\textit{Is it possible to identify pairs of developers whose technical dependencies in 
 code changes statistically relate to bugs?}''. This study explains the approach used to locate these pairs of developers 
 in developer networks.The process utilizes code changes and the call hierarchies effected to find patterns of developer 
-relationships in successful and failed code changes. These developers pairs can be seen as indirect conflicts occurring
+relationships in successful and failed code changes. These developer pairs can be seen as indirect conflicts occurring
 as one developer's code change has negatively affects another developer's work. As it will be seen, I found 27 statistically significant failure 
 inducing developer pairs. These developer relationships can be used to promote the idea of leveraging socio-technical 
 congruence, a measure of coordination compared to technical dependencies amongst stakeholders, to provide coordination recommendations.
@@ -107,11 +107,11 @@ results of Study 1 directly influence Study 2.
 % Study 2 introduction
 Study 2 attempts to take the failure inducing pairs of developers from Study 1 and create an awareness tool while
 answering: ``\textit{Can indirect conflicts be supported through an awareness mechanism which leverages pairs of
-developers who's changing technical dependencies statistically relate to bugs?}''.
+developers whose changing technical dependencies statistically relate to bugs?}''.
 In this study, I report on my research into supporting indirect conflicts and present the design, implementation, and 
 evaluation of the tool \textit{Impact}, a web based tool that aims at detecting indirect conflicts among developers and 
 notifying the appropriate members involved in these conflicts. By leveraging technical relationships inherent of software 
-projects with method call graphs~\cite{Lakhotia:1993:CCM} as well as detecting changes to these technical relationship 
+projects with method call graphs~\cite{Lakhotia:1993:CCM} as well as detecting changes to these technical relationships 
 through software configuration management (SCM) systems, \textit{Impact} is able to detect indirect conflicts as well as 
 alert developers involved in such conflicts in task awareness. While this study outlines \textit{Impact's} specific 
 implementation, its design is rather generic and can be implemented in similar indirect conflict awareness tools. 
@@ -139,7 +139,7 @@ developers, and 5 confirmatory interviews, in order to answer the aforementioned
 indirect conflicts occur frequently and are likely caused by software contract changes and a lack of understanding of those changes,
 developers tend to prefer to use detection and resolution processes or tools
 over those of prevention, developers do not want awareness mechanisms which provide non actionable results, 
-and there exists a gap in software evolution analytical tools from the reliance on static analysis resulting in missed
+and that there exists a gap in software evolution analytical tools arising from the reliance on static analysis resulting in missed
 context of indirect conflicts. As a result of the final finding (the gap in software evolution analytical tools), I conducted
 a fourth and final study.
 
@@ -157,7 +157,7 @@ prominently at major release points of the projects studied.
 
 % The rest of the thesis 
 The remainder of this dissertation is laid out as follows. Chapter two includes Study 1 and Study 2 as the motivational studies which
-ultimately led to the larger research en devours found in Study 3 and Study 4. Chapter 3 includes Study 3 and Study 4 which ultimately
+ultimately led to the larger research studies found in Study 3 and Study 4. Chapter 3 includes Study 3 and Study 4 which ultimately
 press upon indirect conflicts in a more in depth fashion than has been previously seen in research. Chapter 4 contains a lengthy discussion
 of what has been learned from all four studies of this dissertation as well as implications for further research and tool development
 in the field of indirect conflicts. Finally, Chapter 5 concludes this dissertation.

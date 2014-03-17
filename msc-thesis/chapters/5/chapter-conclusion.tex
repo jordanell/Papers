@@ -8,12 +8,12 @@ they arise from a result of source code changes.
 
 While the techniques and tools for direct conflicts have had large success, tools either proposed or studied for 
 indirect conflicts have had common issues of information overload, false positives, scalability, information distribution 
-and many others. These issues has ultimately lead to poor developer interest in indirect conflict tools as well
+and many others. These issues have ultimately led to poor developer interest in indirect conflict tools as well
 as a failed adoption rate and partial failures of research.
 
 To better understand these issues, this dissertation has focused on exploring the world of indirect 
 conflicts through 4 studies. The first two studies focused on motivational circumstances which occur during 
-the software development life cycle and cause indirect conflicts. Developers interactions were studied in order to create 
+the software development life cycle and cause indirect conflicts. Developer's interactions were studied in order to create 
 a tool which can aid in the work-flows around indirect conflicts. The second two studies presented a deeper investigation 
 as to why most indirect conflict tools fail to attract developer interest through exploring the root causes of indirect conflicts 
 and how tools should be properly built to support developer work flows.
@@ -28,7 +28,7 @@ of technical networks based on code changes. The methodology used was to assigne
 which they authored. Next, dependencies were identified between source code artifacts, implying dependencies between
 developers. Lastly, failure inducing dependencies between developers were identified through using methods to identify
 bugs in source code throughout the lifetime of a project. These developer pairs were used in the prediction
-of future bugs as well as provide coordination recommendations for developers within a project. These bugs being predicted
+of future bugs and to provide coordination recommendations for developers within a project. These bugs being predicted
 directly correlate to indirect conflicts. Since the human dependencies being measured in Study 1 are directly tied to
 software objects, we can say that the indirect conflicts being studied here are between developers themselves, while
 the dependencies between the developers are found in the source code.
@@ -42,7 +42,7 @@ themselves and how their notions of other's work is perceived across a project. 
 a developer Daniel may believe a source code artifact behaves in a particular way (from documentation or other forms
 of communication for the artifact) so when that artifact changes its behavior, Daniel can become negatively impacted.
 A human factor is present here as the person who makes the artifact change, say Anne, may not have communicated the
-change to all other developers affected by the change. This is an important understanding that lead directly into the
+change to all other developers affected by the change. This is an important understanding that led directly into the
 creation of Impact (Study 2) as a way to mitigate the negative affects across human developers as a result of 
 source code changes.
 
@@ -77,8 +77,7 @@ be used to better understand causes and developer strategies in solving indirect
 Indirect conflicts are a significant issue with real world development, however, many proposed techniques and tools to mitigate
 losses in this realm have been unsuccessful in attracting major support from developers (as was seen in Study 2). 
 In Study 3, I conducted a qualitative study involving
-19 interviewed developers from 12 organizations as well as 78 surveyed developers. Through these qualitative measures,
-I provided characterization of indirect conflicts,
+19 interviewed developers from 12 organizations as well as 78 surveyed developers. I provided characterization of indirect conflicts,
 current developer work flow surrounding indirect conflicts, and what direction any future tools should follow in order to aid developers
 in their work flow with indirect conflicts.
 
@@ -90,7 +89,7 @@ compounded in difficulty when more developers are present on a project.
 
 As per current developer work-flows regarding indirect conflicts, I found that developers have 3 major mitigation strategies
 to avoid indirect conflicts: ``Design by Contract'', add and deprecate, and personal experience. For catching indirect conflicts,
-I found that use case coverage through proper testings (both unit and integration) are currently thought to be the best
+I found that use case coverage through proper testing (both unit and integration) are currently thought to be the best
 developers can achieve. And finally, for the future of indirect conflict tools, developers made it clear that they would
 prefer an improvement to resolution methods for indirect conflicts such as automatic or aided development techniques.
 
@@ -98,7 +97,7 @@ As per the analysis of Study 3, I have shown the disjoint of current awareness u
 awareness needs found in industry. This disjoint, caused by the difference of academic and practical understanding in awareness needs,
 ultimately lead to tools with information overload and false positive issues. The debate of prevention versus cure was presented along with
 the industrial tendency towards curative measures. While a curative approach may be favored by developers, further research is needed
-to fully asses the positive and negative influences of prevention versus cure for productivity and quality concerns. Finally, I have shown
+to fully assess the positive and negative influences of prevention versus cure for productivity and quality concerns. Finally, I have shown
 the gap of analytical evolution tools needed for dependency identification and indirect conflicts. This gap, unless addressed, may prevent
 future industrial adoption of tools produced by researchers for lack of fit in industrial needs. This gap directly resulted in the final
 study of this Dissertation to be completed (Study 4).
@@ -144,12 +143,12 @@ indirect conflicts in order to aid future tool development for indirect conflict
 
 Through the analysis in Chapter 4, I have shown the disjoint of current awareness understanding versus the practical
 awareness needs found in industry. This disjoint, caused by the difference of academic and practical understanding in awareness needs,
-ultimately lead to tools with information overload and false positive issues. This was quite evident from my tool Impact as
-presented in Study 2. Even when the tool is based around the statistical results of Stud 1, the disjoint between what academics
-determin developers want versus what they themselves want is quite obvious. The debate of prevention versus cure has been presented along with
+ultimately led to tools with information overload and false positive issues. This was quite evident from my tool Impact as
+presented in Study 2. Even when the tool is based around the statistical results of Study 1, the disjoint between what academics
+determine developers want versus what they themselves want is quite obvious. The debate of prevention versus cure has been presented along with
 the industrial tendency towards curative measures. However, while a curative approach may be favored by developers, further research is needed
-to fully asses the positive and negative influences of prevention versus cure for productivity and quality concerns. Finally, I have shown
+to fully assess the positive and negative influences of prevention versus cure for productivity and quality concerns. Finally, I have shown
 the gap of analytical evolution tools needed for dependency identification and indirect conflicts. This gap, unless addressed, may prevent
 future industrial adoption of tools produced by researchers for lack of fit in industrial needs. While, I have shown a potential solution to address
-a sub problem of the analysis gap through contextual patterns of indirect conflicts, many sub problems of the analysis gap remian problems
+a fraction of the analysis gap through contextual patterns of indirect conflicts, many other problems of the analysis gap remain problems
 for future research.

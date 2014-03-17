@@ -44,14 +44,14 @@ internal structures of technical objects.
 
 %Outline of study
 In this study, I report on research into supporting developer pairs in indirect conflicts
-and present the design, implementation, and future evaluation of the tool \textit{Impact},
+and present the design, and implementation of the tool \textit{Impact},
 a web based tool that aims at detecting indirect conflicts among developers
 and notifying the appropriate members involved in these conflicts. Through Impact and
 its evaluation I ask:
 
 \begin{description}
         \item[RQ\namedlabel{itm:rq1-impact}{RQ1-Impact}] \textit{Can indirect conflicts be supported 
-        through an awareness mechanism which leverages pairs of developers who's changing technical 
+        through an awareness mechanism which leverages pairs of developers whose changing technical 
         dependencies statistically relate to bugs?}
 \end{description}
 
@@ -84,7 +84,7 @@ pertains to the ability to solve self determined conflicts, meaning that
 once a developer discovers a conflict, they can use the tool as a type of
 lookup table to solve their issue. Codebook is a type of social developer
 network that relates developers to source code, issue repositories and
-other social media while Ariadne only examines there source code for developer
+other social media while Ariadne only examines their source code for developer
 to source code association. Through Codebook, developers become
 owners of source code artifacts. Both projects also use program 
 dependency graphs~\cite{Horwitz:1992:UPD}
@@ -99,7 +99,7 @@ detect potential conflicts on their own.
 
 A serious attempt at both detecting and informing developers of
 indirect conflicts is the tool Palantir~\cite{Sarma:2007:TSA}. Palantir
-monitors developers activities in files with regards to class signatures.
+monitors developer's activities in files with regards to class signatures.
 Once a developer changes the signature of a class, such as by modifying changes
 in name, parameters, or return values of public methods, any workspace
 of other developers which are using that class will be notified. Palantir utilizes
@@ -117,13 +117,13 @@ class previously are not notified.
 
 I will lastly examine the tool CASI~\cite{Servant:2010:CPI} which uses
 a sphere of influence for each developer to determine how source code
-changes are indirectly related to other components of a software project.
+changes are indirectly related to other components of the software.
 CASI uses dependency slicing~\cite{Bajracharya:2009:SIS} instead of the 
 call graphs in Ariadne~\cite{Trainer:2005:BGT} which gives dependencies among
 all source code entities. This provides a verbose output of dependencies when
 source code is changed. CASI also implements a visualization where
 a developer can see what parts of a software projects he or she may be effecting
-with the source code change. This allows the developer themselves to go and fix
+with the source code change. This allows the developers themselves to go and fix
 potential issues elsewhere in the project before the code change is committed
 to the software repository. While CASI covers great ground in its approach,
 it still leaves the issue of information overload, although attempts were made
@@ -176,7 +176,7 @@ information gathering as it avoids the issue of developers
 overwriting previous work or deleting modifications which would 
 produce information for changes that no longer exist. However, the
 trade off is that indirect conflicts must be committed before detected,
-which results in conflicts being apart of the system before being able
+which results in conflicts being integrated into the system before being able
 to be dealt with as opposed to catching conflicts before they happen.
 At commit time, the tool must parse changed source code in relation
 to technical artifacts in the created directed graph detailed above.
@@ -267,7 +267,7 @@ awareness and promote quicker conflict resolution for indirect
 conflicts. The two interviews largely supported the expectation of
 indirect conflicts posing a serious threat to developers, especially
 in medium to large teams or projects as opposed to the small
-teams which they were apart of. It was also pointed
+teams which they were a part of. It was also pointed
 out that method use can be a particularly large area for indirect
 conflicts to arise. However, it was noted that
 any technical object which is used as an interface to some data
@@ -280,7 +280,7 @@ are doing as well as the influence it has on their own work. However,
 It was suggested
 that while all method changes were being detected,
 not all are notification worthy. One developer suggested to only notify
-developers to indirect conflicts if the internal structure of a method
+developers if the internal structure of a method
 changes due to modification to input parameters or output parameters.
 In other words, the boundaries of the technical objects (changing
 how a parameter is used inside the method, modifying the return
@@ -298,15 +298,15 @@ changes.
 
 \subsection{Threats to Validity}
 Because of the tool validation nature of this work, I chose participant interviews as my research validation method, which has some implications regarding the
-limitations and threats to validity of this study. While I did some positive results regarding the potential of Impact in this study
-populations studied from outside of this studies participants may add new insights into the pool of findings. As a result of this, findings
+limitations and threats to validity of this study. While I did have some positive results regarding the potential of Impact in this study,
+populations studied from outside of this study's participants may add new insights into the pool of findings. As a result of this, findings
 from this study may not relate to everyone or generalize to outside of the group of participants involved in this study.
 
-As per my interview participants, I conducted this case study with undergraduate students at the University of Victoria. This being said, participants
+I conducted this case study with undergraduate students at the University of Victoria. This being said, participants
 may not have had enough real world experience to validate this study at an industry level. The students were also consumed with their regular course
-work which could have limited the time spend using Impact and the enthusiasm put forward while conducting this study.
+work which could have limited the time spent using Impact and the enthusiasm put forward while conducting this study.
 
-To counter act this, my study was conducted purely on a volunteer basis to eliminate those participants which may have been to busy to focus
+To counter this, my study was conducted purely on a volunteer basis to eliminate those participants which may have been to busy to focus
 on the study or provide appropriate feedback where needed.
 
 \subsection{Conclusions of Study}

@@ -20,7 +20,7 @@ false positives, and scalability. Since Study 4 was directly associated with dev
 \textbf{The Human Factor of Indirect Conflicts} \textit{An important component of indirect conflicts are the developers
 themselves and how their notions of other's work is perceived across a project.}
 
-As we have seen in Study 1, developers which are tied to source code objects can become a focal point of
+As we have seen in Study 1, developers that are tied to source code objects can become a focal point of
 indirect conflicts through the life of a project. For instance we can see from Table~\ref{tab:ratio} that
 developers Daniel and Anne on Hibernate-ORM are always linked indirect conflicts when dependencies between
 their source code objects change. This is an important observation to make when moving forward with indirect
@@ -81,9 +81,9 @@ for industry through tools.
 
 \textbf{Unwanted Awareness} \textit{Developers tend to only care about the awareness of other's activities, if it causes
 a negative influence on their own work. Developers only want to hear about another developer's actions if it forces them
-to take some action because of it. This limited awareness is quite different that what literature suggests, which is larger
+to take some action because of it. This limited awareness is quite different from what literature suggests, which is larger
 awareness about most, if not all actions, and it also suggests why developers see a high amount of what they believe to be
-false positives, as the changes being reported are not causing them to take action. These reported non actionable responses
+false positives, as the changes being reported are not causing them to take action. These reported non-actionable responses
 lead to information overload and false positives.}
 
 As we have seen, indirect conflicts are found to be quite a serious problem that occur frequently,
@@ -160,7 +160,7 @@ Even with an experienced system architect, identifying dependencies and notifyin
 which is ignored more than dealt with. The second being the knowledge of when a dependency will fail, also requires vast knowledge
 of the product, more than anyone may have. This is compounded by the unique and sporadic nature of indirect conflicts. These 2 factors
 are what ultimately have led to the amount of false positives and information overload seen in previous tools. The
-abundance of detection and curative process and tools on the other hand shows once again developers willingness to debug
+abundance of detection and curative process and tools on the other hand shows once again developer's willingness to debug
 real issues, that maybe even could have been prevented, rather than prevent the issues in the first place. With
 this lack of prevention and abundance of curative measures, the question ultimately presented in this area is if 
 curative measures are more productive than preventative measures.
@@ -170,7 +170,7 @@ to measure. The pros and cons of prevention versus cure I have identified, are s
 in that they result in a trade off 
 of where time is spent and how productive each side of the argument truly is. If prevention can be shown to be more effective in that
 it reduces the number of indirect conflicts or time spent debugging them compared to the time taken to prevent them, should we then
-not be moving developers into a more preventative mindset. If curative can be shown to be more effective in that it takes less time
+not be moving developers into a more preventative mindset; if curative can be shown to be more effective in that it takes less time
 to fix real issues compare to preventing potential ones, should we not be putting more time into automatic debugging, such as
 Zeller's Delta Debugging~\cite{Zeller:2002:ICC} or program slicing techniques~\cite{Weiser:1982:PUS}, or automatic test case creation.
 
@@ -185,7 +185,7 @@ measures as a ``burden'' and may be more inclined to take a more balanced preven
 
 This prevention versus cure discussion resides purely on the developer level and should be noted that it may not apply to system
 designers, architects, or managerial stakeholders. 
-From the project manager's interviewed it was shown that they are heavily favored towards planning and 
+From the project managers interviewed it was shown that they heavily favored planning and 
 prevention (even though their prevention may be on more abstract levels than developers actually need) while leaving the curative
 approaches to their developers. The prevention versus cure debate may have different outcomes depending on what level of abstraction
 is being viewed in research.
@@ -199,7 +199,7 @@ to scalability of existing indirect conflict tools.}
 Indirect conflicts are more likely to occur,
 from developer opinion, before a mature point is reached in the project's evolution. ``Once you get the API stable, people are 
 better at communicating changes in regards to dependency concerns.''(This mature point may stem from a major release,
-end of an iteration, a new feature being released or any point considered stable and reliable) However, this context of a 
+end of an iteration, a new feature being released or any point considered stable and reliable.) However, this context of a 
 mature point, as well as any other
 potential contextual attributes, are rarely identified or accounted for in regards to indirect conflicts. Developers have said
 that different change types may occur at different rates throughout a project's life time and that this
@@ -297,7 +297,7 @@ developers want may not always be good for them.}
 
 The direct implication this research has on tool creation is that of current adoption among developers. As was stated,
 developers are more keen to invest their time at the detection and cure / resolution stages of indirect conflicts. That being 
-said, focus at these two stages for tool developer will lead to larger adoption among developers.
+said, focus at these two stages for tool development will lead to larger adoption among developers.
 It should be noted here that detection must come with an almost zero rate of false positives as
 current tools (unit and integration and user testing), while they may not have 100\% recall, have almost 100\% precision.
 
