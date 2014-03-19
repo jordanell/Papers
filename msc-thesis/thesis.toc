@@ -45,7 +45,7 @@
 \contentsline {subsection}{\numberline {3.2.1}Related Work}{38}
 \contentsline {subsection}{\numberline {3.2.2}Methodology}{39}
 \contentsline {subsection}{\numberline {3.2.3}Results}{41}
-\contentsline {subsection}{\numberline {3.2.4}Conclusions of Study}{43}
+\contentsline {subsection}{\numberline {3.2.4}Conclusions of Study}{44}
 \contentsline {chapter}{\numberline {4}Discussion}{46}
 \contentsline {section}{\numberline {4.1}Motivating Studies Discussion}{46}
 \contentsline {section}{\numberline {4.2}Indirect Conflict Exploration Discussion}{48}
