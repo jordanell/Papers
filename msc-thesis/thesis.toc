@@ -40,12 +40,12 @@
 \contentsline {subsubsection}{What do developers want from future indirect conflict tools?}{33}
 \contentsline {subsection}{\numberline {3.1.4}Evaluation}{35}
 \contentsline {subsection}{\numberline {3.1.5}Threats to Validity}{36}
-\contentsline {subsection}{\numberline {3.1.6}Conclusions of Study}{36}
+\contentsline {subsection}{\numberline {3.1.6}Conclusions of Study}{37}
 \contentsline {section}{\numberline {3.2}Study 4: Investigating Indirect Conflict Contextual Patterns}{37}
-\contentsline {subsection}{\numberline {3.2.1}Related Work}{38}
-\contentsline {subsection}{\numberline {3.2.2}Methodology}{39}
-\contentsline {subsection}{\numberline {3.2.3}Results}{41}
-\contentsline {subsection}{\numberline {3.2.4}Conclusions of Study}{44}
+\contentsline {subsection}{\numberline {3.2.1}Related Work}{39}
+\contentsline {subsection}{\numberline {3.2.2}Methodology}{40}
+\contentsline {subsection}{\numberline {3.2.3}Results}{42}
+\contentsline {subsection}{\numberline {3.2.4}Conclusions of Study}{45}
 \contentsline {chapter}{\numberline {4}Discussion}{46}
 \contentsline {section}{\numberline {4.1}Motivating Studies Discussion}{46}
 \contentsline {section}{\numberline {4.2}Indirect Conflict Exploration Discussion}{48}
